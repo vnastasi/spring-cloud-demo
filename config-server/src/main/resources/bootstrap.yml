@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: ${HOME}/Workspace/Demos/spring-cloud-demo/configs
+server:
+  port: 8081
