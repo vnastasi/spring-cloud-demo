@@ -1,12 +1,14 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import lombok.Data;
+import lombok.Builder;
 import lombok.NonNull;
+import lombok.Value;
 
 import java.util.List;
 
-@Data
-public final class Station {
+@Value
+@Builder
+public class Station {
 
     @NonNull
     private String code;

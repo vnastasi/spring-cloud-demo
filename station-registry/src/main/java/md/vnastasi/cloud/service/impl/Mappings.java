@@ -22,20 +22,25 @@ final class Mappings {
 
     @NonNull
     static Station map(@NonNull StationWrapper input) {
-        return new Station(
-                input.getUicCode(),
-                map(input.getNames()),
-                map(input.getStationType()),
-                new ArrayList<String>(input.getSynonyms()),
-                input.getCountryCode(),
-                map(input.getTracks()),
-                new Coordinates(input.getLatitude(), input.getLongitude())
-        );
+        Coordinates coordinates = Coordinates.builder().latitude(input.getLatitude()).longitude(input.getLongitude()).build();
+        return Station.builder()
+                .code(input.getUicCode())
+                .names(map(input.getNames()))
+                .type(map(input.getStationType()))
+                .synonyms(new ArrayList<>(input.getSynonyms()))
+                .countryCode(input.getCountryCode())
+                .tracks(map(input.getTracks()))
+                .coordinates(coordinates)
+                .build();
     }
 
     @NonNull
     private static NameHolder map(@NonNull NamesWrapper input) {
-        return new NameHolder(input.getShortName(), input.getMiddleName(), input.getLongName());
+        return NameHolder.builder()
+                .shortName(input.getShortName())
+                .middleName(input.getMiddleName())
+                .longName(input.getLongName())
+                .build();
     }
 
     @NonNull
@@ -56,7 +61,7 @@ final class Mappings {
             case OPTIONAL_STATION:
                 return StationType.OPTIONAL_STATION;
             default:
-                throw new IllegalArgumentException("Unknown enum type");
+                return StationType.UNKNOWN;
         }
     }
 

@@ -1,10 +1,12 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import lombok.Data;
+import lombok.Builder;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
-public final class NameHolder {
+@Value
+@Builder
+public class NameHolder {
 
     @NonNull
     private String shortName;

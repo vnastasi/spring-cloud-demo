@@ -12,5 +12,7 @@ public enum StationType {
 
     INTERCITY_JUNCTION_STATION,
 
-    OPTIONAL_STATION
+    OPTIONAL_STATION,
+
+    UNKNOWN
 }

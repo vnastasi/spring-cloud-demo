@@ -1,15 +1,18 @@
 package md.vnastasi.cloud.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.Builder;
 import lombok.NonNull;
+import lombok.Value;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
-public final class StationWrapper {
+@Value
+@Builder(builderClassName = "WrapperBuilder")
+@JsonDeserialize(builder = StationWrapper.WrapperBuilder.class)
+public class StationWrapper {
 
     @NonNull
     @JsonProperty("code")
@@ -70,4 +73,8 @@ public final class StationWrapper {
     @NonNull
     @JsonProperty("naderenRadius")
     private Integer nearRadius;
+
+    @JsonPOJOBuilder(withPrefix = "")
+    static class WrapperBuilder {
+    }
 }

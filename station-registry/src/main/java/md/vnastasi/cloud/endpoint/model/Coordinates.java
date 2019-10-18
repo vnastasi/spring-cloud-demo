@@ -1,10 +1,12 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import lombok.Data;
+import lombok.Builder;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
-public final class Coordinates {
+@Value
+@Builder
+public class Coordinates {
 
     @NonNull
     private Double latitude;

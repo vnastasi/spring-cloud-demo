@@ -1,15 +1,22 @@
 package md.vnastasi.cloud.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import lombok.Builder;
 import lombok.NonNull;
+import lombok.Value;
 
-@Data
-@NoArgsConstructor
-public final class TrackWrapper {
+@Value
+@Builder(builderClassName = "WrapperBuilder")
+@JsonDeserialize(builder = TrackWrapper.WrapperBuilder.class)
+public class TrackWrapper {
 
     @NonNull
     @JsonProperty("spoorNummer")
     private String number;
+
+    @JsonPOJOBuilder(withPrefix = "")
+    static class WrapperBuilder {
+    }
 }
