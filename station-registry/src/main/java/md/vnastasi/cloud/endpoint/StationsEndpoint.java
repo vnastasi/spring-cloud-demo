@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-@RestController("/")
+@RestController
 public class StationsEndpoint {
 
     private final StationService stationService;
@@ -18,7 +18,7 @@ public class StationsEndpoint {
         this.stationService = stationService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public Mono<ResponseEntity<List<Station>>> getStations() {
         return stationService.getStations().map(ResponseEntity::ok);
     }
