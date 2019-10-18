@@ -1,5 +1,3 @@
-apply(plugin = "com.gorylenko.gradle-git-properties")
-
 version = "0.0.1-SNAPSHOT"
 
 configurations {
@@ -41,4 +39,24 @@ tasks.processResources {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.withType(JacocoReport::class.java) {
+    dependsOn(tasks.test)
+
+    reports {
+        csv.isEnabled = false
+        xml.isEnabled = false
+        html.isEnabled = true
+    }
+
+    sourceDirectories.setFrom(file("src/main/java"))
+    classDirectories.setFrom(files("$buildDir/classes/java/main").asFileTree.matching {
+        excludes += listOf(
+            "**/StationRegistryApplication.*",
+            "**/ApplicationConfig.*",
+            "**/ApplicationProperties**.*",
+            "**/model/**"
+        )
+    })
 }
