@@ -18,10 +18,10 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Mappings {
+final class Mappings {
 
     @NonNull
-    public static Station map(@NonNull StationWrapper input) {
+    static Station map(@NonNull StationWrapper input) {
         return new Station(
                 input.getUicCode(),
                 map(input.getNames()),
@@ -44,13 +44,17 @@ public final class Mappings {
             case MAJOR_STATION:
                 return StationType.MAJOR_STATION;
             case INTERCITY_JUNCTION_STATION:
+            case FAST_TRAIN_JUNCTION_STATION:
                 return StationType.INTERCITY_JUNCTION_STATION;
             case INTERCITY_STATION:
+            case FAST_TRAIN_STATION:
                 return StationType.INTERCITY_STATION;
             case STOP_TRAIN_STATION:
                 return StationType.STOP_TRAIN_STATION;
             case STOP_TRAIN_JUNCTION_STATION:
                 return StationType.STOP_TRAIN_JUNCTION_STATION;
+            case OPTIONAL_STATION:
+                return StationType.OPTIONAL_STATION;
             default:
                 throw new IllegalArgumentException("Unknown enum type");
         }
