@@ -2,11 +2,12 @@ package md.vnastasi.cloud.client.impl;
 
 import md.vnastasi.cloud.ApplicationProperties;
 import md.vnastasi.cloud.client.PublicTravelInfoClient;
-import md.vnastasi.cloud.util.JsonResponses;
+import md.vnastasi.cloud.util.JsonUtils;
 import md.vnastasi.cloud.util.TestApplicationProperties;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,11 +33,12 @@ class PublicTravelInfoClientTest {
     }
 
     @Test
+    @DisplayName("when client returns HTTP 200 then expect a flux of stations")
     void testStationsResponse() {
         MockResponse mockResponse = new MockResponse()
                 .setResponseCode(HttpStatus.OK.value())
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .setBody(JsonResponses.fromFile("stations.json"));
+                .setBody(JsonUtils.readString("station_list.json"));
         webServer.enqueue(mockResponse);
 
         StepVerifier.withVirtualTime(client::getStations)
