@@ -17,3 +17,5 @@ info:
   app:
     name: Station registry
     version: ${project.version}
+server:
+  port: 8085
