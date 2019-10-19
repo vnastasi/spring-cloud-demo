@@ -1,4 +1,15 @@
+@file:Suppress("UnstableApiUsage")
+
 version = "0.0.1-SNAPSHOT"
+
+plugins {
+    id("java")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 configurations {
     compileOnly {
@@ -41,7 +52,7 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType(JacocoReport::class.java) {
+tasks.jacocoTestReport {
     dependsOn(tasks.test)
 
     reports {

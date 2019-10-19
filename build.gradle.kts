@@ -11,6 +11,7 @@ buildscript {
 
 plugins {
     id("org.gradle.base")
+    id("org.gradle.kotlin.kotlin-dsl") version "1.2.9"
     id("java")
     id("org.springframework.boot") version "2.1.9.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
@@ -29,12 +30,11 @@ allprojects {
         mavenCentral()
         jcenter()
     }
-
 }
 
 subprojects {
     apply(plugin = "org.gradle.base")
-    apply(plugin = "java")
+    apply(plugin = "org.gradle.kotlin.kotlin-dsl")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "com.gorylenko.gradle-git-properties")
@@ -55,10 +55,5 @@ subprojects {
 
             dependency("org.mockito:mockito-junit-jupiter:2.18.3")
         }
-    }
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }
