@@ -1,0 +1,28 @@
+{
+  "sporen": [
+    {
+      "spoorNummer": "2"
+    },
+    {
+      "spoorNummer": "3"
+    }
+  ],
+  "synoniemen": [],
+  "heeftFaciliteiten": true,
+  "heeftVertrektijden": true,
+  "heeftReisassistentie": false,
+  "code": "BKL",
+  "namen": {
+    "lang": "Breukelen",
+    "kort": "Breukelen",
+    "middel": "Breukelen"
+  },
+  "stationType": "KNOOPPUNT_STOPTREIN_STATION",
+  "land": "NL",
+  "UICCode": "8400133",
+  "lat": 52.17149,
+  "lng": 4.9906,
+  "radius": 260,
+  "naderenRadius": 800,
+  "EVACode": "8400133"
+}

@@ -1,0 +1,56 @@
+package md.vnastasi.cloud.client.impl;
+
+import md.vnastasi.cloud.ApplicationProperties;
+import md.vnastasi.cloud.client.PublicTravelInfoClient;
+import md.vnastasi.cloud.util.JsonUtils;
+import md.vnastasi.cloud.util.TestApplicationProperties;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.test.StepVerifier;
+
+import java.io.IOException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class PublicTravelInfoClientTest {
+
+    private final ApplicationProperties applicationProperties = TestApplicationProperties.builder().build().convert();
+    private final MockWebServer webServer = new MockWebServer();
+    private final WebClient webClient = WebClient.create(webServer.url("/").toString());
+
+    private PublicTravelInfoClient client = new PublicTravelInfoClientImpl(webClient, applicationProperties);
+
+    @AfterEach
+    void tearDown() throws IOException {
+        webServer.shutdown();
+    }
+
+    @Test
+    @DisplayName("when client returns HTTP 200 then expect a flux of stations")
+    void testStationsResponse() {
+        MockResponse mockResponse = new MockResponse()
+                .setResponseCode(HttpStatus.OK.value())
+                .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .setBody(JsonUtils.readString("station_list.json"));
+        webServer.enqueue(mockResponse);
+
+        StepVerifier.withVirtualTime(client::getStations)
+                .assertNext(stationWrapper -> {
+                    assertThat(stationWrapper.getNames().getLongName()).isEqualTo("London St. Pancras Int.");
+                })
+                .assertNext(stationWrapper -> {
+                    assertThat(stationWrapper.getNames().getLongName()).isEqualTo("Breukelen");
+                })
+                .assertNext(stationWrapper -> {
+                    assertThat(stationWrapper.getNames().getLongName()).isEqualTo("Breda");
+                })
+                .verifyComplete();
+    }
+}
