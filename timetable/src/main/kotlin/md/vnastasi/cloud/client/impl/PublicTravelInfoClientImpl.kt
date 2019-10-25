@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.map
 import md.vnastasi.cloud.ApplicationProperties
 import md.vnastasi.cloud.client.PublicTravelInfoClient
-import md.vnastasi.cloud.client.model.ArrivalWrapper
-import md.vnastasi.cloud.client.model.ArrivalsResponseWrapper
-import md.vnastasi.cloud.client.model.DepartureWrapper
-import md.vnastasi.cloud.client.model.DeparturesResponseWrapper
+import md.vnastasi.cloud.client.model.*
+import md.vnastasi.cloud.exception.ApiException
+import md.vnastasi.cloud.exception.asApiError
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitExchange
@@ -27,7 +27,15 @@ class PublicTravelInfoClientImpl(
         val url = applicationProperties.nsApi.publicTravelInfo.departuresPath
         return webClient.get()
             .uri { it.path(url).queryParam(PARAM_UIC_CODE, uicCode).build() }
-            .awaitExchange()
+            .retrieve()
+            .onStatus(
+                { status ->
+                    status != HttpStatus.OK
+                },
+                { response ->
+                    response.bodyToMono(ErrorResponseWrapper::class.java).map { ApiException(it.asApiError()) }
+                }
+            )
             .bodyToFlow<DeparturesResponseWrapper>()
             .map { it.payload.departures }
             .flatMapMerge { it.asFlow() }
