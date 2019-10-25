@@ -49,3 +49,7 @@ tasks.processResources {
         expand(project.properties)
     }
 }
+
+tasks.test {
+    useJUnitPlatform()
+}
