@@ -12,7 +12,6 @@ import md.vnastasi.cloud.exception.asApiError
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.reactive.function.client.awaitExchange
 import org.springframework.web.reactive.function.client.bodyToFlow
 
 private const val PARAM_UIC_CODE = "uicCode"
@@ -45,7 +44,15 @@ class PublicTravelInfoClientImpl(
         val url = applicationProperties.nsApi.publicTravelInfo.arrivalsPath
         return webClient.get()
             .uri { it.path(url).queryParam(PARAM_UIC_CODE, uicCode).build() }
-            .awaitExchange()
+            .retrieve()
+            .onStatus(
+                { status ->
+                    status != HttpStatus.OK
+                },
+                { response ->
+                    response.bodyToMono(ErrorResponseWrapper::class.java).map { ApiException(it.asApiError()) }
+                }
+            )
             .bodyToFlow<ArrivalsResponseWrapper>()
             .map { it.payload.arrivals }
             .flatMapMerge { it.asFlow() }

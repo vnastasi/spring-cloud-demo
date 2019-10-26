@@ -1,0 +1,11 @@
+{
+  "code": "400",
+  "message": "Bad Request",
+  "errors": [
+    {
+      "message": "Dit station is niet gevonden",
+      "code": 0,
+      "type": "STATION_NOT_FOUND"
+    }
+  ]
+}

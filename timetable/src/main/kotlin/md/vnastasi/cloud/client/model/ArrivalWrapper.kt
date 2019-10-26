@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.client.model
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.time.OffsetDateTime
 
@@ -27,9 +28,11 @@ data class ArrivalWrapper(
     val cancelled: Boolean,
 
     @JsonProperty("plannedDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ")
     val plannedDateTime: OffsetDateTime,
 
     @JsonProperty("actualDateTime")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZ")
     val actualDateTime: OffsetDateTime,
 
     @JsonProperty("messages")
