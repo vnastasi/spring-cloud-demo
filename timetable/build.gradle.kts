@@ -21,11 +21,10 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testImplementation("org.junit.jupiter:junit-jupiter-params")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.mockito:mockito-junit-jupiter")
     testImplementation("com.squareup.okhttp3:mockwebserver")
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }

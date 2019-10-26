@@ -42,7 +42,7 @@ fun ProductWrapper.extractCategory(): Category =
 
 fun ProductWrapper.asTransportationUnit(): TransportationUnit =
     TransportationUnit(
-        number = this.number,
+        number = "${this.operatorCode} ${this.number}",
         type = this.type.asTransportationType(),
         operator = this.operatorName,
         category = this.extractCategory()

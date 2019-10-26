@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.client.impl
 
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flatMapMerge
@@ -16,6 +17,7 @@ import org.springframework.web.reactive.function.client.bodyToFlow
 
 private const val PARAM_UIC_CODE = "uicCode"
 
+@FlowPreview
 @Component
 class PublicTravelInfoClientImpl(
     private val webClient: WebClient,

@@ -52,6 +52,7 @@ subprojects {
             dependency("com.squareup.okio:okio:2.4.1")
 
             dependency("org.mockito:mockito-junit-jupiter:2.18.3")
+            dependency("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
         }
     }
 }

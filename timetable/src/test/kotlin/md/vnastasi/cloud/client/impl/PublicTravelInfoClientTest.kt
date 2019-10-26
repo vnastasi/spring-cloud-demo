@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.client.impl
 
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import md.vnastasi.cloud.client.model.DepartureStatusWrapper
@@ -27,6 +28,7 @@ import org.springframework.web.reactive.function.client.WebClient
 
 private const val UIC_CODE = "34567"
 
+@FlowPreview
 class PublicTravelInfoClientTest {
 
     private val applicationProperties = applicationProperties()
