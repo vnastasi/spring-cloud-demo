@@ -7,8 +7,8 @@ import org.springframework.boot.web.reactive.error.DefaultErrorAttributes
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.server.ServerRequest
 
-private const val KEY_REASON = "reason"
-private const val KEY_MESSAGE = "message"
+const val KEY_REASON = "reason"
+const val KEY_MESSAGE = "message"
 
 @Component
 class ApiErrorAttributes : DefaultErrorAttributes() {
