@@ -1,18 +1,16 @@
 buildscript {
     repositories {
+        maven { setUrl("https://plugins.gradle.org/m2/0") }
         mavenLocal()
         mavenCentral()
         jcenter()
-        maven {
-            setUrl("https://plugins.gradle.org/m2/0")
-        }
     }
 }
 
 plugins {
     id("org.gradle.base")
     id("java")
-    id("org.springframework.boot") version "2.1.9.RELEASE"
+    id("org.springframework.boot") version "2.2.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
     id("org.jetbrains.kotlin.jvm") version "1.3.50"
     id("org.jetbrains.kotlin.kapt") version "1.3.50"
@@ -29,12 +27,10 @@ allprojects {
         mavenCentral()
         jcenter()
     }
-
 }
 
 subprojects {
     apply(plugin = "org.gradle.base")
-    apply(plugin = "java")
     apply(plugin = "org.springframework.boot")
     apply(plugin = "io.spring.dependency-management")
     apply(plugin = "com.gorylenko.gradle-git-properties")
@@ -48,17 +44,15 @@ subprojects {
         dependencies {
             dependency("org.jetbrains.kotlin:kotlin-stdlib:1.3.50")
             dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.50")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.3.2")
 
             dependency("com.squareup.okhttp3:mockwebserver:4.2.2")
             dependency("com.squareup.okhttp3:okhttp:4.2.2")
             dependency("com.squareup.okio:okio:2.4.1")
 
             dependency("org.mockito:mockito-junit-jupiter:2.18.3")
+            dependency("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
         }
-    }
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
 }

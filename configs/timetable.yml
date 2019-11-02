@@ -1,0 +1,5 @@
+application:
+  ns-api:
+    public-travel-info:
+      arrivals-path: /arrivals
+      departures-path: /departures

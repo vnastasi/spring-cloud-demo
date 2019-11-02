@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: timetable
+  cloud:
+    config:
+      uri: http://localhost:8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    git:
+      enabled: true
+      mode: full
+info:
+  app:
+    name: Timetable
+    version: ${project.version}
+server:
+  port: 8086
