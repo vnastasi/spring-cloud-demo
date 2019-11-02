@@ -25,6 +25,7 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+        maven { setUrl("https://repo.spring.io/milestone") }
         jcenter()
     }
 }
@@ -38,7 +39,7 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR3")
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Hoxton.M3")
         }
 
         dependencies {
