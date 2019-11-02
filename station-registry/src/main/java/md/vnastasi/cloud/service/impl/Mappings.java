@@ -22,7 +22,7 @@ final class Mappings {
 
     @NonNull
     static Station map(@NonNull StationWrapper input) {
-        Coordinates coordinates = Coordinates.builder().latitude(input.getLatitude()).longitude(input.getLongitude()).build();
+        var coordinates = Coordinates.builder().latitude(input.getLatitude()).longitude(input.getLongitude()).build();
         return Station.builder()
                 .code(input.getUicCode())
                 .names(map(input.getNames()))

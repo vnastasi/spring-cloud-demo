@@ -12,9 +12,9 @@ public class ApplicationConfig {
             WebClient.Builder builder,
             ApplicationProperties applicationProperties
     ) {
-        String url = applicationProperties.getNsApi().getBaseUrl() + applicationProperties.getNsApi().getPublicTravelInfo().getBasePath();
-        String headerName = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getHeader();
-        String headerValue = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getValue();
+        var url = applicationProperties.getNsApi().getBaseUrl() + applicationProperties.getNsApi().getPublicTravelInfo().getBasePath();
+        var headerName = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getHeader();
+        var headerValue = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getValue();
 
         return builder.baseUrl(url).defaultHeader(headerName, headerValue).build();
     }

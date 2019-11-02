@@ -24,7 +24,7 @@ public class PublicTravelInfoClientImpl implements PublicTravelInfoClient {
 
     @Override
     public Flux<StationWrapper> getStations() {
-        String url = applicationProperties.getNsApi().getPublicTravelInfo().getStationsPath();
+        var url = applicationProperties.getNsApi().getPublicTravelInfo().getStationsPath();
         return webClient.get()
                 .uri(url)
                 .retrieve()
