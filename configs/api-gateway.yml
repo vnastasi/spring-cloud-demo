@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: station-registry
+          uri: lb://station-registry
+          predicates:
+            - Path=/api/v1/station
+            - Method=GET
+          filters:
+            - RewritePath=/api/v1/station, /
+        - id: departures
+          uri: lb://timetable
+          predicates:
+            - Path=/api/v1/departures
+            - Method=GET
+          filters:
+            - RewritePath=/api/v1/departures, /departures
+        - id: arrivals
+          uri: lb://timetable
+          predicates:
+            - Path=/api/v1/arrivals
+            - Method=GET
+          filters:
+            - RewritePath=/api/v1/arrivals, /arrivals
