@@ -12,9 +12,9 @@ plugins {
     id("java")
     id("org.springframework.boot") version "2.2.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.8.RELEASE"
-    id("org.jetbrains.kotlin.jvm") version "1.3.50"
-    id("org.jetbrains.kotlin.kapt") version "1.3.50"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.50"
+    id("org.jetbrains.kotlin.jvm") version "1.3.60"
+    id("org.jetbrains.kotlin.kapt") version "1.3.60"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.60"
     id("org.jetbrains.dokka") version "0.9.17"
     id("com.gorylenko.gradle-git-properties") version "1.5.1"
     id("jacoco")
@@ -43,8 +43,8 @@ subprojects {
         }
 
         dependencies {
-            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.3.50")
-            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.50")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.3.60")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.60")
             dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
             dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.3.2")
 
