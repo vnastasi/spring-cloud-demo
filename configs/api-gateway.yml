@@ -12,17 +12,17 @@ spring:
         - id: departures
           uri: lb://timetable
           predicates:
-            - Path=/api/v1/departures
+            - Path=/api/v1/station/*/departures
             - Method=GET
           filters:
-            - RewritePath=/api/v1/departures, /departures
+            - RewritePath=/api/v1/station/(?<id>/?.*)/departures, /departures?code=$\{id}
         - id: arrivals
           uri: lb://timetable
           predicates:
-            - Path=/api/v1/arrivals
+            - Path=/api/v1/station/*/arrivals
             - Method=GET
           filters:
-            - RewritePath=/api/v1/arrivals, /arrivals
+            - RewritePath=/api/v1/station/(?<id>/?.*)/arrivals, /arrivals?code=$\{id}
 application:
   security:
     user: ns-demo
