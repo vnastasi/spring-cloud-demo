@@ -2,6 +2,8 @@ package md.vnastasi.cloud.service.impl;
 
 import md.vnastasi.cloud.client.PublicTravelInfoClient;
 import md.vnastasi.cloud.client.model.StationWrapper;
+import md.vnastasi.cloud.endpoint.model.Coordinates;
+import md.vnastasi.cloud.endpoint.model.NameHolder;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.endpoint.model.StationType;
 import md.vnastasi.cloud.service.StationService;
@@ -30,7 +32,6 @@ class StationServiceTest {
         when(mockClient.getStations()).thenReturn(Flux.empty());
 
         StepVerifier.withVirtualTime(service::getStations)
-                .assertNext(list -> assertThat(list).isEmpty())
                 .verifyComplete();
     }
 
@@ -41,10 +42,7 @@ class StationServiceTest {
         when(mockClient.getStations()).thenReturn(Flux.just(stationWrapper));
 
         StepVerifier.withVirtualTime(service::getStations)
-                .assertNext(list -> {
-                    assertThat(list).isNotEmpty().hasSize(1);
-                    assertStation(list.get(0));
-                })
+                .assertNext(this::assertStation)
                 .verifyComplete();
     }
 
@@ -55,13 +53,13 @@ class StationServiceTest {
         assertThat(station.getTracks()).hasSize(2).containsExactlyInAnyOrder("2", "3");
         assertThat(station.getSynonyms()).isEmpty();
 
-        assertThat(station.getNames()).isNotNull();
-        assertThat(station.getNames().getShortName()).isEqualTo("Breukelen");
-        assertThat(station.getNames().getMiddleName()).isEqualTo("Breukelen");
-        assertThat(station.getNames().getLongName()).isEqualTo("Breukelen");
+        NameHolder names = station.getNames();
+        assertThat(names.getShortName()).isEqualTo("Breukelen");
+        assertThat(names.getMiddleName()).isEqualTo("Breukelen");
+        assertThat(names.getLongName()).isEqualTo("Breukelen");
 
-        assertThat(station.getCoordinates()).isNotNull();
-        assertThat(station.getCoordinates().getLatitude()).isCloseTo(52.17149, offset(0.001));
-        assertThat(station.getCoordinates().getLongitude()).isCloseTo(4.9906, offset(0.001));
+        Coordinates coordinates = station.getCoordinates();
+        assertThat(coordinates.getLatitude()).isCloseTo(52.17149, offset(0.001));
+        assertThat(coordinates.getLongitude()).isCloseTo(4.9906, offset(0.001));
     }
 }

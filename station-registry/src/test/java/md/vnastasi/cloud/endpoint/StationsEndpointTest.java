@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ class StationsEndpointTest {
     @Test
     @DisplayName("when empty list then expect HTTP 200 and empty list in response body")
     void testEmptyListResponse() {
-        when(mockService.getStations()).thenReturn(Mono.just(List.of()));
+        when(mockService.getStations()).thenReturn(Flux.empty());
 
         client.get().uri("/").accept(MediaType.APPLICATION_JSON)
                 .exchange()
@@ -42,7 +42,7 @@ class StationsEndpointTest {
     @DisplayName("when list with one element then expect HTTP 200 and list with one element")
     void testNonEmptyListResponse() {
         Station station = createStation();
-        when(mockService.getStations()).thenReturn(Mono.just(List.of(station)));
+        when(mockService.getStations()).thenReturn(Flux.just(station));
 
         client.get().uri("/").accept(MediaType.APPLICATION_JSON)
                 .exchange()

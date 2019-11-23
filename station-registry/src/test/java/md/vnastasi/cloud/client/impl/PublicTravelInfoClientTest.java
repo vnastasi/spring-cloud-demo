@@ -42,15 +42,9 @@ class PublicTravelInfoClientTest {
         webServer.enqueue(mockResponse);
 
         StepVerifier.withVirtualTime(client::getStations)
-                .assertNext(stationWrapper -> {
-                    assertThat(stationWrapper.getNames().getLongName()).isEqualTo("London St. Pancras Int.");
-                })
-                .assertNext(stationWrapper -> {
-                    assertThat(stationWrapper.getNames().getLongName()).isEqualTo("Breukelen");
-                })
-                .assertNext(stationWrapper -> {
-                    assertThat(stationWrapper.getNames().getLongName()).isEqualTo("Breda");
-                })
+                .assertNext(it -> assertThat(it.getNames().getLongName()).isEqualTo("London St. Pancras Int."))
+                .assertNext(it -> assertThat(it.getNames().getLongName()).isEqualTo("Breukelen"))
+                .assertNext(it -> assertThat(it.getNames().getLongName()).isEqualTo("Breda"))
                 .verifyComplete();
     }
 }

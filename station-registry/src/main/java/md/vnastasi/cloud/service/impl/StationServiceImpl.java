@@ -4,9 +4,7 @@ import md.vnastasi.cloud.client.PublicTravelInfoClient;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.service.StationService;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @Service
 public class StationServiceImpl implements StationService {
@@ -18,7 +16,7 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public Mono<List<Station>> getStations() {
-        return client.getStations().map(Mappings::map).collectList();
+    public Flux<Station> getStations() {
+        return client.getStations().map(Mappings::map);
     }
 }
