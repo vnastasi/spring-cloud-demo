@@ -16,6 +16,8 @@ import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.bodyToFlow
 
 private const val PARAM_UIC_CODE = "uicCode"
+private const val PARAM_LANGUAGE = "lang"
+private const val DEFAULT_LANGUAGE = "en"
 
 @FlowPreview
 @Component
@@ -26,17 +28,7 @@ class PublicTravelInfoClientImpl(
 
     override suspend fun getDepartures(uicCode: String): Flow<DepartureWrapper> {
         val url = applicationProperties.nsApi.publicTravelInfo.departuresPath
-        return webClient.get()
-            .uri { it.path(url).queryParam(PARAM_UIC_CODE, uicCode).build() }
-            .retrieve()
-            .onStatus(
-                { status ->
-                    status != HttpStatus.OK
-                },
-                { response ->
-                    response.bodyToMono(ErrorResponseWrapper::class.java).map { ApiException(it.asApiError()) }
-                }
-            )
+        return webClient.call(url, uicCode)
             .bodyToFlow<DeparturesResponseWrapper>()
             .map { it.payload.departures }
             .flatMapMerge { it.asFlow() }
@@ -44,19 +36,21 @@ class PublicTravelInfoClientImpl(
 
     override suspend fun getArrivals(uicCode: String): Flow<ArrivalWrapper> {
         val url = applicationProperties.nsApi.publicTravelInfo.arrivalsPath
-        return webClient.get()
-            .uri { it.path(url).queryParam(PARAM_UIC_CODE, uicCode).build() }
-            .retrieve()
-            .onStatus(
-                { status ->
-                    status != HttpStatus.OK
-                },
-                { response ->
-                    response.bodyToMono(ErrorResponseWrapper::class.java).map { ApiException(it.asApiError()) }
-                }
-            )
+        return webClient.call(url, uicCode)
             .bodyToFlow<ArrivalsResponseWrapper>()
             .map { it.payload.arrivals }
             .flatMapMerge { it.asFlow() }
     }
+
+    private fun WebClient.call(
+        url: String,
+        uicCode: String
+    ): WebClient.ResponseSpec =
+        get()
+            .uri { it.path(url).queryParam(PARAM_UIC_CODE, uicCode).queryParam(PARAM_LANGUAGE, DEFAULT_LANGUAGE).build() }
+            .retrieve()
+            .onStatus(
+                { status -> status != HttpStatus.OK },
+                { response -> response.bodyToMono(ErrorResponseWrapper::class.java).map { ApiException(it.asApiError()) } }
+            )
 }

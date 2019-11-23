@@ -2,7 +2,7 @@ application:
   ns-api:
     base-url: https://gateway.apiportal.ns.nl
     public-travel-info:
-      base-path: /public-reisinformatie/api/v2
+      base-path: /reisinformatie-api/api/v2
       api-key:
         header: Ocp-Apim-Subscription-Key
-        value: d959172d861e499aae8849de1bb26f4c
+        value: c49aeb73cb024f8ba46daf9b482d794e
