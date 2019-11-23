@@ -13,7 +13,7 @@ fun createDeparture(): Departure =
         actualDeparture = "2019-10-25T21:07:00+0200".asOffsetDateTime(),
         plannedTrack = "1",
         unit = createTransportationUnit(),
-        routeStations = listOf(createRouteStation()),
+        intermediateStations = listOf(createRouteStation()),
         status = DepartureStatus.DEPARTED,
         cancelled = false,
         messages = listOf(createMessage())
@@ -39,8 +39,8 @@ fun createTransportationUnit(): TransportationUnit =
         type = TransportationType.TRAIN
     )
 
-fun createRouteStation(): RouteStation =
-    RouteStation("0001", "Amsterdam Sloterdijk")
+fun createRouteStation(): IntermediateStation =
+    IntermediateStation("0001", "Amsterdam Sloterdijk")
 
 fun createMessage(): Message =
     Message("A sample message", MessageType.INFO)

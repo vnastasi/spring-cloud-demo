@@ -34,8 +34,8 @@ fun MessageTypeWrapper.asMessageType(): MessageType =
 fun MessageWrapper.asMessage(): Message =
     Message(text = this.text, type = this.type.asMessageType())
 
-fun RouteStationWrapper.asRoutStation(): RouteStation =
-    RouteStation(code = this.uicCode, name = this.name)
+fun RouteStationWrapper.asIntermediateStation(): IntermediateStation =
+    IntermediateStation(code = this.uicCode, name = this.name)
 
 fun ProductWrapper.extractCategory(): Category =
     Category(code = this.categoryCode, name = this.longCategoryName)
@@ -55,7 +55,7 @@ fun DepartureWrapper.asDeparture(): Departure =
         plannedDeparture = this.plannedDateTime,
         actualDeparture = this.actualDateTime,
         plannedTrack = this.plannedTrack,
-        routeStations = this.routeStations.map { it.asRoutStation() }.toList(),
+        intermediateStations = this.routeStations.map { it.asIntermediateStation() }.toList(),
         status = this.departureStatus.asDepartureStatus(),
         cancelled = this.cancelled,
         messages = this.messages?.map { it.asMessage() }?.toList() ?: emptyList()

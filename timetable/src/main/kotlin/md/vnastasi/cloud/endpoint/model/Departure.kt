@@ -8,7 +8,7 @@ data class Departure(
     val actualDeparture: OffsetDateTime,
     val plannedTrack: String,
     val unit: TransportationUnit,
-    val routeStations: List<RouteStation>,
+    val intermediateStations: List<IntermediateStation>,
     val status: DepartureStatus,
     val cancelled: Boolean,
     val messages: List<Message>

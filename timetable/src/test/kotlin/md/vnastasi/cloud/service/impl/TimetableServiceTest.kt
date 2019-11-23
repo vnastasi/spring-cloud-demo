@@ -42,7 +42,7 @@ class TimetableServiceTest {
                 assertThat(actualDeparture).isEqualInUtc("2019-10-25T19:02:00+0200")
                 assertThat(plannedTrack).isEqualTo("8")
                 assertThat(cancelled).isFalse()
-                assertThat(routeStations).isEmpty()
+                assertThat(intermediateStations).isEmpty()
                 assertThat(messages).isEmpty()
                 assertThat(status).isEqualTo(DepartureStatus.BOARDING)
                 with(unit) {
