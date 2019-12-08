@@ -4,6 +4,9 @@ spring:
   cloud:
     config:
       uri: http://localhost:8081
+  pid:
+    fail-on-write-error: true
+    file: pid/timetable.pid
 management:
   endpoints:
     web:

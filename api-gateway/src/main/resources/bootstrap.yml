@@ -8,6 +8,9 @@ spring:
       discovery:
         locator:
           enabled: true
+  pid:
+    fail-on-write-error: true
+    file: pid/api-gateway.pid
 server:
   port: 8080
 eureka:

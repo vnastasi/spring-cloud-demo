@@ -3,6 +3,9 @@ spring:
     name: config-server
   profiles:
     active: native
+  pid:
+    fail-on-write-error: true
+    file: pid/config-server.pid
   cloud:
     config:
       server:

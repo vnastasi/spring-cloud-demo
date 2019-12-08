@@ -1,7 +1,8 @@
 package md.vnastasi.cloud
 
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.builder.SpringApplicationBuilder
+import org.springframework.boot.context.ApplicationPidFileWriter
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient
 
 @SpringBootApplication
@@ -9,5 +10,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient
 class TimetableApplication
 
 fun main(args: Array<String>) {
-    SpringApplication.run(TimetableApplication::class.java, *args)
+    val application = SpringApplicationBuilder(TimetableApplication::class.java).build().apply {
+        addListeners(ApplicationPidFileWriter())
+    }
+    application.run(*args)
 }
