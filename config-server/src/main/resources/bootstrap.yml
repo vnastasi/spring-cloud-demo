@@ -10,7 +10,7 @@ spring:
     config:
       server:
         native:
-          search-locations: ${HOME}/Workspace/Demos/spring-cloud-demo/configs
+          search-locations: configs
 server:
   port: 8081
 eureka:
