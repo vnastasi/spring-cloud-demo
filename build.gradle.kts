@@ -57,3 +57,19 @@ subprojects {
         }
     }
 }
+
+tasks.register(name = "release", type = Zip::class) {
+    group = "build"
+    dependsOn(":api-gateway:assemble", ":config-server:assemble", ":eureka-server:assemble", ":station-registry:assemble", ":timetable:assemble")
+    from(
+        project("api-gateway").buildDir.resolve("libs"),
+        project("config-server").buildDir.resolve("libs"),
+        project("eureka-server").buildDir.resolve("libs"),
+        project("station-registry").buildDir.resolve("libs"),
+        project("timetable").buildDir.resolve("libs")
+    )
+    from("configs") { into("configs") }
+    archiveBaseName.set(rootProject.name)
+    archiveVersion.set(timestamp())
+    destinationDirectory.set(file("./"))
+}
