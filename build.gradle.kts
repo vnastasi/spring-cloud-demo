@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 buildscript {
     repositories {
         maven { setUrl("https://plugins.gradle.org/m2/0") }
@@ -56,4 +58,21 @@ subprojects {
             dependency("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
         }
     }
+}
+
+tasks.register(name = "release", type = Zip::class) {
+    group = "build"
+    val apps = listOf("eureka-server", "config-server", "station-registry", "timetable", "api-gateway")
+    dependsOn(
+        "clean",
+        *apps.map { ":$it:assemble" }.toTypedArray()
+    )
+    from(
+        *apps.map { project(it).buildDir.resolve("libs") }.toTypedArray()
+    )
+    from("configs") { into("configs") }
+    from("scripts")
+    archiveBaseName.set(rootProject.name)
+    archiveVersion.set(timestamp())
+    destinationDirectory.set(file("./"))
 }

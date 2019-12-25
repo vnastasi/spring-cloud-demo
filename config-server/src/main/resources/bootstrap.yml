@@ -3,11 +3,14 @@ spring:
     name: config-server
   profiles:
     active: native
+  pid:
+    fail-on-write-error: true
+    file: pid/config-server.pid
   cloud:
     config:
       server:
         native:
-          search-locations: ${HOME}/Workspace/Demos/spring-cloud-demo/configs
+          search-locations: configs
 server:
   port: 8081
 eureka:
