@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 buildscript {
     repositories {
         maven { setUrl("https://plugins.gradle.org/m2/0") }
