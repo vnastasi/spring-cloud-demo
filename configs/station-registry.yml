@@ -1,0 +1,4 @@
+application:
+  ns-api:
+    public-travel-info:
+      stations-path: /stations

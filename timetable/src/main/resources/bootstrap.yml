@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: timetable
+  cloud:
+    config:
+      uri: http://localhost:8081
+  pid:
+    fail-on-write-error: true
+    file: pid/timetable.pid
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    git:
+      enabled: true
+      mode: full
+info:
+  app:
+    name: Timetable
+    version: ${project.version}
+server:
+  port: 8086
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+  instance:
+    prefer-ip-address: true

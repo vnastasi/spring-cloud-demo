@@ -1,0 +1,50 @@
+{
+  "links": {},
+  "payload": {
+    "arrivals": [
+      {
+        "origin": "Utrecht Centraal",
+        "name": "NS  2870",
+        "plannedTrack": "8",
+        "actualTrack": "8",
+        "product": {
+          "number": "2870",
+          "categoryCode": "IC",
+          "shortCategoryName": "IC",
+          "longCategoryName": "Intercity",
+          "operatorCode": "NS",
+          "operatorName": "NS",
+          "type": "TRAIN"
+        },
+        "trainCategory": "IC",
+        "cancelled": false,
+        "plannedDateTime": "2019-10-25T20:51:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2019-10-25T20:51:00+0200",
+        "actualTimeZoneOffset": 120
+      },
+      {
+        "origin": "Alphen a/d Rijn",
+        "name": "R-net  8667",
+        "plannedTrack": "11",
+        "actualTrack": "11",
+        "product": {
+          "number": "8667",
+          "categoryCode": "SPR",
+          "shortCategoryName": "SPR",
+          "longCategoryName": "Sprinter",
+          "operatorCode": "R-net",
+          "operatorName": "R-net",
+          "type": "TRAIN"
+        },
+        "trainCategory": "SPR",
+        "cancelled": false,
+        "plannedDateTime": "2019-10-25T21:02:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2019-10-25T21:02:00+0200",
+        "actualTimeZoneOffset": 120
+      }
+    ]
+  },
+  "meta": {}
+}

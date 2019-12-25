@@ -1,0 +1,76 @@
+{
+  "links": {},
+  "payload": {
+    "source": "PPV",
+    "departures": [
+      {
+        "direction": "Den Haag Centraal",
+        "name": "NS  2062",
+        "plannedDateTime": "2019-10-25T19:02:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2019-10-25T19:02:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "8",
+        "product": {
+          "number": "2062",
+          "categoryCode": "IC",
+          "shortCategoryName": "NS Intercity",
+          "longCategoryName": "Intercity",
+          "operatorCode": "NS",
+          "operatorName": "NS",
+          "type": "TRAIN"
+        },
+        "trainCategory": "IC",
+        "cancelled": false,
+        "routeStations": [],
+        "departureStatus": "ON_STATION"
+      },
+      {
+        "direction": "'s-Hertogenbosch",
+        "name": "NS  6973",
+        "plannedDateTime": "2019-10-25T19:15:00+0200",
+        "plannedTimeZoneOffset": 120,
+        "actualDateTime": "2019-10-25T19:15:00+0200",
+        "actualTimeZoneOffset": 120,
+        "plannedTrack": "5",
+        "product": {
+          "number": "6973",
+          "categoryCode": "SPR",
+          "shortCategoryName": "NS Sprinter",
+          "longCategoryName": "Sprinter",
+          "operatorCode": "NS",
+          "operatorName": "NS",
+          "type": "TRAIN"
+        },
+        "trainCategory": "SPR",
+        "cancelled": false,
+        "routeStations": [
+          {
+            "uicCode": "8400702",
+            "mediumName": "Woerden"
+          },
+          {
+            "uicCode": "8400621",
+            "mediumName": "Utrecht C."
+          },
+          {
+            "uicCode": "8400606",
+            "mediumName": "Vaartsche Rijn"
+          },
+          {
+            "uicCode": "8400340",
+            "mediumName": "Houten"
+          }
+        ],
+        "messages": [
+          {
+            "message": "De Intercity van 19:24 naar Groningen is eerder in Utrecht C. en vertrekt van spoor 3",
+            "style": "INFO"
+          }
+        ],
+        "departureStatus": "INCOMING"
+      }
+    ]
+  },
+  "meta": {}
+}

@@ -1,0 +1,22 @@
+{
+  "direction": "Den Haag Centraal",
+  "name": "NS  2062",
+  "plannedDateTime": "2019-10-25T19:02:00+0200",
+  "plannedTimeZoneOffset": 120,
+  "actualDateTime": "2019-10-25T19:02:00+0200",
+  "actualTimeZoneOffset": 120,
+  "plannedTrack": "8",
+  "product": {
+    "number": "2062",
+    "categoryCode": "IC",
+    "shortCategoryName": "NS Intercity",
+    "longCategoryName": "Intercity",
+    "operatorCode": "NS",
+    "operatorName": "NS",
+    "type": "TRAIN"
+  },
+  "trainCategory": "IC",
+  "cancelled": false,
+  "routeStations": [],
+  "departureStatus": "ON_STATION"
+}

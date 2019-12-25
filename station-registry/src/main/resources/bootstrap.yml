@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: station-registry
+  cloud:
+    config:
+      uri: http://localhost:8081
+  pid:
+    fail-on-write-error: true
+    file: pid/station-registry.pid
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    git:
+      enabled: true
+      mode: full
+info:
+  app:
+    name: Station registry
+    version: ${project.version}
+server:
+  port: 8085
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+  instance:
+    prefer-ip-address: true

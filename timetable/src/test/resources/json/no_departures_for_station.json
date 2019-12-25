@@ -1,0 +1,11 @@
+{
+  "code": "404",
+  "message": "Not Found",
+  "errors": [
+    {
+      "message": "Er zijn geen vertrektijden voor station London St. Pancras Int.",
+      "code": 0,
+      "type": "NO_DEPARTURES_FOUND_FOR_STATION"
+    }
+  ]
+}
