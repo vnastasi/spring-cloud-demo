@@ -1,5 +1,7 @@
 package md.vnastasi.cloud.endpoint
 
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.reset
 import com.nhaarman.mockitokotlin2.stub
 import kotlinx.coroutines.flow.flowOf
@@ -20,6 +22,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
 import org.springframework.boot.test.mock.mockito.MockBean
+import org.springframework.context.annotation.Import
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
@@ -28,8 +31,9 @@ import java.time.ZoneOffset
 
 private val MAP_TYPE_REFERENCE = object : ParameterizedTypeReference<Map<String, String>>() {}
 
-@WebFluxTest(controllers = [TimetableEndpoint::class, ApiErrorAttributes::class])
-class TimetableEndpointTest {
+@WebFluxTest
+@Import(value = [TimetableRouters::class, ApiErrorAttributes::class])
+class TimetableRoutersTest {
 
     @MockBean
     private lateinit var mockService: TimetableService
@@ -51,7 +55,7 @@ class TimetableEndpointTest {
         fun testDepartures() {
             val departure = createDeparture()
             mockService.stub {
-                onBlocking { getDepartures(UIC_CODE) }.thenReturn(flowOf(departure))
+                onBlocking { getDepartures(UIC_CODE) } doReturn flowOf(departure)
             }
 
             val list = client.get()
@@ -75,7 +79,7 @@ class TimetableEndpointTest {
         fun testError() {
             val apiError = ApiError(type = ApiErrorType.NO_DEPARTURES_FOR_STATION, message = "Message")
             mockService.stub {
-                onBlocking { getDepartures(UIC_CODE) }.thenAnswer { throw ApiException(apiError) }
+                onBlocking { getDepartures(UIC_CODE) } doThrow ApiException(apiError)
             }
 
             val map = client.get()
@@ -104,7 +108,7 @@ class TimetableEndpointTest {
         internal fun testArrivals() {
             val arrival = createArrival()
             mockService.stub {
-                onBlocking { getArrivals(UIC_CODE) }.thenReturn(flowOf(arrival))
+                onBlocking { getArrivals(UIC_CODE) } doReturn flowOf(arrival)
             }
 
             val list = client.get()
@@ -128,7 +132,7 @@ class TimetableEndpointTest {
         fun testError() {
             val apiError = ApiError(type = ApiErrorType.UNKNOWN_STATION, message = "Message")
             mockService.stub {
-                onBlocking { getArrivals(UIC_CODE) }.thenAnswer { throw ApiException(apiError) }
+                onBlocking { getArrivals(UIC_CODE) } doThrow ApiException(apiError)
             }
 
             val map = client.get()
