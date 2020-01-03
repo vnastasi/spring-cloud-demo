@@ -1,31 +1,27 @@
 package md.vnastasi.cloud
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.stereotype.Component
+import org.springframework.boot.context.properties.ConstructorBinding
 
-@Component
+@ConstructorBinding
 @ConfigurationProperties(prefix = "application")
-class ApplicationProperties {
+data class ApplicationProperties(
+    val nsApi: NsApiProperties
+)
 
-    var nsApi: NsApiProperties = NsApiProperties()
-}
+data class NsApiProperties(
+    val publicTravelInfo: PublicTravelInfoProperties,
+    val baseUrl: String
+)
 
-class NsApiProperties {
+data class PublicTravelInfoProperties(
+    val apiKey: ApiKeyProperties,
+    val basePath: String,
+    val arrivalsPath: String,
+    val departuresPath: String
+)
 
-    var publicTravelInfo: PublicTravelInfoProperties = PublicTravelInfoProperties()
-    lateinit var baseUrl: String
-}
-
-class PublicTravelInfoProperties {
-
-    var apiKey: ApiKeyProperties = ApiKeyProperties()
-    lateinit var basePath: String
-    lateinit var arrivalsPath: String
-    lateinit var departuresPath: String
-}
-
-class ApiKeyProperties {
-
-    lateinit var header: String
-    lateinit var value: String
-}
+data class ApiKeyProperties(
+    val header: String,
+    val value: String
+)
