@@ -12,13 +12,13 @@ buildscript {
 plugins {
     id("org.gradle.base")
     id("java")
-    id("org.springframework.boot") version "2.2.0.RELEASE"
-    id("io.spring.dependency-management") version "1.0.8.RELEASE"
-    id("org.jetbrains.kotlin.jvm") version "1.3.61"
-    id("org.jetbrains.kotlin.kapt") version "1.3.61"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.3.61"
-    id("org.jetbrains.dokka") version "0.9.17"
-    id("com.gorylenko.gradle-git-properties") version "2.2.0"
+    id("org.springframework.boot") version "2.2.6.RELEASE"
+    id("io.spring.dependency-management") version "1.0.9.RELEASE"
+    id("org.jetbrains.kotlin.jvm") version "1.3.71"
+    id("org.jetbrains.kotlin.kapt") version "1.3.71"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.3.71"
+    id("org.jetbrains.dokka") version "0.10.1"
+    id("com.gorylenko.gradle-git-properties") version "2.2.2"
     id("jacoco")
 }
 
@@ -45,16 +45,16 @@ subprojects {
         }
 
         dependencies {
-            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.3.61")
-            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.61")
-            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2")
-            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.3.2")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.3.71")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.3.71")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.3.5")
 
-            dependency("com.squareup.okhttp3:mockwebserver:4.2.2")
-            dependency("com.squareup.okhttp3:okhttp:4.2.2")
-            dependency("com.squareup.okio:okio:2.4.1")
+            dependency("com.squareup.okhttp3:mockwebserver:4.5.0")
+            dependency("com.squareup.okhttp3:okhttp:4.5.0")
+            dependency("com.squareup.okio:okio:2.5.0")
 
-            dependency("org.mockito:mockito-junit-jupiter:3.2.0")
+            dependency("org.mockito:mockito-junit-jupiter:3.3.3")
             dependency("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
         }
     }
