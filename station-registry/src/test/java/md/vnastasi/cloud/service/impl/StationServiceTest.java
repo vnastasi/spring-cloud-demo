@@ -22,9 +22,10 @@ import static org.mockito.Mockito.when;
 
 class StationServiceTest {
 
-    private PublicTravelInfoClient mockClient = mock(PublicTravelInfoClient.class);
+    private final PublicTravelInfoClient mockClient = mock(PublicTravelInfoClient.class);
+    private final DistanceCalculator mockCalculator = mock(DistanceCalculator.class);
 
-    private StationService service = new StationServiceImpl(mockClient);
+    private final StationService service = new StationServiceImpl(mockClient, mockCalculator);
 
     @Test
     @DisplayName("when client returns empty flux then expect empty list")

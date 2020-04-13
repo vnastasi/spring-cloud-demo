@@ -16,7 +16,7 @@ public class StationsResponseWrapper {
 
     @NonNull
     @JsonProperty("payload")
-    private List<StationWrapper> payload;
+    List<StationWrapper> payload;
 
     @JsonPOJOBuilder(withPrefix = "")
     static class WrapperBuilder {

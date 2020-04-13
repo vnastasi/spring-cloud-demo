@@ -9,8 +9,8 @@ import lombok.Value;
 public class Coordinates {
 
     @NonNull
-    private Double latitude;
+    Double latitude;
 
     @NonNull
-    private Double longitude;
+    Double longitude;
 }

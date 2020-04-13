@@ -16,63 +16,63 @@ public class StationWrapper {
 
     @NonNull
     @JsonProperty("code")
-    private String code;
+    String code;
 
     @NonNull
     @JsonProperty("UICCode")
-    private String uicCode;
+    String uicCode;
 
     @NonNull
     @JsonProperty("EVACode")
-    private String evaCode;
+    String evaCode;
 
     @NonNull
     @JsonProperty("stationType")
-    private StationTypeWrapper stationType;
+    StationTypeWrapper stationType;
 
     @NonNull
     @JsonProperty("namen")
-    private NamesWrapper names;
+    NamesWrapper names;
 
     @NonNull
     @JsonProperty("synoniemen")
-    private List<String> synonyms;
+    List<String> synonyms;
 
     @NonNull
     @JsonProperty("land")
-    private String countryCode;
+    String countryCode;
 
     @NonNull
     @JsonProperty("lat")
-    private Double latitude;
+    Double latitude;
 
     @NonNull
     @JsonProperty("lng")
-    private Double longitude;
+    Double longitude;
 
     @NonNull
     @JsonProperty("sporen")
-    private List<TrackWrapper> tracks;
+    List<TrackWrapper> tracks;
 
     @NonNull
     @JsonProperty("heeftFaciliteiten")
-    private Boolean facilitiesAvailable;
+    Boolean facilitiesAvailable;
 
     @NonNull
     @JsonProperty("heeftVertrektijden")
-    private Boolean timeTableAvailable;
+    Boolean timeTableAvailable;
 
     @NonNull
     @JsonProperty("heeftReisassistentie")
-    private Boolean travelAssistanceAvailable;
+    Boolean travelAssistanceAvailable;
 
     @NonNull
     @JsonProperty("radius")
-    private Integer radius;
+    Integer radius;
 
     @NonNull
     @JsonProperty("naderenRadius")
-    private Integer nearRadius;
+    Integer nearRadius;
 
     @JsonPOJOBuilder(withPrefix = "")
     static class WrapperBuilder {

@@ -14,7 +14,7 @@ public class TrackWrapper {
 
     @NonNull
     @JsonProperty("spoorNummer")
-    private String number;
+    String number;
 
     @JsonPOJOBuilder(withPrefix = "")
     static class WrapperBuilder {
