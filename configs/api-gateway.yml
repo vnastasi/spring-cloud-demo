@@ -2,13 +2,20 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: station-registry
+        - id: all-stations
           uri: lb://station-registry
           predicates:
             - Path=/api/v1/station
             - Method=GET
           filters:
             - RewritePath=/api/v1/station, /
+        - id: nearby-stations
+          uri: lb://station-registry
+          predicates:
+            - Path=/api/v1/station/nearby
+            - Method=GET
+          filters:
+            - RewritePath=/api/v1/station/nearby, /nearby
         - id: departures
           uri: lb://timetable
           predicates:
