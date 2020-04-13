@@ -9,11 +9,11 @@ import lombok.Value;
 public class NameHolder {
 
     @NonNull
-    private String shortName;
+    String shortName;
 
     @NonNull
-    private String middleName;
+    String middleName;
 
     @NonNull
-    private String longName;
+    String longName;
 }

@@ -1,0 +1,28 @@
+{
+  "sporen": [
+    {
+      "spoorNummer": "1"
+    },
+    {
+      "spoorNummer": "2"
+    }
+  ],
+  "synoniemen": [],
+  "heeftFaciliteiten": true,
+  "heeftVertrektijden": true,
+  "heeftReisassistentie": true,
+  "code": "MTN",
+  "namen": {
+    "lang": "Maastricht Noord",
+    "kort": "Maastr. N",
+    "middel": "Maastricht N."
+  },
+  "stationType": "STOPTREIN_STATION",
+  "land": "NL",
+  "UICCode": "8400449",
+  "lat": 50.87087,
+  "lng": 5.71774,
+  "radius": 200,
+  "naderenRadius": 1200,
+  "EVACode": "8400449"
+}
