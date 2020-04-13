@@ -11,23 +11,23 @@ import java.util.List;
 public class Station {
 
     @NonNull
-    private String code;
+    String code;
 
     @NonNull
-    private NameHolder names;
+    NameHolder names;
 
     @NonNull
-    private StationType type;
+    StationType type;
 
     @NonNull
-    private List<String> synonyms;
+    List<String> synonyms;
 
     @NonNull
-    private String countryCode;
+    String countryCode;
 
     @NonNull
-    private List<String> tracks;
+    List<String> tracks;
 
     @NonNull
-    private Coordinates coordinates;
+    Coordinates coordinates;
 }

@@ -17,14 +17,17 @@ import java.io.IOException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.offset;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class StationServiceTest {
 
-    private PublicTravelInfoClient mockClient = mock(PublicTravelInfoClient.class);
+    private final PublicTravelInfoClient mockClient = mock(PublicTravelInfoClient.class);
+    private final DistanceCalculator mockCalculator = mock(DistanceCalculator.class);
 
-    private StationService service = new StationServiceImpl(mockClient);
+    private final StationService service = new StationServiceImpl(mockClient, mockCalculator);
 
     @Test
     @DisplayName("when client returns empty flux then expect empty list")
@@ -43,6 +46,26 @@ class StationServiceTest {
 
         StepVerifier.withVirtualTime(service::getStations)
                 .assertNext(this::assertStation)
+                .verifyComplete();
+    }
+
+    @Test
+    @DisplayName("when nearby stations requested then expect list order by least distance")
+    void testNearbyStations() throws IOException {
+        Coordinates coordinates = Coordinates.builder().latitude(1.0).longitude(1.0).build();
+
+        StationWrapper station1 = JsonUtils.deserialize("station_BKL.json", StationWrapper.class);
+        StationWrapper station2 = JsonUtils.deserialize("station_LEDN.json", StationWrapper.class);
+        StationWrapper station3 = JsonUtils.deserialize("station_MTN.json", StationWrapper.class);
+        when(mockClient.getStations()).thenReturn(Flux.just(station1, station2, station3));
+
+        when(mockCalculator.calculate(eq(coordinates), any(Coordinates.class))).thenReturn(2.0, 1.0, 3.0);
+
+
+        StepVerifier.withVirtualTime(() -> service.getNearbyStations(coordinates, 3))
+                .assertNext(it -> assertThat(it.getCode()).isEqualTo("8400390"))
+                .assertNext(it -> assertThat(it.getCode()).isEqualTo("8400133"))
+                .assertNext(it -> assertThat(it.getCode()).isEqualTo("8400449"))
                 .verifyComplete();
     }
 

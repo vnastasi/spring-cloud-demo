@@ -12,13 +12,13 @@ import lombok.Value;
 public class NamesWrapper {
 
     @JsonProperty("kort")
-    private String shortName;
+    String shortName;
 
     @JsonProperty("middel")
-    private String middleName;
+    String middleName;
 
     @JsonProperty("lang")
-    private String longName;
+    String longName;
 
     @JsonPOJOBuilder(withPrefix = "")
     static class WrapperBuilder {

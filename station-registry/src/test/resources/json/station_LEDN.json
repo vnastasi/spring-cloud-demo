@@ -1,0 +1,67 @@
+{
+  "sporen": [
+    {
+      "spoorNummer": "1"
+    },
+    {
+      "spoorNummer": "2"
+    },
+    {
+      "spoorNummer": "4"
+    },
+    {
+      "spoorNummer": "4a"
+    },
+    {
+      "spoorNummer": "4b"
+    },
+    {
+      "spoorNummer": "5"
+    },
+    {
+      "spoorNummer": "5a"
+    },
+    {
+      "spoorNummer": "5b"
+    },
+    {
+      "spoorNummer": "8"
+    },
+    {
+      "spoorNummer": "8a"
+    },
+    {
+      "spoorNummer": "8b"
+    },
+    {
+      "spoorNummer": "9"
+    },
+    {
+      "spoorNummer": "9a"
+    },
+    {
+      "spoorNummer": "9b"
+    }
+  ],
+  "synoniemen": [
+    "Leiden",
+    "Leiden CS"
+  ],
+  "heeftFaciliteiten": true,
+  "heeftVertrektijden": true,
+  "heeftReisassistentie": true,
+  "code": "LEDN",
+  "namen": {
+    "lang": "Leiden Centraal",
+    "kort": "Leiden C",
+    "middel": "Leiden C."
+  },
+  "stationType": "KNOOPPUNT_INTERCITY_STATION",
+  "land": "NL",
+  "UICCode": "8400390",
+  "lat": 52.1661109924316,
+  "lng": 4.48166656494141,
+  "radius": 525,
+  "naderenRadius": 1600,
+  "EVACode": "8400390"
+}

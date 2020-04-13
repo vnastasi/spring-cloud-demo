@@ -1,11 +1,13 @@
 package md.vnastasi.cloud.endpoint;
 
+import md.vnastasi.cloud.endpoint.model.Coordinates;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.service.StationService;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
@@ -27,5 +29,17 @@ public class StationsEndpoint {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL)
                 .body(stationService.getStations());
+    }
+
+    @GetMapping("/nearby")
+    public ResponseEntity<Flux<Station>> getNearbyStations(
+            @RequestParam("latitude") double latitude,
+            @RequestParam("longitude") double longitude,
+            @RequestParam("limit") int limit
+    ) {
+        Coordinates coordinates = Coordinates.builder().latitude(latitude).longitude(longitude).build();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL)
+                .body(stationService.getNearbyStations(coordinates, limit));
     }
 }
