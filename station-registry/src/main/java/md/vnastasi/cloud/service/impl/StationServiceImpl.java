@@ -32,7 +32,7 @@ public class StationServiceImpl implements StationService {
     public Flux<Station> getNearbyStations(Coordinates coordinates, int limit) {
         return getStations()
                 .map(it -> VectorStation.builder().station(it).distance(distanceCalculator.calculate(coordinates, it.getCoordinates())).build())
-                .sort(comparingDouble(s -> s.distance))
+                .sort(comparingDouble(it -> it.distance))
                 .map(it -> it.station)
                 .take(limit);
     }

@@ -13,19 +13,19 @@ class DistanceCalculator {
 
     @SuppressWarnings("NonAsciiCharacters")
     @NonNull
-    double calculate(@NonNull Coordinates referencePoint, @NonNull Coordinates targetPoint) {
-        double lat1 = referencePoint.getLatitude();
-        double lat2 = targetPoint.getLatitude();
-        double lon1 = referencePoint.getLongitude();
-        double lon2 = targetPoint.getLongitude();
+    double calculate(@NonNull final Coordinates referencePoint, @NonNull final Coordinates targetPoint) {
+        var lat1 = referencePoint.getLatitude();
+        var lat2 = targetPoint.getLatitude();
+        var lon1 = referencePoint.getLongitude();
+        var lon2 = targetPoint.getLongitude();
 
-        double φ1 = toRadians(lat1);
-        double φ2 = toRadians(lat2);
-        double Δφ = toRadians(lat2 - lat1);
-        double Δλ = toRadians(lon2 - lon1);
+        var φ1 = toRadians(lat1);
+        var φ2 = toRadians(lat2);
+        var Δφ = toRadians(lat2 - lat1);
+        var Δλ = toRadians(lon2 - lon1);
 
-        double a = pow(sin(Δφ / 2), 2) + (cos(φ1) * cos(φ2) * pow(sin(Δλ / 2), 2));
-        double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+        var a = pow(sin(Δφ / 2), 2) + (cos(φ1) * cos(φ2) * pow(sin(Δλ / 2), 2));
+        var c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
         return R * c;
     }
