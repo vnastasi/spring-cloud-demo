@@ -60,19 +60,25 @@ subprojects {
     }
 }
 
+tasks.getByName("clean") {
+    subprojects.forEach { project ->
+        project.afterEvaluate {
+            tasks.findByName("clean")?.also { this@getByName.dependsOn(it) }
+        }
+    }
+}
+
 tasks.register(name = "release", type = Zip::class) {
     group = "build"
-    val apps = listOf("eureka-server", "config-server", "station-registry", "timetable", "api-gateway")
-    dependsOn(
-        "clean",
-        *apps.map { ":$it:assemble" }.toTypedArray()
-    )
-    from(
-        *apps.map { project(it).buildDir.resolve("libs") }.toTypedArray()
-    )
+
+    dependsOn(project.tasks.getByName("clean"))
+    subprojects.mapNotNull { it.tasks.findByName("assemble") }.forEach { this@register.dependsOn(it) }
+
     from("configs") { into("configs") }
     from("scripts")
+
     archiveBaseName.set(rootProject.name)
     archiveVersion.set(timestamp())
+
     destinationDirectory.set(file("./"))
 }
