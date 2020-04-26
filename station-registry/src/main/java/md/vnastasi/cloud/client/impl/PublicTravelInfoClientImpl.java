@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.client.impl;
 
+import lombok.NonNull;
 import md.vnastasi.cloud.ApplicationProperties;
 import md.vnastasi.cloud.client.PublicTravelInfoClient;
 import md.vnastasi.cloud.client.model.StationWrapper;
@@ -15,8 +16,8 @@ public class PublicTravelInfoClientImpl implements PublicTravelInfoClient {
     private final ApplicationProperties applicationProperties;
 
     public PublicTravelInfoClientImpl(
-            WebClient webClient,
-            ApplicationProperties applicationProperties
+            @NonNull WebClient webClient,
+            @NonNull ApplicationProperties applicationProperties
     ) {
         this.webClient = webClient;
         this.applicationProperties = applicationProperties;

@@ -7,39 +7,23 @@ import md.vnastasi.cloud.ApplicationProperties;
 
 @Builder
 @Value
-public final class TestApplicationProperties {
+public class TestApplicationProperties {
 
-    @Builder.Default
-    private String nsApiBaseUrl = "https://stub";
+    @Builder.Default String nsApiBaseUrl = "https://stub";
 
-    @Builder.Default
-    private String nsApiPublicTravelInfoBasePath = "/pti";
+    @Builder.Default String nsApiPublicTravelInfoBasePath = "/pti";
 
-    @Builder.Default
-    private String nsApiStationsPath = "/stations";
+    @Builder.Default String nsApiStationsPath = "/stations";
 
-    @Builder.Default
-    private String nsApiKeyHeader = "NS-API-KEY";
+    @Builder.Default String nsApiKeyHeader = "NS-API-KEY";
 
-    @Builder.Default
-    private String nsApiKeyValue = "1234567890";
+    @Builder.Default String nsApiKeyValue = "1234567890";
 
     @NonNull
     public ApplicationProperties convert() {
-        ApplicationProperties applicationProperties = new ApplicationProperties();
-        ApplicationProperties.NsApiProperties nsApiProperties = new ApplicationProperties.NsApiProperties();
-        ApplicationProperties.NsApiProperties.PublicTravelInfoProperties publicTravelInfoProperties = new ApplicationProperties.NsApiProperties.PublicTravelInfoProperties();
-        ApplicationProperties.NsApiProperties.PublicTravelInfoProperties.ApiKeyProperties apiKeyProperties = new ApplicationProperties.NsApiProperties.PublicTravelInfoProperties.ApiKeyProperties();
-
-        apiKeyProperties.setHeader(nsApiKeyHeader);
-        apiKeyProperties.setValue(nsApiKeyValue);
-        publicTravelInfoProperties.setApiKey(apiKeyProperties);
-        publicTravelInfoProperties.setBasePath(nsApiPublicTravelInfoBasePath);
-        publicTravelInfoProperties.setStationsPath(nsApiStationsPath);
-        nsApiProperties.setPublicTravelInfo(publicTravelInfoProperties);
-        nsApiProperties.setBaseUrl(nsApiBaseUrl);
-        applicationProperties.setNsApi(nsApiProperties);
-
-        return applicationProperties;
+        var apiKeyProperties = new ApplicationProperties.NsApiProperties.PublicTravelInfoProperties.ApiKeyProperties(nsApiKeyHeader, nsApiKeyValue);
+        var publicTravelInfoProperties = new ApplicationProperties.NsApiProperties.PublicTravelInfoProperties(nsApiPublicTravelInfoBasePath, apiKeyProperties, nsApiStationsPath);
+        var nsApiProperties = new ApplicationProperties.NsApiProperties(nsApiBaseUrl, publicTravelInfoProperties);
+        return new ApplicationProperties(nsApiProperties);
     }
 }

@@ -1,5 +1,6 @@
 package md.vnastasi.cloud;
 
+import lombok.NonNull;
 import lombok.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
@@ -14,21 +15,21 @@ public class ApplicationProperties {
     @Value
     public static class NsApiProperties {
 
-        String baseUrl;
-        PublicTravelInfoProperties publicTravelInfo;
+        @NonNull String baseUrl;
+        @NonNull PublicTravelInfoProperties publicTravelInfo;
 
         @Value
         public static class PublicTravelInfoProperties {
 
-            String basePath;
-            ApiKeyProperties apiKey;
-            String stationsPath;
+            @NonNull String basePath;
+            @NonNull ApiKeyProperties apiKey;
+            @NonNull String stationsPath;
 
             @Value
             public static class ApiKeyProperties {
 
-                String header;
-                String value;
+                @NonNull String header;
+                @NonNull String value;
             }
         }
     }

@@ -1,5 +1,6 @@
 package md.vnastasi.cloud;
 
+import lombok.NonNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -9,8 +10,8 @@ public class ApplicationConfig {
 
     @Bean
     public WebClient provideWebClient(
-            WebClient.Builder builder,
-            ApplicationProperties applicationProperties
+            @NonNull WebClient.Builder builder,
+            @NonNull ApplicationProperties applicationProperties
     ) {
         var url = applicationProperties.getNsApi().getBaseUrl() + applicationProperties.getNsApi().getPublicTravelInfo().getBasePath();
         var headerName = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getHeader();

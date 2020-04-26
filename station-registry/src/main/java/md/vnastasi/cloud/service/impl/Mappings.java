@@ -14,6 +14,7 @@ import md.vnastasi.cloud.endpoint.model.StationType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -37,9 +38,9 @@ final class Mappings {
     @NonNull
     private static NameHolder map(@NonNull NamesWrapper input) {
         return NameHolder.builder()
-                .shortName(input.getShortName())
-                .middleName(input.getMiddleName())
-                .longName(input.getLongName())
+                .shortName(Optional.ofNullable(input.getShortName()).orElse(""))
+                .middleName(Optional.ofNullable(input.getMiddleName()).orElse(""))
+                .longName(Optional.ofNullable(input.getLongName()).orElse(""))
                 .build();
     }
 

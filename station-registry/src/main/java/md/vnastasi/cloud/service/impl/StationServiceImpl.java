@@ -1,10 +1,9 @@
 package md.vnastasi.cloud.service.impl;
 
-import lombok.Builder;
 import lombok.NonNull;
-import lombok.Value;
 import md.vnastasi.cloud.client.PublicTravelInfoClient;
 import md.vnastasi.cloud.endpoint.model.Coordinates;
+import md.vnastasi.cloud.endpoint.model.DistanceAwareStation;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.service.StationService;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,10 @@ public class StationServiceImpl implements StationService {
     private final PublicTravelInfoClient client;
     private final DistanceCalculator distanceCalculator;
 
-    public StationServiceImpl(PublicTravelInfoClient client, DistanceCalculator distanceCalculator) {
+    public StationServiceImpl(
+            @NonNull PublicTravelInfoClient client,
+            @NonNull DistanceCalculator distanceCalculator
+    ) {
         this.client = client;
         this.distanceCalculator = distanceCalculator;
     }
@@ -29,21 +31,13 @@ public class StationServiceImpl implements StationService {
     }
 
     @Override
-    public Flux<Station> getNearbyStations(Coordinates coordinates, int limit) {
+    public Flux<DistanceAwareStation> getNearbyStations(@NonNull Coordinates coordinates, int limit) {
         return getStations()
-                .map(it -> VectorStation.builder().station(it).distance(distanceCalculator.calculate(coordinates, it.getCoordinates())).build())
-                .sort(comparingDouble(it -> it.distance))
-                .map(it -> it.station)
+                .map(station -> {
+                    double distance = distanceCalculator.calculate(coordinates, station.getCoordinates());
+                    return DistanceAwareStation.builder().station(station).distance(distance).build();
+                })
+                .sort(comparingDouble(DistanceAwareStation::getDistance))
                 .take(limit);
-    }
-
-    @Value
-    @Builder
-    private static class VectorStation {
-
-        @NonNull
-        Station station;
-
-        double distance;
     }
 }
