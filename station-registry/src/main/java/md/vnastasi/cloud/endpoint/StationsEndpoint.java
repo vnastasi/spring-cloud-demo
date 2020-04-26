@@ -1,6 +1,8 @@
 package md.vnastasi.cloud.endpoint;
 
+import lombok.NonNull;
 import md.vnastasi.cloud.endpoint.model.Coordinates;
+import md.vnastasi.cloud.endpoint.model.DistanceAwareStation;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.service.StationService;
 import org.springframework.http.CacheControl;
@@ -20,7 +22,7 @@ public class StationsEndpoint {
 
     private final StationService stationService;
 
-    public StationsEndpoint(StationService stationService) {
+    public StationsEndpoint(@NonNull StationService stationService) {
         this.stationService = stationService;
     }
 
@@ -32,12 +34,12 @@ public class StationsEndpoint {
     }
 
     @GetMapping("/nearby")
-    public ResponseEntity<Flux<Station>> getNearbyStations(
+    public ResponseEntity<Flux<DistanceAwareStation>> getNearbyStations(
             @RequestParam("latitude") double latitude,
             @RequestParam("longitude") double longitude,
             @RequestParam("limit") int limit
     ) {
-        Coordinates coordinates = Coordinates.builder().latitude(latitude).longitude(longitude).build();
+        var coordinates = Coordinates.builder().latitude(latitude).longitude(longitude).build();
         return ResponseEntity.ok()
                 .header(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL)
                 .body(stationService.getNearbyStations(coordinates, limit));

@@ -25,7 +25,7 @@ class PublicTravelInfoClientTest {
     private final MockWebServer webServer = new MockWebServer();
     private final WebClient webClient = WebClient.create(webServer.url("/").toString());
 
-    private PublicTravelInfoClient client = new PublicTravelInfoClientImpl(webClient, applicationProperties);
+    private final PublicTravelInfoClient client = new PublicTravelInfoClientImpl(webClient, applicationProperties);
 
     @AfterEach
     void tearDown() throws IOException {
@@ -35,7 +35,7 @@ class PublicTravelInfoClientTest {
     @Test
     @DisplayName("when client returns HTTP 200 then expect a flux of stations")
     void testStationsResponse() {
-        MockResponse mockResponse = new MockResponse()
+        var mockResponse = new MockResponse()
                 .setResponseCode(HttpStatus.OK.value())
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .setBody(JsonUtils.readString("station_list.json"));
