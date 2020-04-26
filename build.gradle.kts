@@ -76,6 +76,7 @@ tasks.register(name = "release", type = Zip::class) {
 
     from("configs") { into("configs") }
     from("scripts")
+    from(subprojects.map { it.buildDir.resolve("libs") })
 
     archiveBaseName.set(rootProject.name)
     archiveVersion.set(timestamp())
