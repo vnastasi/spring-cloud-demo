@@ -2,3 +2,7 @@ application:
   ns-api:
     public-travel-info:
       stations-path: /stations
+logging:
+  level:
+    root: INFO
+    reactor.netty.http.client: DEBUG
