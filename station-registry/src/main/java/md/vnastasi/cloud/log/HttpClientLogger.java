@@ -8,7 +8,6 @@ import java.nio.charset.Charset;
 
 import static io.netty.util.internal.PlatformDependent.allocateUninitializedArray;
 import static java.lang.Integer.max;
-import static java.nio.charset.Charset.defaultCharset;
 
 public class HttpClientLogger extends LoggingHandler {
 
@@ -20,7 +19,7 @@ public class HttpClientLogger extends LoggingHandler {
     protected String format(ChannelHandlerContext ctx, String eventName, Object arg) {
         if (arg instanceof ByteBuf) {
             ByteBuf msg = (ByteBuf) arg;
-            return decode(msg, msg.readerIndex(), msg.readableBytes(), defaultCharset());
+            return decode(msg, msg.readerIndex(), msg.readableBytes(), Charset.defaultCharset());
         }
         return super.format(ctx, eventName, arg);
     }
