@@ -3,3 +3,7 @@ application:
     public-travel-info:
       arrivals-path: /arrivals
       departures-path: /departures
+logging:
+  level:
+    root: INFO
+    reactor.netty.http.client: DEBUG

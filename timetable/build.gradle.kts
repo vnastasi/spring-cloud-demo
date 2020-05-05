@@ -1,6 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
-version = "1.0.1"
+version = "1.0.2"
 
 plugins {
     id("org.jetbrains.kotlin.jvm")
