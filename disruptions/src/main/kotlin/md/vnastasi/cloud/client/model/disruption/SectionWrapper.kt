@@ -1,6 +1,8 @@
 package md.vnastasi.cloud.client.model.disruption
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
+import java.time.OffsetDateTime
 
 data class SectionWrapper(
 
@@ -8,8 +10,10 @@ data class SectionWrapper(
     val stations: List<String>,
 
     @JsonProperty("begintijd")
-    val startDate: List<String>,
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
+    val startDate: OffsetDateTime,
 
     @JsonProperty("eindtijd")
-    val endDate: List<String>
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
+    val endDate: OffsetDateTime
 )

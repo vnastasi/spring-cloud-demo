@@ -52,7 +52,7 @@ class PublicTravelInfoClientImpl(
 
     override suspend fun getDisruption(id: String): DisruptionWrapper {
         val uriBuilder: (UriBuilder) -> URI = { builder ->
-            builder.pathSegment(applicationProperties.nsApi.publicTravelInfo.disruptionsPath, id).build()
+            builder.path(applicationProperties.nsApi.publicTravelInfo.disruptionsPath).pathSegment(id).build()
         }
 
         return webClient.get()

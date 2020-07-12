@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.client.model.notification
 
+import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
 import md.vnastasi.cloud.client.model.DisruptionTypeWrapper
 import java.time.OffsetDateTime
@@ -22,8 +23,10 @@ data class NotificationWrapper(
     val url: String,
 
     @JsonProperty("laatstGewijzigd")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
     val lastUpdate: OffsetDateTime,
 
     @JsonProperty("volgendeUpdate")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
     val nextUpdate: OffsetDateTime
 )
