@@ -5,12 +5,10 @@ import java.time.OffsetDateTime
 
 data class Disruption(
     val id: String,
-    val type: DisruptionType,
     val summary: String,
-    val consequence: String,
-    val travelAdvice: TravelAdvice,
+    val cause: String,
+    val expectation: String,
+    val alternativeTransport: String,
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
-    val start: OffsetDateTime,
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
-    val end: OffsetDateTime
+    val reportedAt: OffsetDateTime
 )

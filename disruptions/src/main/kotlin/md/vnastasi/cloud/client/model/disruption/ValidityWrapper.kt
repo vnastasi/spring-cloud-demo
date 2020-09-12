@@ -8,9 +8,9 @@ data class ValidityWrapper(
 
     @JsonProperty("startDatum")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
-    val startDate: OffsetDateTime,
+    val start: OffsetDateTime,
 
     @JsonProperty("eindDatum")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
-    val endDate: OffsetDateTime
+    val end: OffsetDateTime
 )

@@ -1,17 +1,13 @@
-package md.vnastasi.cloud.client.model.notification
+package md.vnastasi.cloud.client.model.disruption
 
 import com.fasterxml.jackson.annotation.JsonFormat
 import com.fasterxml.jackson.annotation.JsonProperty
-import md.vnastasi.cloud.client.model.DisruptionTypeWrapper
 import java.time.OffsetDateTime
 
 data class NotificationWrapper(
 
     @JsonProperty("id")
     val id: String,
-
-    @JsonProperty("type")
-    val type: DisruptionTypeWrapper,
 
     @JsonProperty("titel")
     val title: String,
@@ -21,6 +17,9 @@ data class NotificationWrapper(
 
     @JsonProperty("url")
     val url: String,
+
+    @JsonProperty("type")
+    val type: NotificationTypeWrapper,
 
     @JsonProperty("laatstGewijzigd")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")

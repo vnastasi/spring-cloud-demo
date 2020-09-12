@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class TravelAdviceWrapper(
 
-    @JsonProperty("advies")
-    val advice: List<String>
+    @JsonProperty("titel")
+    val title: String,
+
+    @JsonProperty("reisadvies")
+    val travelAdvice: List<TravelAdviceItemWrapper>
 )

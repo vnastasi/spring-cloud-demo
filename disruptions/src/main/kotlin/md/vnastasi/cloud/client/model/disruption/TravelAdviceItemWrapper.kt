@@ -2,11 +2,11 @@ package md.vnastasi.cloud.client.model.disruption
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class TravelAdviceListWrapper(
+data class TravelAdviceItemWrapper(
 
     @JsonProperty("titel")
     val title: String,
 
-    @JsonProperty("reisadvies")
-    val travelAdvices: List<TravelAdviceWrapper>
+    @JsonProperty("advies")
+    val advice: List<String>
 )

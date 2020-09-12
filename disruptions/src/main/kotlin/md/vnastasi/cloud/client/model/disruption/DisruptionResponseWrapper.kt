@@ -5,5 +5,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class DisruptionResponseWrapper(
 
     @JsonProperty("payload")
-    val payload: DisruptionPayloadWrapper
+    val payload: List<DisruptionItemWrapper>
 )
