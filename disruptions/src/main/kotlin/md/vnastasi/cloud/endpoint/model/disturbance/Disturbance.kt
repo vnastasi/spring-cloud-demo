@@ -16,11 +16,11 @@ data class Disturbance(
     val trajectory: String,
 
     @JsonProperty("start")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     val start: OffsetDateTime,
 
     @JsonProperty("end")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssX")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
     val end: OffsetDateTime,
 
     @JsonProperty("cause")

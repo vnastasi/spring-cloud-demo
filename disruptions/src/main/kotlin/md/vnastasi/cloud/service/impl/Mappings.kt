@@ -39,7 +39,7 @@ fun DisturbanceWrapper.asDisturbance() = Disturbance(
     trajectory = this.header,
     start = this.findStartTime(),
     end = this.findEndTime(),
-    cause = this.cause.orEmpty()
+    cause = this.cause.orEmpty().capitalize()
 )
 
 private fun DisturbanceWrapper.findStartTime(): OffsetDateTime =
