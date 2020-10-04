@@ -1,12 +1,13 @@
 package md.vnastasi.cloud.service.impl
 
-import md.vnastasi.cloud.client.model.disruption.*
+import md.vnastasi.cloud.client.model.disruption.DisturbanceTypeWrapper
+import md.vnastasi.cloud.client.model.disruption.DisturbanceWrapper
+import md.vnastasi.cloud.client.model.disruption.NotificationTypeWrapper
+import md.vnastasi.cloud.client.model.disruption.NotificationWrapper
 import md.vnastasi.cloud.endpoint.model.disturbance.Disturbance
 import md.vnastasi.cloud.endpoint.model.disturbance.DisturbanceType
 import md.vnastasi.cloud.endpoint.model.notification.Notification
-import java.time.Instant
 import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 fun NotificationTypeWrapper.asLevel(): Int = when (this) {
     NotificationTypeWrapper.PRIORITY_1 -> 1
@@ -53,5 +54,3 @@ private fun DisturbanceWrapper.findEndTime(): OffsetDateTime =
         DisturbanceTypeWrapper.MAINTENANCE -> this.validityList?.maxOf { it.end } ?: epochStart()
         else -> this.trajectories?.maxOf { it.endTime } ?: epochStart()
     }
-
-private fun epochStart() = OffsetDateTime.ofInstant(Instant.ofEpochMilli(0), ZoneOffset.UTC)

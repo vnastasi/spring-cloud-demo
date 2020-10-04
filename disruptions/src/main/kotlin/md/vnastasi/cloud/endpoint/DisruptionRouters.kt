@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.endpoint
 
+import md.vnastasi.cloud.endpoint.model.SearchPeriod
 import md.vnastasi.cloud.service.DisruptionService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,7 +24,11 @@ class DisruptionRouters(
         ServerResponse.ok().bodyAndAwait(disruptionService.getNotifications())
     }
 
-    private fun handleDisruptions(): suspend (ServerRequest) -> ServerResponse = {
-        ServerResponse.ok().bodyAndAwait(disruptionService.getDisturbances())
+    private fun handleDisruptions(): suspend (ServerRequest) -> ServerResponse = {request ->
+        val searchPeriod = SearchPeriod(
+            start = request.queryParam("start").orElse(null),
+            end = request.queryParam("end").orElse(null)
+        )
+        ServerResponse.ok().bodyAndAwait(disruptionService.getDisturbances(searchPeriod))
     }
 }
