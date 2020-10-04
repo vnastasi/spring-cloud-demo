@@ -1,6 +1,5 @@
 package md.vnastasi.cloud.endpoint
 
-import kotlinx.coroutines.flow.flowOf
 import md.vnastasi.cloud.service.DisruptionService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -16,10 +15,15 @@ class DisruptionRouters(
 
     @Bean
     fun routes() = coRouter {
-        GET("/disruption", handleDisruptions())
+        GET("/notification", handleNotifications())
+        GET("/disturbance", handleDisruptions())
+    }
+
+    private fun handleNotifications(): suspend (ServerRequest) -> ServerResponse = {
+        ServerResponse.ok().bodyAndAwait(disruptionService.getNotifications())
     }
 
     private fun handleDisruptions(): suspend (ServerRequest) -> ServerResponse = {
-        ServerResponse.ok().bodyAndAwait(flowOf())
+        ServerResponse.ok().bodyAndAwait(disruptionService.getDisturbances())
     }
 }

@@ -1,42 +1,57 @@
 package md.vnastasi.cloud.service.impl
 
-import md.vnastasi.cloud.client.model.DisruptionTypeWrapper
-import md.vnastasi.cloud.client.model.disruption.DisruptionWrapper
-import md.vnastasi.cloud.client.model.disruption.TravelAdviceListWrapper
-import md.vnastasi.cloud.client.model.notification.NotificationWrapper
-import md.vnastasi.cloud.endpoint.model.Disruption
-import md.vnastasi.cloud.endpoint.model.DisruptionType
-import md.vnastasi.cloud.endpoint.model.Notification
-import md.vnastasi.cloud.endpoint.model.TravelAdvice
+import md.vnastasi.cloud.client.model.disruption.*
+import md.vnastasi.cloud.endpoint.model.disturbance.Disturbance
+import md.vnastasi.cloud.endpoint.model.disturbance.DisturbanceType
+import md.vnastasi.cloud.endpoint.model.notification.Notification
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
 
-fun TravelAdviceListWrapper.asTravelAdvice(): TravelAdvice =
-    TravelAdvice(summary = this.title, advice = this.travelAdvices.flatMap { it.advice })
+fun NotificationTypeWrapper.asLevel(): Int = when (this) {
+    NotificationTypeWrapper.PRIORITY_1 -> 1
+    NotificationTypeWrapper.PRIORITY_2 -> 2
+    NotificationTypeWrapper.PRIORITY_3 -> 3
+}
 
-fun DisruptionTypeWrapper.asDisruptionType(): DisruptionType =
-    when (this) {
-        DisruptionTypeWrapper.EVENT -> DisruptionType.EVENT
-        DisruptionTypeWrapper.DISTURBANCE -> DisruptionType.DISTURBANCE
-        DisruptionTypeWrapper.MAINTENANCE -> DisruptionType.MAINTENANCE
-        else -> DisruptionType.PRIORITY_NOTIFICATION
+fun NotificationWrapper.asNotification() = Notification(
+    id = this.id,
+    title = this.title,
+    description = this.description,
+    level = this.type.asLevel(),
+    lastUpdate = this.lastUpdate,
+    nextUpdate = this.nextUpdate,
+    infoUrl = this.url
+)
+
+fun DisturbanceTypeWrapper.asDisruptionType(): DisturbanceType = when (this) {
+    DisturbanceTypeWrapper.PRIORITY_1 -> DisturbanceType.HIGH_PRIORITY
+    DisturbanceTypeWrapper.PRIORITY_2 -> DisturbanceType.MEDIUM_PRIORITY
+    DisturbanceTypeWrapper.PRIORITY_3 -> DisturbanceType.LOW_PRIORITY
+    DisturbanceTypeWrapper.DISRUPTION -> DisturbanceType.DISRUPTION
+    DisturbanceTypeWrapper.MAINTENANCE -> DisturbanceType.MAINTENANCE
+    DisturbanceTypeWrapper.EVENT -> DisturbanceType.EVENT
+}
+
+fun DisturbanceWrapper.asDisturbance() = Disturbance(
+    id = this.id,
+    type = this.type.asDisruptionType(),
+    trajectory = this.header,
+    start = this.findStartTime(),
+    end = this.findEndTime(),
+    cause = this.cause.orEmpty()
+)
+
+private fun DisturbanceWrapper.findStartTime(): OffsetDateTime =
+    when (this.type) {
+        DisturbanceTypeWrapper.MAINTENANCE -> this.validityList?.minOf { it.start } ?: epochStart()
+        else -> this.trajectories?.minOf { it.startTime } ?: epochStart()
     }
 
-fun DisruptionWrapper.asDisruption(): Disruption =
-    Disruption(
-        id = this.id,
-        summary = this.header,
-        consequence = this.consequence,
-        type = this.type.asDisruptionType(),
-        travelAdvice = this.travelAdvices.asTravelAdvice(),
-        start = this.validityList.map { it.startDate }.min() ?: throw IllegalStateException("Could not find earliest disruption start date"),
-        end = this.validityList.map { it.endDate }.max() ?: throw IllegalStateException("Could not find latest disruption end date")
-    )
+private fun DisturbanceWrapper.findEndTime(): OffsetDateTime =
+    when (this.type) {
+        DisturbanceTypeWrapper.MAINTENANCE -> this.validityList?.maxOf { it.end } ?: epochStart()
+        else -> this.trajectories?.maxOf { it.endTime } ?: epochStart()
+    }
 
-fun NotificationWrapper.asNotification(): Notification =
-    Notification(
-        id = this.id,
-        title = this.title,
-        description = this.description,
-        url = this.url,
-        lastUpdate = this.lastUpdate,
-        nextUpdate = if (this.nextUpdate.isAfter(this.lastUpdate)) this.nextUpdate else null
-    )
+private fun epochStart() = OffsetDateTime.ofInstant(Instant.ofEpochMilli(0), ZoneOffset.UTC)
