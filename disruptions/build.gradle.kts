@@ -28,6 +28,7 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter")
     testImplementation("com.squareup.okhttp3:mockwebserver")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin")
+    testImplementation("com.willowtreeapps.assertk:assertk-jvm")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }

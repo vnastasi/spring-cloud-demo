@@ -57,6 +57,7 @@ subprojects {
 
             dependency("org.mockito:mockito-junit-jupiter:3.3.3")
             dependency("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
+            dependency("com.willowtreeapps.assertk:assertk-jvm:0.23")
         }
     }
 }
