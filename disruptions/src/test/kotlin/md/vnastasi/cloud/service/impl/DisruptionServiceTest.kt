@@ -1,10 +1,8 @@
 package md.vnastasi.cloud.service.impl
 
-import assertk.Assert
 import assertk.all
 import assertk.assertThat
 import assertk.assertions.*
-import assertk.assertions.support.fail
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.mock
@@ -17,6 +15,7 @@ import md.vnastasi.cloud.client.model.disruption.DisruptionItemWrapper
 import md.vnastasi.cloud.endpoint.model.SearchPeriod
 import md.vnastasi.cloud.endpoint.model.disturbance.Disturbance
 import md.vnastasi.cloud.endpoint.model.disturbance.DisturbanceType
+import md.vnastasi.cloud.endpoint.model.notification.Notification
 import md.vnastasi.cloud.util.JsonUtils.readObject
 import md.vnastasi.cloud.util.isSameAs
 import org.junit.jupiter.api.Nested
@@ -48,7 +47,7 @@ class DisruptionServiceTest {
         @Test
         fun testUnboundPeriod() {
             mockClient.stub {
-                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbance_list.json").asFlow()
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
             }
 
             val list = runBlocking { service.getDisturbances(SearchPeriod()).toList(mutableListOf()) }
@@ -90,7 +89,7 @@ class DisruptionServiceTest {
         @Test
         fun testStartPeriod() {
             mockClient.stub {
-                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbance_list.json").asFlow()
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
             }
 
             val period = SearchPeriod(start = "2020-10-17")
@@ -103,7 +102,7 @@ class DisruptionServiceTest {
         @Test
         fun testEndPeriod() {
             mockClient.stub {
-                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbance_list.json").asFlow()
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
             }
 
             val period = SearchPeriod(start = "2020-10-15", end = "2020-10-20")
@@ -115,7 +114,7 @@ class DisruptionServiceTest {
         @Test
         fun testBoundPeriod() {
             mockClient.stub {
-                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbance_list.json").asFlow()
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
             }
 
             val period = SearchPeriod(end = "2020-10-17")
@@ -123,6 +122,49 @@ class DisruptionServiceTest {
             assertThat(list).hasSize(2)
             assertThat(list[0]).prop(Disturbance::id).isEqualTo("2020_THALYS_asd_paris_1_18okt")
             assertThat(list[1]).prop(Disturbance::id).isEqualTo("2020_hvs_amf_14-18okt")
+        }
+
+        @Test
+        fun testNoDisturbances() {
+            mockClient.stub {
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("empty_list.json").asFlow()
+            }
+
+            val list = runBlocking { service.getDisturbances(SearchPeriod()).toList(mutableListOf()) }
+            assertThat(list).isEmpty()
+        }
+    }
+
+    @Nested
+    inner class NotificationsTest {
+
+        @Test
+        fun testNotifications() {
+            mockClient.stub {
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances_and_notifications.json").asFlow()
+            }
+
+            val list = runBlocking { service.getNotifications().toList(mutableListOf()) }
+            assertThat(list).hasSize(1)
+            assertThat(list[0]).all {
+                prop(Notification::id).isEqualTo("00000")
+                prop(Notification::title).isEqualTo("COVID-19")
+                prop(Notification::level).isEqualTo(1)
+                prop(Notification::description).isEqualTo("Coronavirus update")
+                prop(Notification::infoUrl).isEqualTo("https://www.google.com")
+                prop(Notification::lastUpdate).isSameAs("2020-03-15T15:00:00+0200".toOffsetDateTime())
+                prop(Notification::nextUpdate).isSameAs("2020-12-31T23:00:00+0200".toOffsetDateTime())
+            }
+        }
+
+        @Test
+        fun testNoNotifications() {
+            mockClient.stub {
+                onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
+            }
+
+            val list = runBlocking { service.getNotifications().toList(mutableListOf()) }
+            assertThat(list).isEmpty()
         }
     }
 
