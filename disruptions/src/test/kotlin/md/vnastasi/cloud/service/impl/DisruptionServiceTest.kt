@@ -8,8 +8,6 @@ import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.stub
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
 import md.vnastasi.cloud.client.PublicTravelInfoClient
 import md.vnastasi.cloud.client.model.disruption.DisruptionItemWrapper
 import md.vnastasi.cloud.endpoint.model.SearchPeriod
@@ -17,6 +15,7 @@ import md.vnastasi.cloud.endpoint.model.disturbance.Disturbance
 import md.vnastasi.cloud.endpoint.model.disturbance.DisturbanceType
 import md.vnastasi.cloud.endpoint.model.notification.Notification
 import md.vnastasi.cloud.util.JsonUtils.readObject
+import md.vnastasi.cloud.util.collecting
 import md.vnastasi.cloud.util.isSameAs
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -39,7 +38,7 @@ class DisruptionServiceTest {
                 onBlocking { getAllDisruptions() } doThrow IllegalStateException()
             }
 
-            assertThat { runBlocking { service.getDisturbances(SearchPeriod()) } }
+            assertThat { collecting { service.getDisturbances(SearchPeriod()) } }
                 .isFailure()
                 .isInstanceOf(IllegalStateException::class)
         }
@@ -50,7 +49,7 @@ class DisruptionServiceTest {
                 onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
             }
 
-            val list = runBlocking { service.getDisturbances(SearchPeriod()).toList(mutableListOf()) }
+            val list = collecting { service.getDisturbances(SearchPeriod()) }
             assertThat(list).hasSize(4)
             assertThat(list[0]).all {
                 prop(Disturbance::id).isEqualTo("2020_THALYS_asd_paris_1_18okt")
@@ -93,7 +92,7 @@ class DisruptionServiceTest {
             }
 
             val period = SearchPeriod(start = "2020-10-17")
-            val list = runBlocking { service.getDisturbances(period).toList(mutableListOf()) }
+            val list = collecting { service.getDisturbances(period) }
             assertThat(list).hasSize(2)
             assertThat(list[0]).prop(Disturbance::id).isEqualTo("2020_wt_std_17_25okt")
             assertThat(list[1]).prop(Disturbance::id).isEqualTo("2020_ICBER_asd_berlin_27_29nov")
@@ -106,7 +105,7 @@ class DisruptionServiceTest {
             }
 
             val period = SearchPeriod(start = "2020-10-15", end = "2020-10-20")
-            val list = runBlocking { service.getDisturbances(period).toList(mutableListOf()) }
+            val list = collecting { service.getDisturbances(period) }
             assertThat(list).hasSize(1)
             assertThat(list[0]).prop(Disturbance::id).isEqualTo("2020_wt_std_17_25okt")
         }
@@ -118,7 +117,7 @@ class DisruptionServiceTest {
             }
 
             val period = SearchPeriod(end = "2020-10-17")
-            val list = runBlocking { service.getDisturbances(period).toList(mutableListOf()) }
+            val list = collecting { service.getDisturbances(period) }
             assertThat(list).hasSize(2)
             assertThat(list[0]).prop(Disturbance::id).isEqualTo("2020_THALYS_asd_paris_1_18okt")
             assertThat(list[1]).prop(Disturbance::id).isEqualTo("2020_hvs_amf_14-18okt")
@@ -130,7 +129,7 @@ class DisruptionServiceTest {
                 onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("empty_list.json").asFlow()
             }
 
-            val list = runBlocking { service.getDisturbances(SearchPeriod()).toList(mutableListOf()) }
+            val list = collecting { service.getDisturbances(SearchPeriod()) }
             assertThat(list).isEmpty()
         }
     }
@@ -144,7 +143,7 @@ class DisruptionServiceTest {
                 onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances_and_notifications.json").asFlow()
             }
 
-            val list = runBlocking { service.getNotifications().toList(mutableListOf()) }
+            val list = collecting { service.getNotifications() }
             assertThat(list).hasSize(1)
             assertThat(list[0]).all {
                 prop(Notification::id).isEqualTo("00000")
@@ -163,7 +162,7 @@ class DisruptionServiceTest {
                 onBlocking { getAllDisruptions() } doReturn readObject<List<DisruptionItemWrapper>>("disturbances.json").asFlow()
             }
 
-            val list = runBlocking { service.getNotifications().toList(mutableListOf()) }
+            val list = collecting { service.getNotifications() }
             assertThat(list).isEmpty()
         }
     }
