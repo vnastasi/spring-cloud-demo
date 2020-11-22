@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class ConsequenceWrapper(
 
     @JsonProperty("stations")
-    val stations: List<String>,
+    val stations: List<String>?,
 
     @JsonProperty("niveau")
     val level: ConsequenceLevelWrapper?
