@@ -42,7 +42,7 @@ class TimetableRoutersTest {
     private lateinit var client: WebTestClient
 
     @AfterEach
-    internal fun tearDown() {
+    fun tearDown() {
         reset(mockService)
     }
 

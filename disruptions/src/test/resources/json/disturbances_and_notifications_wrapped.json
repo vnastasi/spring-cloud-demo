@@ -1,0 +1,244 @@
+{
+  "payload": [
+    {
+      "id": "00000",
+      "type": "melding",
+      "titel": "COVID-19",
+      "melding": {
+        "id": "00000",
+        "titel": "COVID-19",
+        "beschrijving": "Coronavirus update",
+        "url": "https://www.google.com",
+        "type": "prio_1",
+        "laatstGewijzigd": "2020-03-15T15:00:00+0200",
+        "volgendeUpdate": "2020-12-31T23:00:00+0200"
+      }
+    },
+    {
+      "id": "2020_THALYS_asd_paris_1_18okt",
+      "type": "werkzaamheid",
+      "titel": "Amsterdam C - Brussel-Zuid/Midi - Marne-la-Vallee/Paris-Nord",
+      "verstoring": {
+        "type": "WERKZAAMHEID",
+        "id": "2020_THALYS_asd_paris_1_18okt",
+        "extraReistijd": "geen extra reistijd",
+        "reisadviezen": {
+          "titel": "U kunt gebruikmaken van de aangepaste dienstregeling",
+          "reisadvies": [
+            {
+              "titel": "",
+              "advies": [
+                "als gevolg van de Corona-maatregelen in Nederland, België en Frankrijk wordt de dienstregeling van Thalys aangepast; Raadpleeg de Internationale reisplanner of kijk op Thalys.com"
+              ]
+            }
+          ]
+        },
+        "geldigheidsLijst": [
+          {
+            "startDatum": "2020-10-01T04:00:00+0200",
+            "eindDatum": "2020-10-19T03:59:00+0200"
+          }
+        ],
+        "gevolg": "Aangepaste dienstregeling Thalys geen extra reistijd.",
+        "impact": 0,
+        "maatschappij": 200,
+        "landelijk": true,
+        "oorzaak": "aangepaste dienstregeling",
+        "header": "Amsterdam C - Brussel-Zuid/Midi - Marne-la-Vallee/Paris-Nord",
+        "periode": "donderdag 1 oktober t/m zondag 18 oktober",
+        "trajecten": [
+          {
+            "stations": [
+              "rlb",
+              "ndkp",
+              "atw",
+              "berch",
+              "brusz",
+              "marne",
+              "paris"
+            ],
+            "begintijd": "2020-10-01T04:00:00+0200",
+            "eindtijd": "2020-10-19T03:59:00+0200"
+          }
+        ],
+        "prioriteit": 20
+      }
+    },
+    {
+      "id": "2020_hvs_amf_14-18okt",
+      "type": "werkzaamheid",
+      "titel": "Hilversum-Amersfoort Centraal",
+      "verstoring": {
+        "type": "WERKZAAMHEID",
+        "id": "2020_hvs_amf_14-18okt",
+        "extraReistijd": "een kwartier tot een half uur",
+        "reisadviezen": {
+          "titel": "U kunt gebruikmaken van de bussen en/of de aangepaste dienstregeling",
+          "reisadvies": [
+            {
+              "titel": "",
+              "advies": [
+                "er rijden bussen tussen Hilversum en Baarn",
+                "de dienstregeling is aangepast tussen Baarn en Amersfoort"
+              ]
+            }
+          ]
+        },
+        "geldigheidsLijst": [
+          {
+            "startDatum": "2020-10-14T01:00:00+0200",
+            "eindDatum": "2020-10-19T03:59:00+0200"
+          }
+        ],
+        "gevolg": "Beperkt treinverkeer businzet, extra reistijd 15-30 min.",
+        "impact": 5,
+        "maatschappij": 100,
+        "landelijk": true,
+        "oorzaak": "werkzaamheden",
+        "header": "Hilversum-Amersfoort Centraal",
+        "periode": "woensdag 14 t/m zondag 18 oktober ",
+        "trajecten": [
+          {
+            "stations": [
+              "hvs",
+              "brn",
+              "amf"
+            ],
+            "begintijd": "2020-10-14T01:00:00+0200",
+            "eindtijd": "2020-10-19T03:59:00+0200"
+          }
+        ],
+        "prioriteit": 20
+      }
+    },
+    {
+      "id": "2020_wt_std_17_25okt",
+      "type": "werkzaamheid",
+      "titel": "Weert-Sittard",
+      "verstoring": {
+        "type": "WERKZAAMHEID",
+        "id": "2020_wt_std_17_25okt",
+        "extraReistijd": "een kwartier tot een uur",
+        "reisadviezen": {
+          "titel": "U kunt gebruikmaken van de bussen",
+          "reisadvies": [
+            {
+              "titel": "Zaterdag 17 en zondag 18 oktober en zaterdag 24 en zondag 25 oktober",
+              "advies": [
+                "er rijden NS-bussen tussen Weert en Sittard",
+                "er rijden Arriva-bussen tussen Roermond en Echt"
+              ]
+            },
+            {
+              "titel": "Maandag 19 t/m vrijdag 23 oktober",
+              "advies": [
+                "er rijden bussen tussen Weert en Roermond"
+              ]
+            }
+          ]
+        },
+        "geldigheidsLijst": [
+          {
+            "startDatum": "2020-10-17T04:00:00+0200",
+            "eindDatum": "2020-10-19T03:59:00+0200"
+          },
+          {
+            "startDatum": "2020-10-19T04:00:00+0200",
+            "eindDatum": "2020-10-24T03:59:00+0200"
+          },
+          {
+            "startDatum": "2020-10-24T04:00:00+0200",
+            "eindDatum": "2020-10-26T03:59:00+0100"
+          }
+        ],
+        "gevolg": "Geen treinverkeer businzet, extra reistijd 15-60 min.",
+        "impact": 5,
+        "maatschappij": 100,
+        "landelijk": true,
+        "oorzaak": "werkzaamheden",
+        "header": "Weert-Sittard",
+        "periode": "zaterdag 17 t/m zondag 25 oktober",
+        "trajecten": [
+          {
+            "stations": [
+              "wt",
+              "rm",
+              "ec",
+              "srn",
+              "std"
+            ],
+            "begintijd": "2020-10-17T04:00:00+0200",
+            "eindtijd": "2020-10-19T03:59:00+0200"
+          },
+          {
+            "stations": [
+              "wt",
+              "rm",
+              "ec",
+              "srn",
+              "std"
+            ],
+            "begintijd": "2020-10-24T04:00:00+0200",
+            "eindtijd": "2020-10-26T03:59:00+0100"
+          },
+          {
+            "stations": [
+              "wt",
+              "rm"
+            ],
+            "begintijd": "2020-10-19T04:00:00+0200",
+            "eindtijd": "2020-10-24T03:59:00+0200"
+          }
+        ],
+        "prioriteit": 20
+      }
+    },
+    {
+      "id": "2020_ICBER_asd_berlin_27_29nov",
+      "type": "werkzaamheid",
+      "titel": "Amsterdam C-Hannover Hbf- Berlin Ostbahnhof",
+      "verstoring": {
+        "type": "WERKZAAMHEID",
+        "id": "2020_ICBER_asd_berlin_27_29nov",
+        "extraReistijd": "een half uur tot een uur",
+        "reisadviezen": {
+          "titel": "Ga eerder op reis",
+          "reisadvies": [
+            {
+              "titel": "",
+              "advies": [
+                "IC Berlijn rijdt tussen Amsterdam Centraal en Deventer via een andere route en stopt niet in Hilversum, Amersfoort Centraal en Apeldoorn"
+              ]
+            }
+          ]
+        },
+        "geldigheidsLijst": [
+          {
+            "startDatum": "2020-11-27T04:00:00+0100",
+            "eindDatum": "2020-11-30T03:59:00+0100"
+          }
+        ],
+        "gevolg": "Aangepaste dienstregeling IC Berlijn extra reistijd 30-60 min.",
+        "impact": 0,
+        "maatschappij": 200,
+        "landelijk": true,
+        "oorzaak": "werkzaamheden",
+        "header": "Amsterdam C-Hannover Hbf- Berlin Ostbahnhof",
+        "periode": "vrijdag 27 november t/m zondag 29 november",
+        "trajecten": [
+          {
+            "stations": [
+              "odz",
+              "bh",
+              "rheine",
+              "osnh"
+            ],
+            "begintijd": "2020-11-27T04:00:00+0100",
+            "eindtijd": "2020-11-30T03:59:00+0100"
+          }
+        ],
+        "prioriteit": 20
+      }
+    }
+  ]
+}
