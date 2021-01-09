@@ -22,14 +22,14 @@ final class Mappings {
 
     @NonNull
     static Station map(@NonNull StationWrapper input) {
-        var coordinates = new Coordinates(input.getLatitude(), input.getLongitude());
+        var coordinates = new Coordinates(input.latitude(), input.longitude());
         return new Station(
-            input.getUicCode(),
-            map(input.getNames()),
-            map(input.getStationType()),
-            List.copyOf(input.getSynonyms()),
-            input.getCountryCode(),
-            map(input.getTracks()),
+            input.uicCode(),
+            map(input.names()),
+            map(input.stationType()),
+            List.copyOf(input.synonyms()),
+            input.countryCode(),
+            map(input.tracks()),
             coordinates
         );
     }
@@ -37,9 +37,9 @@ final class Mappings {
     @NonNull
     private static NameHolder map(@NonNull NamesWrapper input) {
         return new NameHolder(
-            Optional.ofNullable(input.getShortName()).orElse(""),
-            Optional.ofNullable(input.getMiddleName()).orElse(""),
-            Optional.ofNullable(input.getLongName()).orElse("")
+            Optional.ofNullable(input.shortName()).orElse(""),
+            Optional.ofNullable(input.middleName()).orElse(""),
+            Optional.ofNullable(input.longName()).orElse("")
         );
     }
 
@@ -57,6 +57,6 @@ final class Mappings {
 
     @NonNull
     private static List<String> map(@NonNull List<TrackWrapper> input) {
-        return input.stream().map(TrackWrapper::getNumber).collect(toList());
+        return input.stream().map(TrackWrapper::number).collect(toList());
     }
 }

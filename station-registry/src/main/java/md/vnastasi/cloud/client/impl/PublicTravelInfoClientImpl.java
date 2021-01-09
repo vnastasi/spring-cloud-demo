@@ -30,6 +30,6 @@ public class PublicTravelInfoClientImpl implements PublicTravelInfoClient {
                 .uri(url)
                 .retrieve()
                 .bodyToMono(StationsResponseWrapper.class)
-                .flatMapIterable(StationsResponseWrapper::getPayload);
+                .flatMapIterable(StationsResponseWrapper::payload);
     }
 }
