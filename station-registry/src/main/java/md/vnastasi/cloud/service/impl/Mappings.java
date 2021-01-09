@@ -12,7 +12,6 @@ import md.vnastasi.cloud.endpoint.model.NameHolder;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.endpoint.model.StationType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,47 +22,37 @@ final class Mappings {
 
     @NonNull
     static Station map(@NonNull StationWrapper input) {
-        var coordinates = Coordinates.builder().latitude(input.getLatitude()).longitude(input.getLongitude()).build();
-        return Station.builder()
-                .code(input.getUicCode())
-                .names(map(input.getNames()))
-                .type(map(input.getStationType()))
-                .synonyms(new ArrayList<>(input.getSynonyms()))
-                .countryCode(input.getCountryCode())
-                .tracks(map(input.getTracks()))
-                .coordinates(coordinates)
-                .build();
+        var coordinates = new Coordinates(input.getLatitude(), input.getLongitude());
+        return new Station(
+            input.getUicCode(),
+            map(input.getNames()),
+            map(input.getStationType()),
+            List.copyOf(input.getSynonyms()),
+            input.getCountryCode(),
+            map(input.getTracks()),
+            coordinates
+        );
     }
 
     @NonNull
     private static NameHolder map(@NonNull NamesWrapper input) {
-        return NameHolder.builder()
-                .shortName(Optional.ofNullable(input.getShortName()).orElse(""))
-                .middleName(Optional.ofNullable(input.getMiddleName()).orElse(""))
-                .longName(Optional.ofNullable(input.getLongName()).orElse(""))
-                .build();
+        return new NameHolder(
+            Optional.ofNullable(input.getShortName()).orElse(""),
+            Optional.ofNullable(input.getMiddleName()).orElse(""),
+            Optional.ofNullable(input.getLongName()).orElse("")
+        );
     }
 
     @NonNull
     private static StationType map(@NonNull StationTypeWrapper input) {
-        switch (input) {
-            case MAJOR_STATION:
-                return StationType.MAJOR_STATION;
-            case INTERCITY_JUNCTION_STATION:
-            case FAST_TRAIN_JUNCTION_STATION:
-                return StationType.INTERCITY_JUNCTION_STATION;
-            case INTERCITY_STATION:
-            case FAST_TRAIN_STATION:
-                return StationType.INTERCITY_STATION;
-            case STOP_TRAIN_STATION:
-                return StationType.STOP_TRAIN_STATION;
-            case STOP_TRAIN_JUNCTION_STATION:
-                return StationType.STOP_TRAIN_JUNCTION_STATION;
-            case OPTIONAL_STATION:
-                return StationType.OPTIONAL_STATION;
-            default:
-                return StationType.UNKNOWN;
-        }
+        return switch (input) {
+            case MAJOR_STATION -> StationType.MAJOR_STATION;
+            case INTERCITY_JUNCTION_STATION, FAST_TRAIN_JUNCTION_STATION -> StationType.INTERCITY_JUNCTION_STATION;
+            case INTERCITY_STATION, FAST_TRAIN_STATION -> StationType.INTERCITY_STATION;
+            case STOP_TRAIN_STATION -> StationType.STOP_TRAIN_STATION;
+            case STOP_TRAIN_JUNCTION_STATION -> StationType.STOP_TRAIN_JUNCTION_STATION;
+            case OPTIONAL_STATION -> StationType.OPTIONAL_STATION;
+        };
     }
 
     @NonNull

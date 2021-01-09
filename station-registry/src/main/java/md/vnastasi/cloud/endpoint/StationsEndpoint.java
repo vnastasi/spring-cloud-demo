@@ -39,7 +39,7 @@ public class StationsEndpoint {
             @RequestParam("longitude") double longitude,
             @RequestParam("limit") int limit
     ) {
-        var coordinates = Coordinates.builder().latitude(latitude).longitude(longitude).build();
+        var coordinates = new Coordinates(latitude, longitude);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CACHE_CONTROL, CACHE_CONTROL)
                 .body(stationService.getNearbyStations(coordinates, limit));

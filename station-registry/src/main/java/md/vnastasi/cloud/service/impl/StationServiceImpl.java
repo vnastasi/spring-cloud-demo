@@ -38,10 +38,10 @@ public class StationServiceImpl implements StationService {
     public Flux<DistanceAwareStation> getNearbyStations(@NonNull Coordinates coordinates, int limit) {
         return getStations()
                 .map(station -> {
-                    double distance = distanceCalculator.calculate(coordinates, station.getCoordinates());
-                    return DistanceAwareStation.builder().station(station).distance(distance).build();
+                    double distance = distanceCalculator.calculate(coordinates, station.coordinates());
+                    return new DistanceAwareStation(station, distance);
                 })
-                .sort(comparingDouble(DistanceAwareStation::getDistance))
+                .sort(comparingDouble(DistanceAwareStation::distance))
                 .take(limit);
     }
 

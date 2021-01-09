@@ -12,8 +12,8 @@ class DistanceCalculatorTest {
 
     @Test
     void testDistanceCalculator() {
-        var reference = Coordinates.builder().latitude(37.742995).longitude(-25.671291).build();
-        var target = Coordinates.builder().latitude(51.4433326721191).longitude(5.48138904571533).build();
+        var reference = new Coordinates(37.742995, -25.671291);
+        var target = new Coordinates(51.4433326721191, 5.48138904571533);
 
         var distance = calculator.calculate(reference, target);
         assertThat(distance).isEqualTo(2866596.7871, Offset.offset(0.0001));

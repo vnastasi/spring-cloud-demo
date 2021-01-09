@@ -51,7 +51,7 @@ class StationServiceTest {
     @Test
     @DisplayName("when nearby stations requested then expect list order by least distance")
     void testNearbyStations() throws IOException {
-        var coordinates = Coordinates.builder().latitude(1.0).longitude(1.0).build();
+        var coordinates = new Coordinates(1.0, 1.0);
 
         var station1 = JsonUtils.deserialize("station_BKL.json", StationWrapper.class);
         var station2 = JsonUtils.deserialize("station_LEDN.json", StationWrapper.class);
@@ -62,26 +62,26 @@ class StationServiceTest {
 
 
         StepVerifier.withVirtualTime(() -> service.getNearbyStations(coordinates, 3))
-                .assertNext(it -> assertThat(it.getStation().getCode()).isEqualTo("8400390"))
-                .assertNext(it -> assertThat(it.getStation().getCode()).isEqualTo("8400133"))
-                .assertNext(it -> assertThat(it.getStation().getCode()).isEqualTo("8400449"))
+                .assertNext(it -> assertThat(it.station().code()).isEqualTo("8400390"))
+                .assertNext(it -> assertThat(it.station().code()).isEqualTo("8400133"))
+                .assertNext(it -> assertThat(it.station().code()).isEqualTo("8400449"))
                 .verifyComplete();
     }
 
     private void assertStation(Station station) {
         assertThat(station).isNotNull();
-        assertThat(station.getCode()).isEqualTo("8400133");
-        assertThat(station.getType()).isEqualTo(StationType.STOP_TRAIN_JUNCTION_STATION);
-        assertThat(station.getTracks()).hasSize(2).containsExactlyInAnyOrder("2", "3");
-        assertThat(station.getSynonyms()).isEmpty();
+        assertThat(station.code()).isEqualTo("8400133");
+        assertThat(station.type()).isEqualTo(StationType.STOP_TRAIN_JUNCTION_STATION);
+        assertThat(station.tracks()).hasSize(2).containsExactlyInAnyOrder("2", "3");
+        assertThat(station.synonyms()).isEmpty();
 
-        var names = station.getNames();
-        assertThat(names.getShortName()).isEqualTo("Breukelen");
-        assertThat(names.getMiddleName()).isEqualTo("Breukelen");
-        assertThat(names.getLongName()).isEqualTo("Breukelen");
+        var names = station.names();
+        assertThat(names.shortName()).isEqualTo("Breukelen");
+        assertThat(names.middleName()).isEqualTo("Breukelen");
+        assertThat(names.longName()).isEqualTo("Breukelen");
 
-        var coordinates = station.getCoordinates();
-        assertThat(coordinates.getLatitude()).isCloseTo(52.17149, offset(0.001));
-        assertThat(coordinates.getLongitude()).isCloseTo(4.9906, offset(0.001));
+        var coordinates = station.coordinates();
+        assertThat(coordinates.latitude()).isCloseTo(52.17149, offset(0.001));
+        assertThat(coordinates.longitude()).isCloseTo(4.9906, offset(0.001));
     }
 }
