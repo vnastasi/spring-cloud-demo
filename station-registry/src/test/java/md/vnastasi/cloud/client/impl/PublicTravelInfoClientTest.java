@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PublicTravelInfoClientTest {
 
-    private final ApplicationProperties applicationProperties = TestApplicationProperties.builder().build().convert();
+    private final ApplicationProperties applicationProperties = new TestApplicationProperties().convert();
     private final MockWebServer webServer = new MockWebServer();
     private final WebClient webClient = WebClient.create(webServer.url("/").toString());
 

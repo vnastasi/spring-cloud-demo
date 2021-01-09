@@ -21,9 +21,9 @@ public class ApplicationConfig {
         @NonNull WebClient.Builder builder,
         @NonNull ApplicationProperties applicationProperties
     ) {
-        var url = applicationProperties.getNsApi().getBaseUrl() + applicationProperties.getNsApi().getPublicTravelInfo().getBasePath();
-        var headerName = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getHeader();
-        var headerValue = applicationProperties.getNsApi().getPublicTravelInfo().getApiKey().getValue();
+        var url = applicationProperties.nsApi().baseUrl() + applicationProperties.nsApi().publicTravelInfo().basePath();
+        var headerName = applicationProperties.nsApi().publicTravelInfo().apiKey().header();
+        var headerValue = applicationProperties.nsApi().publicTravelInfo().apiKey().value();
 
         return builder
             .clientConnector(new ReactorClientHttpConnector(createHttpClient()))
