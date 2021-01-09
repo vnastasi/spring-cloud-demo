@@ -55,10 +55,26 @@ subprojects {
             dependency("com.squareup.okhttp3:okhttp:4.5.0")
             dependency("com.squareup.okio:okio:2.5.0")
 
+            dependency("com.fasterxml.jackson.core:jackson-core:2.12.0")
+            dependency("com.fasterxml.jackson.core:jackson-databind:2.12.0")
+            dependency("com.fasterxml.jackson.core:jackson-annotations:2.12.0")
+            dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.12.0")
+            dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.0")
+            dependency("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.0")
+            dependency("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.0")
+            dependency("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.0")
+            dependency("com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.12.0")
+            dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
+            dependency("com.fasterxml.jackson.module:jackson-module-parameter-names:2.12.0")
+
             dependency("org.mockito:mockito-junit-jupiter:3.3.3")
             dependency("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
             dependency("com.willowtreeapps.assertk:assertk-jvm:0.23")
         }
+    }
+
+    jacoco {
+        toolVersion = "0.8.6"
     }
 }
 

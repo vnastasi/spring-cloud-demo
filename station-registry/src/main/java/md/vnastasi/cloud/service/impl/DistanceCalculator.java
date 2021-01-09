@@ -14,10 +14,10 @@ class DistanceCalculator {
     @SuppressWarnings("NonAsciiCharacters")
     @NonNull
     double calculate(@NonNull final Coordinates referencePoint, @NonNull final Coordinates targetPoint) {
-        var lat1 = referencePoint.getLatitude();
-        var lat2 = targetPoint.getLatitude();
-        var lon1 = referencePoint.getLongitude();
-        var lon2 = targetPoint.getLongitude();
+        var lat1 = referencePoint.latitude();
+        var lat2 = targetPoint.latitude();
+        var lon1 = referencePoint.longitude();
+        var lon2 = targetPoint.longitude();
 
         var φ1 = toRadians(lat1);
         var φ2 = toRadians(lat2);

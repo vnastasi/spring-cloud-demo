@@ -25,11 +25,11 @@ public class PublicTravelInfoClientImpl implements PublicTravelInfoClient {
 
     @Override
     public Flux<StationWrapper> getStations() {
-        var url = applicationProperties.getNsApi().getPublicTravelInfo().getStationsPath();
+        var url = applicationProperties.nsApi().publicTravelInfo().stationsPath();
         return webClient.get()
                 .uri(url)
                 .retrieve()
                 .bodyToMono(StationsResponseWrapper.class)
-                .flatMapIterable(StationsResponseWrapper::getPayload);
+                .flatMapIterable(StationsResponseWrapper::payload);
     }
 }

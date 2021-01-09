@@ -1,35 +1,29 @@
 package md.vnastasi.cloud;
 
-import lombok.NonNull;
-import lombok.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 
-@Value
 @ConfigurationProperties(prefix = "application")
 @ConstructorBinding
-public class ApplicationProperties {
+public record ApplicationProperties(
+    NsApiProperties nsApi
+) {
 
-    NsApiProperties nsApi;
+    public static record NsApiProperties(
+        String baseUrl,
+        PublicTravelInfoProperties publicTravelInfo
+    ) {
 
-    @Value
-    public static class NsApiProperties {
+        public static record PublicTravelInfoProperties(
+            String basePath,
+            ApiKeyProperties apiKey,
+            String stationsPath
+        ) {
 
-        @NonNull String baseUrl;
-        @NonNull PublicTravelInfoProperties publicTravelInfo;
-
-        @Value
-        public static class PublicTravelInfoProperties {
-
-            @NonNull String basePath;
-            @NonNull ApiKeyProperties apiKey;
-            @NonNull String stationsPath;
-
-            @Value
-            public static class ApiKeyProperties {
-
-                @NonNull String header;
-                @NonNull String value;
+            public static record ApiKeyProperties(
+                String header,
+                String value
+            ) {
             }
         }
     }

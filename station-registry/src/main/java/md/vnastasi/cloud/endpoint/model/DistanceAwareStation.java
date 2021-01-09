@@ -1,15 +1,11 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import lombok.Builder;
-import lombok.NonNull;
-import lombok.Value;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Value
-@Builder
-public class DistanceAwareStation {
-
-    @NonNull
-    Station station;
-
-    double distance;
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public record DistanceAwareStation(
+    @JsonProperty Station station,
+    @JsonProperty double distance
+) {
 }

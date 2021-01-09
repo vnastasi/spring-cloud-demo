@@ -1,33 +1,17 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import lombok.Builder;
-import lombok.NonNull;
-import lombok.Value;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 import java.util.List;
 
-@Value
-@Builder
-public class Station {
-
-    @NonNull
-    String code;
-
-    @NonNull
-    NameHolder names;
-
-    @NonNull
-    StationType type;
-
-    @NonNull
-    List<String> synonyms;
-
-    @NonNull
-    String countryCode;
-
-    @NonNull
-    List<String> tracks;
-
-    @NonNull
-    Coordinates coordinates;
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public record Station(
+    String code,
+    NameHolder names,
+    StationType type,
+    List<String> synonyms,
+    String countryCode,
+    List<String> tracks,
+    Coordinates coordinates
+) {
 }

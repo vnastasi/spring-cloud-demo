@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PublicTravelInfoClientTest {
 
-    private final ApplicationProperties applicationProperties = TestApplicationProperties.builder().build().convert();
+    private final ApplicationProperties applicationProperties = new TestApplicationProperties().convert();
     private final MockWebServer webServer = new MockWebServer();
     private final WebClient webClient = WebClient.create(webServer.url("/").toString());
 
@@ -42,9 +42,9 @@ class PublicTravelInfoClientTest {
         webServer.enqueue(mockResponse);
 
         StepVerifier.withVirtualTime(client::getStations)
-                .assertNext(it -> assertThat(it.getNames().getLongName()).isEqualTo("London St. Pancras Int."))
-                .assertNext(it -> assertThat(it.getNames().getLongName()).isEqualTo("Breukelen"))
-                .assertNext(it -> assertThat(it.getNames().getLongName()).isEqualTo("Breda"))
+                .assertNext(it -> assertThat(it.names().longName()).isEqualTo("London St. Pancras Int."))
+                .assertNext(it -> assertThat(it.names().longName()).isEqualTo("Breukelen"))
+                .assertNext(it -> assertThat(it.names().longName()).isEqualTo("Breda"))
                 .verifyComplete();
     }
 }

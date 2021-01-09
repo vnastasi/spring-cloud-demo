@@ -1,5 +1,6 @@
 package md.vnastasi.cloud.client.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -9,72 +10,22 @@ import lombok.Value;
 
 import java.util.List;
 
-@Value
-@Builder(builderClassName = "WrapperBuilder")
-@JsonDeserialize(builder = StationWrapper.WrapperBuilder.class)
-public class StationWrapper {
-
-    @NonNull
-    @JsonProperty("code")
-    String code;
-
-    @NonNull
-    @JsonProperty("UICCode")
-    String uicCode;
-
-    @NonNull
-    @JsonProperty("EVACode")
-    String evaCode;
-
-    @NonNull
-    @JsonProperty("stationType")
-    StationTypeWrapper stationType;
-
-    @NonNull
-    @JsonProperty("namen")
-    NamesWrapper names;
-
-    @NonNull
-    @JsonProperty("synoniemen")
-    List<String> synonyms;
-
-    @NonNull
-    @JsonProperty("land")
-    String countryCode;
-
-    @NonNull
-    @JsonProperty("lat")
-    Double latitude;
-
-    @NonNull
-    @JsonProperty("lng")
-    Double longitude;
-
-    @NonNull
-    @JsonProperty("sporen")
-    List<TrackWrapper> tracks;
-
-    @NonNull
-    @JsonProperty("heeftFaciliteiten")
-    Boolean facilitiesAvailable;
-
-    @NonNull
-    @JsonProperty("heeftVertrektijden")
-    Boolean timeTableAvailable;
-
-    @NonNull
-    @JsonProperty("heeftReisassistentie")
-    Boolean travelAssistanceAvailable;
-
-    @NonNull
-    @JsonProperty("radius")
-    Integer radius;
-
-    @NonNull
-    @JsonProperty("naderenRadius")
-    Integer nearRadius;
-
-    @JsonPOJOBuilder(withPrefix = "")
-    static class WrapperBuilder {
-    }
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public record StationWrapper(
+    @JsonProperty("code") String code,
+    @JsonProperty("UICCode") String uicCode,
+    @JsonProperty("EVACode") String evaCode,
+    @JsonProperty("stationType") StationTypeWrapper stationType,
+    @JsonProperty("namen") NamesWrapper names,
+    @JsonProperty("synoniemen") List<String> synonyms,
+    @JsonProperty("land") String countryCode,
+    @JsonProperty("lat") Double latitude,
+    @JsonProperty("lng") Double longitude,
+    @JsonProperty("sporen") List<TrackWrapper> tracks,
+    @JsonProperty("heeftFaciliteiten") Boolean facilitiesAvailable,
+    @JsonProperty("heeftVertrektijden") Boolean timeTableAvailable,
+    @JsonProperty("heeftReisassistentie") Boolean travelAssistanceAvailable,
+    @JsonProperty("radius") Integer radius,
+    @JsonProperty("naderenRadius") Integer nearRadius
+) {
 }

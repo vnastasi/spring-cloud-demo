@@ -55,14 +55,14 @@ class StationsEndpointTest {
     @Test
     @DisplayName("when nearby list with one element then expect HTTP 200 and list wih one element")
     void testNearbyStationList() {
-        var station = DistanceAwareStation.builder().station(createStation()).distance(1.0).build();
-        var coordinates = Coordinates.builder().latitude(8.0).longitude(-19.7).build();
+        var station = new DistanceAwareStation(createStation(), 1.0);
+        var coordinates = new Coordinates(8.0, -19.7);
         when(mockService.getNearbyStations(eq(coordinates), eq(1))).thenReturn(Flux.just(station));
 
 
         Function<UriBuilder, URI> uriFunction = uriBuilder -> uriBuilder.path("/nearby")
-                .queryParam("latitude", coordinates.getLatitude())
-                .queryParam("longitude", coordinates.getLongitude())
+                .queryParam("latitude", coordinates.latitude())
+                .queryParam("longitude", coordinates.longitude())
                 .queryParam("limit", 1)
                 .build();
 
@@ -74,25 +74,16 @@ class StationsEndpointTest {
     }
 
     private Station createStation() {
-        var names = NameHolder.builder()
-                .shortName("Amsterdam C.")
-                .middleName("Amsterdam C.")
-                .longName("Amsterdam Centraal")
-                .build();
-
-        var coordinates = Coordinates.builder()
-                .longitude(4.6)
-                .latitude(3.4)
-                .build();
-
-        return Station.builder()
-                .code("AMS")
-                .countryCode("NL")
-                .names(names)
-                .coordinates(coordinates)
-                .tracks(List.of("1", "2", "3"))
-                .synonyms(List.of())
-                .type(StationType.MAJOR_STATION)
-                .build();
+        var names = new NameHolder("Amsterdam C.", "Amsterdam C.", "Amsterdam Centraal");
+        var coordinates = new Coordinates(4.6, 3.4);
+        return new Station(
+            "AMS",
+            names,
+            StationType.MAJOR_STATION,
+            List.of(),
+            "NL",
+            List.of("1", "2", "3"),
+            coordinates
+        );
     }
 }

@@ -1,16 +1,11 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import lombok.Builder;
-import lombok.NonNull;
-import lombok.Value;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Value
-@Builder
-public class Coordinates {
-
-    @NonNull
-    Double latitude;
-
-    @NonNull
-    Double longitude;
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+public record Coordinates(
+    @JsonProperty Double latitude,
+    @JsonProperty Double longitude
+) {
 }
