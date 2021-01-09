@@ -60,6 +60,10 @@ subprojects {
             dependency("com.willowtreeapps.assertk:assertk-jvm:0.23")
         }
     }
+
+    jacoco {
+        toolVersion = "0.8.6"
+    }
 }
 
 tasks.getByName("clean") {
