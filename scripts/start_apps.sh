@@ -4,27 +4,27 @@ shopt -s expand_aliases
 jenv local 15
 
 echo "Starting Eureka Server..."
-java -jar eureka-server-*.jar &
+java --enable-preview -jar eureka-server-*.jar &
 sleep 15s
 
 echo "Starting Config Server..."
-java -jar config-server-*.jar &
+java --enable-preview -jar config-server-*.jar &
 sleep 15s
 
 echo "Starting Station Registry app..."
-java -jar station-registry-*.jar &
+java --enable-preview -jar station-registry-*.jar &
 sleep 15s
 
 echo "Starting Timetable app..."
-java -jar timetable-*.jar &
+java --enable-preview -jar timetable-*.jar &
 sleep 15s
 
 echo "Starting Disruptions app..."
-java -jar disruptions-*.jar &
+java --enable-preview -jar disruptions-*.jar &
 sleep 15s
 
 echo "Starting API Gateway app..."
-java -jar api-gateway-*.jar &
+java --enable-preview -jar api-gateway-*.jar &
 sleep 30s
 
 exit
