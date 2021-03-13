@@ -1,11 +1,11 @@
 package md.vnastasi.cloud;
 
 import io.netty.bootstrap.Bootstrap;
-import lombok.NonNull;
 import md.vnastasi.cloud.log.HttpClientLogger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.lang.NonNull;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.channel.BootstrapHandlers;
 import reactor.netty.http.client.HttpClient;

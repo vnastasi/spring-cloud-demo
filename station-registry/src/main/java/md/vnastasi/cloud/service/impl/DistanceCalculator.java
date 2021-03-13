@@ -1,7 +1,7 @@
 package md.vnastasi.cloud.service.impl;
 
-import lombok.NonNull;
 import md.vnastasi.cloud.endpoint.model.Coordinates;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import static java.lang.Math.*;

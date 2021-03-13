@@ -23,9 +23,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
@@ -40,7 +37,6 @@ dependencies {
 
     testCompileOnly("org.projectlombok:lombok")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testAnnotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.processResources {

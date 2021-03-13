@@ -1,10 +1,10 @@
 package md.vnastasi.cloud.client.impl;
 
-import lombok.NonNull;
 import md.vnastasi.cloud.ApplicationProperties;
 import md.vnastasi.cloud.client.PublicTravelInfoClient;
 import md.vnastasi.cloud.client.model.StationWrapper;
 import md.vnastasi.cloud.client.model.StationsResponseWrapper;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;

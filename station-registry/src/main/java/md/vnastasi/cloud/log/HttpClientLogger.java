@@ -17,8 +17,7 @@ public class HttpClientLogger extends LoggingHandler {
 
     @Override
     protected String format(ChannelHandlerContext ctx, String eventName, Object arg) {
-        if (arg instanceof ByteBuf) {
-            ByteBuf msg = (ByteBuf) arg;
+        if (arg instanceof ByteBuf msg) {
             return decode(msg, msg.readerIndex(), msg.readableBytes(), Charset.defaultCharset());
         }
         return super.format(ctx, eventName, arg);

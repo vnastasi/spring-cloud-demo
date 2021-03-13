@@ -1,6 +1,5 @@
 package md.vnastasi.cloud.endpoint;
 
-import lombok.NonNull;
 import md.vnastasi.cloud.endpoint.model.Coordinates;
 import md.vnastasi.cloud.endpoint.model.DistanceAwareStation;
 import md.vnastasi.cloud.endpoint.model.Station;
@@ -8,6 +7,7 @@ import md.vnastasi.cloud.service.StationService;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

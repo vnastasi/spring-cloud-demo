@@ -1,8 +1,5 @@
 package md.vnastasi.cloud.service.impl;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import md.vnastasi.cloud.client.model.NamesWrapper;
 import md.vnastasi.cloud.client.model.StationTypeWrapper;
 import md.vnastasi.cloud.client.model.StationWrapper;
@@ -11,14 +8,16 @@ import md.vnastasi.cloud.endpoint.model.Coordinates;
 import md.vnastasi.cloud.endpoint.model.NameHolder;
 import md.vnastasi.cloud.endpoint.model.Station;
 import md.vnastasi.cloud.endpoint.model.StationType;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 final class Mappings {
+
+    private Mappings() { }
 
     @NonNull
     static Station map(@NonNull StationWrapper input) {
