@@ -1,14 +1,11 @@
 package md.vnastasi.cloud.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
 
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class JsonUtils {
 
     public static String readString(String fileName) {

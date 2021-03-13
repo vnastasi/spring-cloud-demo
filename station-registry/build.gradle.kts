@@ -34,9 +34,6 @@ dependencies {
     testImplementation("com.squareup.okio:okio")
     testImplementation("org.jetbrains.kotlin:kotlin-stdlib")
     testImplementation("org.jetbrains.kotlin:kotlin-stdlib-common")
-
-    testCompileOnly("org.projectlombok:lombok")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 tasks.processResources {
