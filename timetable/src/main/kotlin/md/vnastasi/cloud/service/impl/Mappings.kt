@@ -68,7 +68,7 @@ fun ArrivalWrapper.asArrival(): Arrival =
         plannedArrival = this.plannedDateTime,
         actualArrival = this.actualDateTime,
         plannedTrack = this.plannedTrack,
-        actualTrack = this.actualTrack,
+        actualTrack = this.actualTrack ?: this.plannedTrack,
         cancelled = this.cancelled,
         messages = this.messages?.map { it.asMessage() }?.toList() ?: emptyList()
     )

@@ -16,7 +16,7 @@ data class ArrivalWrapper(
     val plannedTrack: String,
 
     @JsonProperty("actualTrack")
-    val actualTrack: String,
+    val actualTrack: String?,
 
     @JsonProperty("product")
     val product: ProductWrapper,
