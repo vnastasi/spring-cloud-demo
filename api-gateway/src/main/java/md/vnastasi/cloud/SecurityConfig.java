@@ -15,9 +15,9 @@ public class SecurityConfig {
 
     @Bean
     public MapReactiveUserDetailsService provideUserDetailsService(ApplicationProperties applicationProperties) {
-        String user = applicationProperties.getSecurity().getUser();
-        String password = applicationProperties.getSecurity().getPassword();
-        String[] roles = applicationProperties.getSecurity().getRoles().toArray(new String[] {});
+        String user = applicationProperties.security().user();
+        String password = applicationProperties.security().password();
+        String[] roles = applicationProperties.security().roles().toArray(new String[] {});
         UserDetails userDetails = User.builder()
                 .username(user)
                 .password("{noop}" + password)

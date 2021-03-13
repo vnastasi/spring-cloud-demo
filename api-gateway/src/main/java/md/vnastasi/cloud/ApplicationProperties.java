@@ -1,23 +1,19 @@
 package md.vnastasi.cloud;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.ConstructorBinding;
 
 import java.util.List;
 
-@Data
-@Component
 @ConfigurationProperties(prefix = "application")
-public class ApplicationProperties {
+@ConstructorBinding
+public record ApplicationProperties(
+        Security security
+) {
 
-    private Security security;
-
-    @Data
-    public static class Security {
-
-        private String user;
-        private String password;
-        private List<String> roles;
-    }
+    public static record Security(
+            String user,
+            String password,
+            List<String> roles
+    ) {}
 }
