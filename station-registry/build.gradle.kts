@@ -50,9 +50,9 @@ tasks.jacocoTestReport {
     dependsOn(tasks.test)
 
     reports {
-        csv.isEnabled = false
-        xml.isEnabled = false
-        html.isEnabled = true
+        csv.required.set(false)
+        xml.required.set(false)
+        html.required.set(true)
     }
 
     sourceDirectories.setFrom(file("src/main/java"))
