@@ -5,7 +5,6 @@ buildscript {
         maven { setUrl("https://plugins.gradle.org/m2/0") }
         mavenLocal()
         mavenCentral()
-        jcenter()
     }
 }
 
@@ -14,9 +13,9 @@ plugins {
     id("java")
     id("org.springframework.boot") version "2.3.0.RELEASE"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
-    id("org.jetbrains.kotlin.jvm") version "1.4.31"
-    id("org.jetbrains.kotlin.kapt") version "1.4.31"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.4.31"
+    id("org.jetbrains.kotlin.jvm") version "1.5.32"
+    id("org.jetbrains.kotlin.kapt") version "1.5.32"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.5.32"
     id("org.jetbrains.dokka") version "0.10.1"
     id("com.gorylenko.gradle-git-properties") version "2.2.2"
     id("jacoco")
@@ -28,7 +27,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
         maven { setUrl("https://repo.spring.io/milestone") }
-        jcenter()
     }
 }
 
@@ -45,11 +43,11 @@ subprojects {
         }
 
         dependencies {
-            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.4.31")
-            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.4.31")
-            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
-            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.3.9")
-            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.3.9")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.5.32")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.5.32")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.5.2")
+            dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2")
 
             dependency("com.squareup.okhttp3:mockwebserver:4.5.0")
             dependency("com.squareup.okhttp3:okhttp:4.5.0")
