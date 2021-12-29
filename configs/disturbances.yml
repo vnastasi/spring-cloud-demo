@@ -1,0 +1,9 @@
+application:
+  ns-api:
+    public-travel-info:
+      base-path: /reisinformatie-api/api/v3
+      disruptions-path: /disruptions
+logging:
+  level:
+    root: INFO
+    reactor.netty.http.client: DEBUG

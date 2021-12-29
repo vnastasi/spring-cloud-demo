@@ -31,19 +31,19 @@ spring:
           filters:
             - RewritePath=/api/v1/station/(?<id>/?.*)/arrivals, /arrivals?code=$\{id}
         - id: notifications
-          uri: lb://disruptions
+          uri: lb://disturbances
           predicates:
             - Path=/api/v1/notification
             - Method=GET
           filters:
             - RewritePath=/api/v1/notification, /notification
-        - id: disturbances
-          uri: lb://disruptions
+        - id: disruptions
+          uri: lb://disturbances
           predicates:
-            - Path=/api/v1/disturbance
+            - Path=/api/v1/disruption
             - Method=GET
           filters:
-            - RewritePath=/api/v1/disturbance, /disturbance
+            - RewritePath=/api/v1/disruption, /disruption
 application:
   security:
     user: ns-demo
