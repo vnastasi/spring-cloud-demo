@@ -18,18 +18,18 @@ public class ApplicationConfig {
 
     @Bean
     public WebClient provideWebClient(
-        @NonNull WebClient.Builder builder,
-        @NonNull ApplicationProperties applicationProperties
+            @NonNull WebClient.Builder builder,
+            @NonNull ApplicationProperties applicationProperties
     ) {
-        final var url = applicationProperties.nsApi().baseUrl() + applicationProperties.nsApi().publicTravelInfo().basePath();
-        final var headerName = applicationProperties.nsApi().publicTravelInfo().apiKey().header();
-        final var headerValue = applicationProperties.nsApi().publicTravelInfo().apiKey().value();
+        var url = applicationProperties.nsApi().baseUrl() + applicationProperties.nsApi().publicTravelInfo().basePath();
+        var headerName = applicationProperties.nsApi().publicTravelInfo().apiKey().header();
+        var headerValue = applicationProperties.nsApi().publicTravelInfo().apiKey().value();
 
         return builder
-            .clientConnector(new ReactorClientHttpConnector(createHttpClient()))
-            .baseUrl(url)
-            .defaultHeader(headerName, headerValue)
-            .build();
+                .clientConnector(new ReactorClientHttpConnector(createHttpClient()))
+                .baseUrl(url)
+                .defaultHeader(headerName, headerValue)
+                .build();
     }
 
     @NonNull
