@@ -4,10 +4,13 @@ import md.vnastasi.cloud.ApplicationProperties;
 import md.vnastasi.cloud.client.PublicTravelInfoClient;
 import md.vnastasi.cloud.client.model.DisturbanceTypeWrapper;
 import md.vnastasi.cloud.client.model.DisturbanceWrapper;
+import md.vnastasi.cloud.exception.ApiException;
+import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +42,10 @@ public class PublicTravelInfoClientImpl implements PublicTravelInfoClient {
                     return builder.build();
                 })
                 .retrieve()
+                .onStatus(
+                        status -> status != HttpStatus.OK,
+                        response -> Mono.error(new ApiException())
+                )
                 .bodyToFlux(DisturbanceWrapper.class);
     }
 }
