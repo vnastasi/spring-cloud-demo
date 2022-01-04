@@ -26,12 +26,12 @@ public class ApiErrorAttributes extends DefaultErrorAttributes {
         if (throwable instanceof ApiException) {
             errorAttributes.put(KEY_REASON, ApiErrorType.NS_SERVICE_FAILURE);
             errorAttributes.put(KEY_MESSAGE, "There was a problem contacting NS API portal");
-        } else if (throwable instanceof DecodingException) {
+        } else if (throwable instanceof DecodingException e) {
             errorAttributes.put(KEY_REASON, ApiErrorType.UNPARSABLE_RESPONSE);
-            errorAttributes.put(KEY_MESSAGE, throwable.getMessage());
-        } else if (throwable instanceof IOException) {
+            errorAttributes.put(KEY_MESSAGE, e.getMessage());
+        } else if (throwable instanceof IOException e) {
             errorAttributes.put(KEY_REASON, ApiErrorType.NS_SERVICE_FAILURE);
-            errorAttributes.put(KEY_MESSAGE, throwable.getMessage());
+            errorAttributes.put(KEY_MESSAGE, e.getMessage());
         } else {
             errorAttributes.put(KEY_REASON, ApiErrorType.UNKNOWN_FAILURE);
             errorAttributes.put(KEY_MESSAGE, throwable.getMessage());
