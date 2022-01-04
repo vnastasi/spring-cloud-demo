@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class DisturbanceEndpoint {
+public class DisruptionEndpoint {
 
     private final DisruptionService disruptionService;
 
-    public DisturbanceEndpoint(DisruptionService disruptionService) {
+    public DisruptionEndpoint(DisruptionService disruptionService) {
         this.disruptionService = disruptionService;
     }
 
