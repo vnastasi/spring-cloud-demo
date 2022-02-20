@@ -1,0 +1,15 @@
+{
+  "timestamp": "string",
+  "code": 0,
+  "message": "string",
+  "path": "string",
+  "exception": "string",
+  "errors": [
+    {
+      "message": "string",
+      "type": "string",
+      "lang": "string"
+    }
+  ],
+  "requestId": "string"
+}

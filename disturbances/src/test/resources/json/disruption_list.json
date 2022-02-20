@@ -1,0 +1,897 @@
+[
+  {
+    "id": "6014080",
+    "type": "DISRUPTION",
+    "registrationTime": "2021-12-29T11:48:12+0100",
+    "releaseTime": "2021-12-29T11:48:12+0100",
+    "local": false,
+    "title": "Amsterdam-Rotterdam-Brussel (HSL)",
+    "topic": "disruption_6014080_nl",
+    "isActive": true,
+    "start": "2021-12-28T10:31:00+0100",
+    "end": "2022-01-09T22:00:00+0100",
+    "phase": {
+      "id": "1b",
+      "label": "Gevolgen bekend"
+    },
+    "impact": {
+      "value": 1
+    },
+    "expectedDuration": {
+      "description": "Dit duurt tot ongeveer zondag 9 januari 22:00 uur.",
+      "endTime": "2022-01-09T22:00:00+0100"
+    },
+    "publicationSections": [
+      {
+        "section": {
+          "stations": [
+            {
+              "uicCode": "8400058",
+              "stationCode": "ASD",
+              "name": "Amsterdam Centraal",
+              "coordinate": {
+                "lat": 52.3788871765137,
+                "lng": 4.90027761459351
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400059",
+              "stationCode": "ASS",
+              "name": "Amsterdam Sloterdijk",
+              "coordinate": {
+                "lat": 52.3888893127441,
+                "lng": 4.83777761459351
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400079",
+              "stationCode": "ASDL",
+              "name": "Amsterdam Lelylaan",
+              "coordinate": {
+                "lat": 52.3577766418457,
+                "lng": 4.83388900756836
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400561",
+              "stationCode": "SHL",
+              "name": "Schiphol Airport",
+              "coordinate": {
+                "lat": 52.3094444274902,
+                "lng": 4.76194429397583
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400332",
+              "stationCode": "HFD",
+              "name": "Hoofddorp",
+              "coordinate": {
+                "lat": 52.2933349609375,
+                "lng": 4.70055532455444
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400530",
+              "stationCode": "RTD",
+              "name": "Rotterdam Centraal",
+              "coordinate": {
+                "lat": 51.9249992370605,
+                "lng": 4.46888875961304
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400529",
+              "stationCode": "RTB",
+              "name": "Rotterdam Blaak",
+              "coordinate": {
+                "lat": 51.9202766418457,
+                "lng": 4.48888874053955
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400533",
+              "stationCode": "RTZ",
+              "name": "Rotterdam Zuid",
+              "coordinate": {
+                "lat": 51.9044456481934,
+                "lng": 4.51027774810791
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400542",
+              "stationCode": "RLB",
+              "name": "Rotterdam Lombardijen",
+              "coordinate": {
+                "lat": 51.8800010681152,
+                "lng": 4.53138875961304
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400132",
+              "stationCode": "BDPB",
+              "name": "Breda-Prinsenbeek",
+              "coordinate": {
+                "lat": 51.606388092041,
+                "lng": 4.72083330154419
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400131",
+              "stationCode": "BD",
+              "name": "Breda",
+              "coordinate": {
+                "lat": 51.5955543518066,
+                "lng": 4.78000020980835
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8821105",
+              "stationCode": "NDKP",
+              "name": "Noorderkempen",
+              "coordinate": {
+                "lat": 51.358088,
+                "lng": 4.633977
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8821063",
+              "stationCode": "ATWLB",
+              "name": "Antwerpen-Luchtbal",
+              "coordinate": {
+                "lat": 51.2449375,
+                "lng": 4.4251543
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8821006",
+              "stationCode": "ATW",
+              "name": "Antwerpen-Centraal",
+              "coordinate": {
+                "lat": 51.21686,
+                "lng": 4.421242
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8821121",
+              "stationCode": "BERCH",
+              "name": "Antwerpen-Berchem",
+              "coordinate": {
+                "lat": 51.198914,
+                "lng": 4.4332
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8822004",
+              "stationCode": "MECH",
+              "name": "Mechelen",
+              "coordinate": {
+                "lat": 51.01758,
+                "lng": 4.48313
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8812005",
+              "stationCode": "BRUSN",
+              "name": "Brussel-Noord",
+              "coordinate": {
+                "lat": 50.859658,
+                "lng": 4.360854
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8813003",
+              "stationCode": "BRUSC",
+              "name": "Brussel-Centraal",
+              "coordinate": {
+                "lat": 50.845175,
+                "lng": 4.357131
+              },
+              "countryCode": "B"
+            },
+            {
+              "uicCode": "8814001",
+              "stationCode": "BRUSZ",
+              "name": "Brussel-Zuid Midi",
+              "coordinate": {
+                "lat": 50.836782,
+                "lng": 4.336922
+              },
+              "countryCode": "B"
+            }
+          ],
+          "direction": "BOTH"
+        },
+        "consequence": {
+          "section": {
+            "stations": [
+              {
+                "uicCode": "8400058",
+                "stationCode": "ASD",
+                "name": "Amsterdam Centraal",
+                "coordinate": {
+                  "lat": 52.3788871765137,
+                  "lng": 4.90027761459351
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400059",
+                "stationCode": "ASS",
+                "name": "Amsterdam Sloterdijk",
+                "coordinate": {
+                  "lat": 52.3888893127441,
+                  "lng": 4.83777761459351
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400079",
+                "stationCode": "ASDL",
+                "name": "Amsterdam Lelylaan",
+                "coordinate": {
+                  "lat": 52.3577766418457,
+                  "lng": 4.83388900756836
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400561",
+                "stationCode": "SHL",
+                "name": "Schiphol Airport",
+                "coordinate": {
+                  "lat": 52.3094444274902,
+                  "lng": 4.76194429397583
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400332",
+                "stationCode": "HFD",
+                "name": "Hoofddorp",
+                "coordinate": {
+                  "lat": 52.2933349609375,
+                  "lng": 4.70055532455444
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400530",
+                "stationCode": "RTD",
+                "name": "Rotterdam Centraal",
+                "coordinate": {
+                  "lat": 51.9249992370605,
+                  "lng": 4.46888875961304
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400529",
+                "stationCode": "RTB",
+                "name": "Rotterdam Blaak",
+                "coordinate": {
+                  "lat": 51.9202766418457,
+                  "lng": 4.48888874053955
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400533",
+                "stationCode": "RTZ",
+                "name": "Rotterdam Zuid",
+                "coordinate": {
+                  "lat": 51.9044456481934,
+                  "lng": 4.51027774810791
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400542",
+                "stationCode": "RLB",
+                "name": "Rotterdam Lombardijen",
+                "coordinate": {
+                  "lat": 51.8800010681152,
+                  "lng": 4.53138875961304
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400132",
+                "stationCode": "BDPB",
+                "name": "Breda-Prinsenbeek",
+                "coordinate": {
+                  "lat": 51.606388092041,
+                  "lng": 4.72083330154419
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400131",
+                "stationCode": "BD",
+                "name": "Breda",
+                "coordinate": {
+                  "lat": 51.5955543518066,
+                  "lng": 4.78000020980835
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8821105",
+                "stationCode": "NDKP",
+                "name": "Noorderkempen",
+                "coordinate": {
+                  "lat": 51.358088,
+                  "lng": 4.633977
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8821063",
+                "stationCode": "ATWLB",
+                "name": "Antwerpen-Luchtbal",
+                "coordinate": {
+                  "lat": 51.2449375,
+                  "lng": 4.4251543
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8821006",
+                "stationCode": "ATW",
+                "name": "Antwerpen-Centraal",
+                "coordinate": {
+                  "lat": 51.21686,
+                  "lng": 4.421242
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8821121",
+                "stationCode": "BERCH",
+                "name": "Antwerpen-Berchem",
+                "coordinate": {
+                  "lat": 51.198914,
+                  "lng": 4.4332
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8822004",
+                "stationCode": "MECH",
+                "name": "Mechelen",
+                "coordinate": {
+                  "lat": 51.01758,
+                  "lng": 4.48313
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8812005",
+                "stationCode": "BRUSN",
+                "name": "Brussel-Noord",
+                "coordinate": {
+                  "lat": 50.859658,
+                  "lng": 4.360854
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8813003",
+                "stationCode": "BRUSC",
+                "name": "Brussel-Centraal",
+                "coordinate": {
+                  "lat": 50.845175,
+                  "lng": 4.357131
+                },
+                "countryCode": "B"
+              },
+              {
+                "uicCode": "8814001",
+                "stationCode": "BRUSZ",
+                "name": "Brussel-Zuid Midi",
+                "coordinate": {
+                  "lat": 50.836782,
+                  "lng": 4.336922
+                },
+                "countryCode": "B"
+              }
+            ],
+            "direction": "ONE_WAY"
+          },
+          "description": "is voldoende afstand houden in de trein onmogelijk",
+          "level": "NORMAL_OR_MORE_TRAINS"
+        },
+        "sectionType": "HSL"
+      }
+    ],
+    "timespans": [
+      {
+        "start": "2021-12-28T10:31:00+0100",
+        "end": "2022-01-09T22:00:00+0100",
+        "situation": {
+          "label": "Tussen Amsterdam Centraal en Brussel-Zuid Midi is voldoende afstand houden in de trein onmogelijk door grote drukte."
+        },
+        "cause": {
+          "label": "Grote drukte"
+        },
+        "advices": [
+          "We raden af, om met de trein naar België te reizen, tenzij het echt noodzakelijk is.."
+        ]
+      }
+    ],
+    "alternativeTransportTimespans": []
+  },
+  {
+    "id": "df93b6d7-1fba-462d-8578-cf4b90ed7870",
+    "title": "Tijdelijk minder treinen",
+    "topic": "disruption_df93b6d7-1fba-462d-8578-cf4b90ed7870_nl",
+    "description": "De komende periode rijden we tijdelijk minder treinen in de spits. Ook valt  incidenteel een nachttrein in het weekend uit. Het reguliere nachtnet, inclusief de verbinding naar Schiphol, blijft ongewijzigd. Plan je reis vooraf in de reisplanner, deze wordt per dag bijgewerkt.",
+    "priority": "PRIO_3",
+    "lastUpdated": "2021-12-27T22:34:00+0100",
+    "bodyItems": [
+      {
+        "content": {
+          "text": "<p>Sinds de verscherpte coronamaatregelen zien we de reizigersaantallen teruglopen. Daarom rijden we op een aantal trajecten minder treinen.</p>\n\n<p>Het gaat om de volgende aanpassingen:</p>\n\n<p><strong>Minder Intercity’s in de spits:</strong><br />\n- Den Helder – Alkmaar<br />\n- Amsterdam Centraal – Enkhuizen</p>\n\n<p><strong>Minder Sprinters in de spits:</strong><br />\n- Assen – Groningen<br />\n- Rotterdam Centraal – Gouda Goverwelle<br />\n- Veenendaal Centrum&nbsp;– Driebergen-Zeist<br />\n- Utrecht Centraal – Houten Castellum</p>\n\n<p><strong>Geen nachttreinen in het weekend</strong><br />\n- Eindhoven – Den Bosch – Tilburg</p>\n\n<p>Plan je reis met de reisplanner, deze wordt per dag bijgewerkt.</p>"
+        },
+        "type": "TEXT"
+      }
+    ],
+    "buttons": {
+      "position": [
+        "BOTTOM"
+      ],
+      "items": [
+        {
+          "label": "Plan uw reis",
+          "type": "PLANNER",
+          "accessibilityLabel": "Plan uw reis",
+          "url": "https://www.ns.nl/reisplanner/"
+        }
+      ]
+    },
+    "url": "https://www.ns.nl/reisinformatie/calamiteiten/tijdelijk-minder-treinen-in-de-spits.html",
+    "type": "CALAMITY",
+    "isActive": true
+  },
+  {
+    "id": "7001734",
+    "type": "MAINTENANCE",
+    "registrationTime": "2021-12-06T09:30:31+0100",
+    "releaseTime": "2021-12-06T09:30:31+0100",
+    "local": false,
+    "title": "Eindhoven - Sittard",
+    "isActive": false,
+    "start": "2022-01-01T22:20:00+0100",
+    "end": "2022-01-07T02:00:00+0100",
+    "period": "Zaterdag 01-01-2022 22:20 uur t/m vrijdag 07-01-2022 02:00 uur.",
+    "impact": {
+      "value": 3
+    },
+    "summaryAdditionalTravelTime": {
+      "label": "De extra reistijd kan oplopen tot 30 minuten.",
+      "shortLabel": "Extra reistijd tot 30 min.",
+      "maximumDurationInMinutes": 30
+    },
+    "publicationSections": [
+      {
+        "section": {
+          "stations": [
+            {
+              "uicCode": "8400206",
+              "stationCode": "EHV",
+              "name": "Eindhoven Centraal",
+              "coordinate": {
+                "lat": 51.4433326721191,
+                "lng": 5.48138904571533
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400245",
+              "stationCode": "GP",
+              "name": "Geldrop",
+              "coordinate": {
+                "lat": 51.4197235107422,
+                "lng": 5.55055570602417
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400308",
+              "stationCode": "HZE",
+              "name": "Heeze",
+              "coordinate": {
+                "lat": 51.3849983215332,
+                "lng": 5.56944465637207
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400432",
+              "stationCode": "MZ",
+              "name": "Maarheeze",
+              "coordinate": {
+                "lat": 51.304986,
+                "lng": 5.629796
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400684",
+              "stationCode": "WT",
+              "name": "Weert",
+              "coordinate": {
+                "lat": 51.2486114501953,
+                "lng": 5.70361089706421
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400523",
+              "stationCode": "RM",
+              "name": "Roermond",
+              "coordinate": {
+                "lat": 51.1930541992188,
+                "lng": 5.9941668510437
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400195",
+              "stationCode": "EC",
+              "name": "Echt",
+              "coordinate": {
+                "lat": 51.1005554199219,
+                "lng": 5.87888908386231
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400582",
+              "stationCode": "SRN",
+              "name": "Susteren",
+              "coordinate": {
+                "lat": 51.0613899230957,
+                "lng": 5.86305570602417
+              },
+              "countryCode": "NL"
+            },
+            {
+              "uicCode": "8400564",
+              "stationCode": "STD",
+              "name": "Sittard",
+              "coordinate": {
+                "lat": 51.0016670227051,
+                "lng": 5.85861110687256
+              },
+              "countryCode": "NL"
+            }
+          ],
+          "direction": "BOTH"
+        },
+        "consequence": {
+          "section": {
+            "stations": [
+              {
+                "uicCode": "8400684",
+                "stationCode": "WT",
+                "name": "Weert",
+                "coordinate": {
+                  "lat": 51.2486114501953,
+                  "lng": 5.70361089706421
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400523",
+                "stationCode": "RM",
+                "name": "Roermond",
+                "coordinate": {
+                  "lat": 51.1930541992188,
+                  "lng": 5.9941668510437
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400195",
+                "stationCode": "EC",
+                "name": "Echt",
+                "coordinate": {
+                  "lat": 51.1005554199219,
+                  "lng": 5.87888908386231
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400582",
+                "stationCode": "SRN",
+                "name": "Susteren",
+                "coordinate": {
+                  "lat": 51.0613899230957,
+                  "lng": 5.86305570602417
+                },
+                "countryCode": "NL"
+              },
+              {
+                "uicCode": "8400564",
+                "stationCode": "STD",
+                "name": "Sittard",
+                "coordinate": {
+                  "lat": 51.0016670227051,
+                  "lng": 5.85861110687256
+                },
+                "countryCode": "NL"
+              }
+            ],
+            "direction": "ONE_WAY"
+          },
+          "description": "rijden bussen",
+          "level": "NO_OR_MUCH_LESS_TRAINS"
+        },
+        "sectionType": "NL"
+      }
+    ],
+    "timespans": [
+      {
+        "start": "2022-01-01T22:20:00+0100",
+        "end": "2022-01-02T02:00:00+0100",
+        "period": "Zaterdag 01-01-2022 22:20 uur t/m zondag 02-01-2022 02:00 uur.",
+        "situation": {
+          "label": "Door werkzaamheden: tussen Weert en Sittard rijden er bussen."
+        },
+        "cause": {
+          "label": "Werkzaamheden"
+        },
+        "additionalTravelTime": {
+          "label": "De extra reistijd kan oplopen tot 30 minuten.",
+          "shortLabel": "Extra reistijd tot 30 min.",
+          "maximumDurationInMinutes": 30
+        },
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen.",
+          "shortLabel": "er rijden snelbussen"
+        },
+        "advices": []
+      },
+      {
+        "start": "2022-01-02T22:20:00+0100",
+        "end": "2022-01-03T02:00:00+0100",
+        "period": "Zondag 02-01-2022 22:20 uur t/m maandag 03-01-2022 02:00 uur.",
+        "situation": {
+          "label": "Door werkzaamheden: tussen Weert en Sittard rijden er bussen."
+        },
+        "cause": {
+          "label": "Werkzaamheden"
+        },
+        "additionalTravelTime": {
+          "label": "De extra reistijd kan oplopen tot 30 minuten.",
+          "shortLabel": "Extra reistijd tot 30 min.",
+          "maximumDurationInMinutes": 30
+        },
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen.",
+          "shortLabel": "er rijden snelbussen"
+        },
+        "advices": []
+      }
+    ],
+    "alternativeTransportTimespans": [
+      {
+        "start": "2022-01-01T22:20:00+0100",
+        "end": "2022-01-02T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Sittard naar Roermond.",
+          "shortLabel": "Er rijden snelbussen Sittard -> Roermond"
+        }
+      },
+      {
+        "start": "2022-01-01T22:45:00+0100",
+        "end": "2022-01-02T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-01T22:45:00+0100",
+        "end": "2022-01-02T00:45:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert, Roermond en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Roermond - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-01T23:00:00+0100",
+        "end": "2022-01-01T23:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Roermond naar Weert.",
+          "shortLabel": "Er rijden snelbussen Roermond -> Weert"
+        }
+      },
+      {
+        "start": "2022-01-02T00:15:00+0100",
+        "end": "2022-01-02T01:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Weert, Roermond, Sittard naar Maastricht.",
+          "shortLabel": "Er rijden snelbussen Weert -> Roermond -> Sittard -> Maastricht"
+        }
+      },
+      {
+        "start": "2022-01-02T22:20:00+0100",
+        "end": "2022-01-03T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Sittard naar Roermond.",
+          "shortLabel": "Er rijden snelbussen Sittard -> Roermond"
+        }
+      },
+      {
+        "start": "2022-01-02T22:45:00+0100",
+        "end": "2022-01-03T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-02T22:45:00+0100",
+        "end": "2022-01-03T00:45:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert, Roermond en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Roermond - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-02T23:00:00+0100",
+        "end": "2022-01-02T23:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Roermond naar Weert.",
+          "shortLabel": "Er rijden snelbussen Roermond -> Weert"
+        }
+      },
+      {
+        "start": "2022-01-03T22:20:00+0100",
+        "end": "2022-01-04T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Sittard naar Roermond.",
+          "shortLabel": "Er rijden snelbussen Sittard -> Roermond"
+        }
+      },
+      {
+        "start": "2022-01-03T22:45:00+0100",
+        "end": "2022-01-04T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-03T22:45:00+0100",
+        "end": "2022-01-04T00:45:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert, Roermond en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Roermond - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-03T23:00:00+0100",
+        "end": "2022-01-03T23:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Roermond naar Weert.",
+          "shortLabel": "Er rijden snelbussen Roermond -> Weert"
+        }
+      },
+      {
+        "start": "2022-01-04T22:20:00+0100",
+        "end": "2022-01-05T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Sittard naar Roermond.",
+          "shortLabel": "Er rijden snelbussen Sittard -> Roermond"
+        }
+      },
+      {
+        "start": "2022-01-04T22:45:00+0100",
+        "end": "2022-01-05T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-04T22:45:00+0100",
+        "end": "2022-01-05T00:45:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert, Roermond en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Roermond - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-04T23:00:00+0100",
+        "end": "2022-01-04T23:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Roermond naar Weert.",
+          "shortLabel": "Er rijden snelbussen Roermond -> Weert"
+        }
+      },
+      {
+        "start": "2022-01-05T22:20:00+0100",
+        "end": "2022-01-06T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Sittard naar Roermond.",
+          "shortLabel": "Er rijden snelbussen Sittard -> Roermond"
+        }
+      },
+      {
+        "start": "2022-01-05T22:45:00+0100",
+        "end": "2022-01-06T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-05T22:45:00+0100",
+        "end": "2022-01-06T00:45:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert, Roermond en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Roermond - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-05T23:00:00+0100",
+        "end": "2022-01-05T23:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Roermond naar Weert.",
+          "shortLabel": "Er rijden snelbussen Roermond -> Weert"
+        }
+      },
+      {
+        "start": "2022-01-06T22:20:00+0100",
+        "end": "2022-01-07T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Sittard naar Roermond.",
+          "shortLabel": "Er rijden snelbussen Sittard -> Roermond"
+        }
+      },
+      {
+        "start": "2022-01-06T22:45:00+0100",
+        "end": "2022-01-07T00:00:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-06T22:45:00+0100",
+        "end": "2022-01-07T00:45:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen tussen Weert, Roermond en Sittard.",
+          "shortLabel": "Er rijden snelbussen Weert - Roermond - Sittard"
+        }
+      },
+      {
+        "start": "2022-01-06T23:00:00+0100",
+        "end": "2022-01-06T23:30:00+0100",
+        "alternativeTransport": {
+          "label": "Er rijden snelbussen van Roermond naar Weert.",
+          "shortLabel": "Er rijden snelbussen Roermond -> Weert"
+        }
+      }
+    ]
+  }
+]
