@@ -1,4 +1,3 @@
 rootProject.name = "spring-cloud-demo"
 
-include(":config-server", ":eureka-server", ":api-gateway", ":station-registry", ":timetable", ":disruptions")
-include("disturbances")
+include(":config-server", ":eureka-server", ":api-gateway", ":station-registry", ":timetable", ":disturbances")
