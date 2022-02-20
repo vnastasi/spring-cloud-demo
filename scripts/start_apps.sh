@@ -19,8 +19,8 @@ echo "Starting Timetable app..."
 java --enable-preview -jar timetable-*.jar &
 sleep 15s
 
-echo "Starting Disruptions app..."
-java --enable-preview -jar disruptions-*.jar &
+echo "Starting Disturbances app..."
+java --enable-preview -jar disturbances-*.jar &
 sleep 15s
 
 echo "Starting API Gateway app..."
