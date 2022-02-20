@@ -1,8 +1,0 @@
-application:
-  ns-api:
-    public-travel-info:
-      disruptions-path: /disruptions
-logging:
-  level:
-    root: INFO
-    reactor.netty.http.client: DEBUG

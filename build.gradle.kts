@@ -11,13 +11,13 @@ buildscript {
 plugins {
     id("org.gradle.base")
     id("java")
-    id("org.springframework.boot") version "2.3.0.RELEASE"
+    id("org.springframework.boot") version "2.6.3"
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
-    id("org.jetbrains.kotlin.jvm") version "1.5.32"
-    id("org.jetbrains.kotlin.kapt") version "1.5.32"
-    id("org.jetbrains.kotlin.plugin.spring") version "1.5.32"
+    id("org.jetbrains.kotlin.jvm") version "1.6.0"
+    id("org.jetbrains.kotlin.kapt") version "1.6.0"
+    id("org.jetbrains.kotlin.plugin.spring") version "1.6.0"
     id("org.jetbrains.dokka") version "0.10.1"
-    id("com.gorylenko.gradle-git-properties") version "2.2.2"
+    id("com.gorylenko.gradle-git-properties") version "2.4.0"
     id("jacoco")
 }
 
@@ -39,12 +39,12 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR5")
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:2021.0.1")
         }
 
         dependencies {
-            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.5.32")
-            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.5.32")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib:1.6.0")
+            dependency("org.jetbrains.kotlin:kotlin-stdlib-common:1.6.0")
             dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
             dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.5.2")
             dependency("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2")

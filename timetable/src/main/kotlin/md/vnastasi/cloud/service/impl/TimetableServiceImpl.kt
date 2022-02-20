@@ -3,6 +3,8 @@ package md.vnastasi.cloud.service.impl
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import md.vnastasi.cloud.client.PublicTravelInfoClient
+import md.vnastasi.cloud.client.model.ArrivalWrapper
+import md.vnastasi.cloud.client.model.DepartureWrapper
 import md.vnastasi.cloud.endpoint.model.Arrival
 import md.vnastasi.cloud.endpoint.model.Departure
 import md.vnastasi.cloud.service.TimetableService
@@ -14,8 +16,8 @@ class TimetableServiceImpl(
 ) : TimetableService {
 
     override suspend fun getDepartures(code: String): Flow<Departure> =
-        client.getDepartures(code).map { it.asDeparture() }
+        client.getDepartures(code).map(DepartureWrapper::asDeparture)
 
     override suspend fun getArrivals(code: String): Flow<Arrival> =
-        client.getArrivals(code).map { it.asArrival() }
+        client.getArrivals(code).map(ArrivalWrapper::asArrival)
 }

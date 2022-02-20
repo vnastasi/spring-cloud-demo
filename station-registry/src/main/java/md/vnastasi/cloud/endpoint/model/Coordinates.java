@@ -1,11 +1,7 @@
 package md.vnastasi.cloud.endpoint.model;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public record Coordinates(
-    @JsonProperty Double latitude,
-    @JsonProperty Double longitude
+        double latitude,
+        double longitude
 ) {
 }

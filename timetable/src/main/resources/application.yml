@@ -1,12 +1,14 @@
 spring:
   application:
-    name: station-registry
+    name: timetable
+  config:
+    import: "configserver:"
   cloud:
     config:
       uri: http://localhost:8081
   pid:
     fail-on-write-error: true
-    file: pid/station-registry.pid
+    file: pid/timetable.pid
 management:
   endpoints:
     web:
@@ -18,10 +20,10 @@ management:
       mode: full
 info:
   app:
-    name: Station registry
+    name: Timetable
     version: ${project.version}
 server:
-  port: 8085
+  port: 8086
 eureka:
   client:
     serviceUrl:

@@ -2,6 +2,7 @@ package md.vnastasi.cloud.endpoint
 
 import md.vnastasi.cloud.exception.ApiErrorType
 import md.vnastasi.cloud.exception.ApiException
+import org.springframework.boot.web.error.ErrorAttributeOptions
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes
 import org.springframework.core.codec.DecodingException
 import org.springframework.stereotype.Component
@@ -14,8 +15,8 @@ const val KEY_MESSAGE = "message"
 @Component
 class ApiErrorAttributes : DefaultErrorAttributes() {
 
-    override fun getErrorAttributes(request: ServerRequest?, includeStackTrace: Boolean): MutableMap<String, Any> {
-        val errorAttributes = super.getErrorAttributes(request, includeStackTrace)
+    override fun getErrorAttributes(request: ServerRequest?, options: ErrorAttributeOptions?): MutableMap<String, Any> {
+        val errorAttributes = super.getErrorAttributes(request, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.MESSAGE))
 
         when (val throwable = getError(request)) {
             is ApiException -> {
@@ -35,6 +36,7 @@ class ApiErrorAttributes : DefaultErrorAttributes() {
                 errorAttributes += KEY_MESSAGE to throwable.message
             }
         }
+
         return errorAttributes
     }
 }
