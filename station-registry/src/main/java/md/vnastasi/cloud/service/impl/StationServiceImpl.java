@@ -45,7 +45,7 @@ public class StationServiceImpl implements StationService {
                 .take(limit);
     }
 
-    private Flux<Station> cachedFlux() {
+    private synchronized Flux<Station> cachedFlux() {
         if (flux == null) {
             flux = client.getStations().map(Mappings::map).cache(Duration.ofHours(1));
         }

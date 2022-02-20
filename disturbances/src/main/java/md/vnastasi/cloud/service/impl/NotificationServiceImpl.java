@@ -23,6 +23,7 @@ public class NotificationServiceImpl implements NotificationService {
     public Flux<Notification> getNotifications() {
         return client.getDisturbances(List.of(DisturbanceTypeWrapper.CALAMITY))
                 .filter(it -> it instanceof CalamityWrapper)
-                .map(it -> Mappings.map((CalamityWrapper) it));
+                .map(CalamityWrapper.class::cast)
+                .map(Mappings::map);
     }
 }

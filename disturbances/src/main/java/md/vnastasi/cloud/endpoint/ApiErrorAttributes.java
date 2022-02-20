@@ -19,22 +19,28 @@ public class ApiErrorAttributes extends DefaultErrorAttributes {
 
     @Override
     public Map<String, Object> getErrorAttributes(ServerRequest request, ErrorAttributeOptions options) {
-        options = ErrorAttributeOptions.of(ErrorAttributeOptions.Include.MESSAGE);
-        var errorAttributes = super.getErrorAttributes(request, options);
+        var errorAttributes = super.getErrorAttributes(request, ErrorAttributeOptions.of(ErrorAttributeOptions.Include.MESSAGE));
         var throwable = getError(request);
 
-        if (throwable instanceof ApiException) {
-            errorAttributes.put(KEY_REASON, ApiErrorType.NS_SERVICE_FAILURE);
-            errorAttributes.put(KEY_MESSAGE, "There was a problem contacting NS API portal");
-        } else if (throwable instanceof DecodingException e) {
-            errorAttributes.put(KEY_REASON, ApiErrorType.UNPARSABLE_RESPONSE);
-            errorAttributes.put(KEY_MESSAGE, e.getMessage());
-        } else if (throwable instanceof IOException e) {
-            errorAttributes.put(KEY_REASON, ApiErrorType.NS_SERVICE_FAILURE);
-            errorAttributes.put(KEY_MESSAGE, e.getMessage());
-        } else {
-            errorAttributes.put(KEY_REASON, ApiErrorType.UNKNOWN_FAILURE);
-            errorAttributes.put(KEY_MESSAGE, throwable.getMessage());
+        switch (throwable) {
+            case ApiException ignored -> {
+                errorAttributes.put(KEY_REASON, ApiErrorType.NS_SERVICE_FAILURE);
+                errorAttributes.put(KEY_MESSAGE, "There was a problem contacting NS API portal");
+            }
+            case DecodingException e -> {
+                errorAttributes.put(KEY_REASON, ApiErrorType.UNPARSABLE_RESPONSE);
+                errorAttributes.put(KEY_MESSAGE, e.getMessage());
+            }
+            case IOException e -> {
+                errorAttributes.put(KEY_REASON, ApiErrorType.NS_SERVICE_FAILURE);
+                errorAttributes.put(KEY_MESSAGE, e.getMessage());
+            }
+            case null -> {
+            }
+            default -> {
+                errorAttributes.put(KEY_REASON, ApiErrorType.UNKNOWN_FAILURE);
+                errorAttributes.put(KEY_MESSAGE, throwable.getMessage());
+            }
         }
 
         return errorAttributes;

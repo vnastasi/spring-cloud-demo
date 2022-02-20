@@ -12,5 +12,6 @@ public record Period(
 
         @JsonProperty("end")
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
-        OffsetDateTime end) {
+        OffsetDateTime end
+) {
 }

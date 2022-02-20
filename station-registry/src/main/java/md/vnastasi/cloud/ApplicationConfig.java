@@ -10,16 +10,16 @@ public class ApplicationConfig {
 
     @Bean
     public WebClient provideWebClient(
-        @NonNull WebClient.Builder builder,
-        @NonNull ApplicationProperties applicationProperties
+            @NonNull WebClient.Builder builder,
+            @NonNull ApplicationProperties applicationProperties
     ) {
         var url = applicationProperties.nsApi().baseUrl() + applicationProperties.nsApi().publicTravelInfo().basePath();
         var headerName = applicationProperties.nsApi().publicTravelInfo().apiKey().header();
         var headerValue = applicationProperties.nsApi().publicTravelInfo().apiKey().value();
 
         return builder
-            .baseUrl(url)
-            .defaultHeader(headerName, headerValue)
-            .build();
+                .baseUrl(url)
+                .defaultHeader(headerName, headerValue)
+                .build();
     }
 }

@@ -56,6 +56,6 @@ final class Mappings {
 
     @NonNull
     private static List<String> map(@NonNull List<TrackWrapper> input) {
-        return input.stream().map(TrackWrapper::number).collect(toList());
+        return input.stream().map(TrackWrapper::number).toList();
     }
 }
