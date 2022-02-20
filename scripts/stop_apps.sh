@@ -6,8 +6,8 @@ echo "Stopping API Gateway app"
 cat api-gateway.pid | xargs kill
 sleep 10s
 
-echo "Stopping Disruptions app"
-cat disruptions.pid | xargs kill
+echo "Stopping Disturbances app"
+cat disturbances.pid | xargs kill
 sleep 10s
 
 echo "Stopping Timetable app"
