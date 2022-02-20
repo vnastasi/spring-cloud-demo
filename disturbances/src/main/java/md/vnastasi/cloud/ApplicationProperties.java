@@ -9,18 +9,18 @@ public record ApplicationProperties(
         NsApiProperties nsApi
 ) {
 
-    public static record NsApiProperties(
+    public record NsApiProperties(
             String baseUrl,
             PublicTravelInfoProperties publicTravelInfo
     ) {
 
-        public static record PublicTravelInfoProperties(
+        public record PublicTravelInfoProperties(
                 String basePath,
                 ApiKeyProperties apiKey,
                 String disruptionsPath
         ) {
 
-            public static record ApiKeyProperties(
+            public record ApiKeyProperties(
                     String header,
                     String value
             ) {

@@ -36,19 +36,19 @@ dependencies {
 tasks.compileKotlin {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "15"
+        jvmTarget = "16"
     }
 }
 
 tasks.compileTestKotlin {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "15"
+        jvmTarget = "16"
     }
 }
 
 tasks.processResources {
-    filesMatching("bootstrap.yml") {
+    filesMatching("application.yml") {
         expand(project.properties)
     }
 }

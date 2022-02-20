@@ -1,12 +1,16 @@
 spring:
   application:
-    name: disturbances
+    name: station-registry
+  config:
+    import: "configserver:"
+  codec:
+    max-in-memory-size: 5MB
   cloud:
     config:
       uri: http://localhost:8081
   pid:
     fail-on-write-error: true
-    file: pid/disturbances.pid
+    file: pid/station-registry.pid
 management:
   endpoints:
     web:
@@ -18,10 +22,10 @@ management:
       mode: full
 info:
   app:
-    name: Disturbances
+    name: Station registry
     version: ${project.version}
 server:
-  port: 8087
+  port: 8085
 eureka:
   client:
     serviceUrl:

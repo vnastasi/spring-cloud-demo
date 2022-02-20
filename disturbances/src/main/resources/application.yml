@@ -1,12 +1,14 @@
 spring:
   application:
-    name: timetable
+    name: disturbances
+  config:
+    import: "configserver:"
   cloud:
     config:
       uri: http://localhost:8081
   pid:
     fail-on-write-error: true
-    file: pid/timetable.pid
+    file: pid/disturbances.pid
 management:
   endpoints:
     web:
@@ -18,10 +20,10 @@ management:
       mode: full
 info:
   app:
-    name: Timetable
+    name: Disturbances
     version: ${project.version}
 server:
-  port: 8086
+  port: 8087
 eureka:
   client:
     serviceUrl:

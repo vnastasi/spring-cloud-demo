@@ -7,8 +7,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_15
-    targetCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
@@ -37,7 +37,7 @@ dependencies {
 }
 
 tasks.processResources {
-    filesMatching("bootstrap.yml") {
+    filesMatching("application.yml") {
         expand(project.properties)
     }
 }
