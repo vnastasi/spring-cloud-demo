@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 shopt -s expand_aliases
 
-jenv local 15
+jenv local 17
 
 echo "Starting Eureka Server..."
 java --enable-preview -jar eureka-server-*.jar &
