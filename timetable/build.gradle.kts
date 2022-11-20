@@ -29,6 +29,8 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter")
     testImplementation("com.squareup.okhttp3:mockwebserver")
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin")
+    testImplementation("com.willowtreeapps.assertk:assertk")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
@@ -42,7 +44,7 @@ tasks.compileKotlin {
 
 tasks.compileTestKotlin {
     kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
+        freeCompilerArgs = listOf("-Xjsr305=strict", "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi")
         jvmTarget = "16"
     }
 }
