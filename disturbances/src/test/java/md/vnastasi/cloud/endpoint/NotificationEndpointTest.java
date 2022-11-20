@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.codec.DecodingException;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
 
@@ -17,6 +18,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @WebFluxTest(controllers = {NotificationEndpoint.class, ApiErrorAttributes.class})
+@TestPropertySource(
+        properties = {
+                "spring.cloud.config.enabled=false",
+                "spring.config.location=classpath:test-application.yml"
+        }
+)
 class NotificationEndpointTest {
 
     @MockBean
