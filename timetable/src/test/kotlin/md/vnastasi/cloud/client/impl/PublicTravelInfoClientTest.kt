@@ -1,22 +1,20 @@
 package md.vnastasi.cloud.client.impl
 
+import assertk.all
+import assertk.assertThat
+import assertk.assertions.*
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
-import md.vnastasi.cloud.client.model.DepartureStatusWrapper
-import md.vnastasi.cloud.client.model.MessageTypeWrapper
-import md.vnastasi.cloud.client.model.MessageWrapper
-import md.vnastasi.cloud.client.model.ProductTypeWrapper
+import kotlinx.coroutines.test.runTest
+import md.vnastasi.cloud.client.model.*
 import md.vnastasi.cloud.exception.ApiError
 import md.vnastasi.cloud.exception.ApiErrorType
 import md.vnastasi.cloud.exception.ApiException
 import md.vnastasi.cloud.util.JsonUtils.readString
 import md.vnastasi.cloud.util.applicationProperties
-import md.vnastasi.cloud.util.isEqualInUtc
+import md.vnastasi.cloud.util.isEqualTo
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -48,71 +46,84 @@ class PublicTravelInfoClientTest {
 
         @Test
         @DisplayName("when client returns HTTP 200 then expect a flow of departures")
-        fun testDepartures() {
+        fun testDepartures() = runTest {
             val mockResponse = MockResponse()
                 .setResponseCode(HttpStatus.OK.value())
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .setBody(readString("departure_list.json"))
             webServer.enqueue(mockResponse)
 
-            val list = runBlocking { client.getDepartures(UIC_CODE).toList(mutableListOf()) }
+            val list = client.getDepartures(UIC_CODE).toList(mutableListOf())
 
             assertThat(list).hasSize(2)
 
-            with(list[0]) {
-                assertThat(direction).isEqualTo("Den Haag Centraal")
-                assertThat(plannedDateTime).isEqualInUtc("2019-10-25T19:02:00+0200")
-                assertThat(actualDateTime).isEqualInUtc("2019-10-25T19:02:00+0200")
-                assertThat(plannedTrack).isEqualTo("8")
-                assertThat(cancelled).isFalse()
-                assertThat(routeStations).isEmpty()
-                assertThat(departureStatus).isEqualTo(DepartureStatusWrapper.ON_STATION)
-                assertThat(messages).isNull()
-                with(product) {
-                    assertThat(number).isEqualTo("2062")
-                    assertThat(categoryCode).isEqualTo("IC")
-                    assertThat(shortCategoryName).isEqualTo("NS Intercity")
-                    assertThat(operatorName).isEqualTo("NS")
-                    assertThat(operatorCode).isEqualTo("NS")
-                    assertThat(type).isEqualTo(ProductTypeWrapper.TRAIN)
+            assertThat(list[0]).all {
+                prop(DepartureWrapper::direction).isEqualTo("Den Haag Centraal")
+                prop(DepartureWrapper::plannedDateTime).isEqualTo("2019-10-25T19:02:00+0200")
+                prop(DepartureWrapper::actualDateTime).isEqualTo("2019-10-25T19:02:00+0200")
+                prop(DepartureWrapper::plannedTrack).isEqualTo("8")
+                prop(DepartureWrapper::cancelled).isFalse()
+                prop(DepartureWrapper::routeStations).isEmpty()
+                prop(DepartureWrapper::departureStatus).isEqualTo(DepartureStatusWrapper.ON_STATION)
+                prop(DepartureWrapper::messages).isNull()
+                prop(DepartureWrapper::product).all {
+                    prop(ProductWrapper::number).isEqualTo("2062")
+                    prop(ProductWrapper::categoryCode).isEqualTo("IC")
+                    prop(ProductWrapper::shortCategoryName).isEqualTo("NS Intercity")
+                    prop(ProductWrapper::operatorName).isEqualTo("NS")
+                    prop(ProductWrapper::operatorCode).isEqualTo("NS")
+                    prop(ProductWrapper::type).isEqualTo(ProductTypeWrapper.TRAIN)
                 }
             }
 
-            with(list[1]) {
-                assertThat(direction).isEqualTo("'s-Hertogenbosch")
-                assertThat(plannedDateTime).isEqualInUtc("2019-10-25T19:15:00+0200")
-                assertThat(actualDateTime).isEqualInUtc("2019-10-25T19:15:00+0200")
-                assertThat(plannedTrack).isEqualTo("5")
-                assertThat(cancelled).isFalse()
-                assertThat(routeStations).extracting("name").contains("Woerden", "Utrecht C.", "Vaartsche Rijn", "Houten")
-                assertThat(departureStatus).isEqualTo(DepartureStatusWrapper.INCOMING)
-                assertThat(messages).hasSize(1).contains(MessageWrapper("De Intercity van 19:24 naar Groningen is eerder in Utrecht C. en vertrekt van spoor 3", MessageTypeWrapper.INFO))
-                with(product) {
-                    assertThat(number).isEqualTo("6973")
-                    assertThat(categoryCode).isEqualTo("SPR")
-                    assertThat(shortCategoryName).isEqualTo("NS Sprinter")
-                    assertThat(operatorName).isEqualTo("NS")
-                    assertThat(operatorCode).isEqualTo("NS")
-                    assertThat(type).isEqualTo(ProductTypeWrapper.TRAIN)
+            assertThat(list[1]).all {
+                prop(DepartureWrapper::direction).isEqualTo("'s-Hertogenbosch")
+                prop(DepartureWrapper::plannedDateTime).isEqualTo("2019-10-25T19:15:00+0200")
+                prop(DepartureWrapper::actualDateTime).isEqualTo("2019-10-25T19:15:00+0200")
+                prop(DepartureWrapper::plannedTrack).isEqualTo("5")
+                prop(DepartureWrapper::cancelled).isFalse()
+                prop(DepartureWrapper::routeStations).containsExactly(
+                    RouteStationWrapper(uicCode = "8400702", name = "Woerden"),
+                    RouteStationWrapper(uicCode = "8400621", name = "Utrecht C."),
+                    RouteStationWrapper(uicCode = "8400606", name = "Vaartsche Rijn"),
+                    RouteStationWrapper(uicCode = "8400340", name = "Houten")
+                )
+                prop(DepartureWrapper::departureStatus).isEqualTo(DepartureStatusWrapper.INCOMING)
+                prop(DepartureWrapper::messages).isNotNull().containsExactly(
+                    MessageWrapper(
+                        text = "De Intercity van 19:24 naar Groningen is eerder in Utrecht C. en vertrekt van spoor 3",
+                        type = MessageTypeWrapper.INFO
+                    )
+                )
+                prop(DepartureWrapper::product).all {
+                    prop(ProductWrapper::number).isEqualTo("6973")
+                    prop(ProductWrapper::categoryCode).isEqualTo("SPR")
+                    prop(ProductWrapper::shortCategoryName).isEqualTo("NS Sprinter")
+                    prop(ProductWrapper::operatorName).isEqualTo("NS")
+                    prop(ProductWrapper::operatorCode).isEqualTo("NS")
+                    prop(ProductWrapper::type).isEqualTo(ProductTypeWrapper.TRAIN)
                 }
             }
         }
 
         @Test
         @DisplayName("when client returns an error then expect an exception")
-        fun testError() {
+        fun testError() = runTest {
             val mockResponse = MockResponse()
                 .setResponseCode(HttpStatus.NOT_FOUND.value())
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .setBody(readString("no_departures_for_station.json"))
             webServer.enqueue(mockResponse)
 
-            assertThatThrownBy { runBlocking { client.getDepartures(UIC_CODE).toList(mutableListOf()) } }
-                .isInstanceOf(ApiException::class.java)
-                .hasFieldOrPropertyWithValue("error", ApiError(
-                    type = ApiErrorType.NO_DEPARTURES_FOR_STATION,
-                    message = "Er zijn geen vertrektijden voor station London St. Pancras Int."
-                ))
+            assertThat { client.getDepartures(UIC_CODE).toList(mutableListOf()) }
+                .isFailure()
+                .isInstanceOf(ApiException::class)
+                .prop(ApiException::error).isDataClassEqualTo(
+                    ApiError(
+                        type = ApiErrorType.NO_DEPARTURES_FOR_STATION,
+                        message = "Er zijn geen vertrektijden voor station London St. Pancras Int."
+                    )
+                )
         }
     }
 
@@ -123,69 +134,72 @@ class PublicTravelInfoClientTest {
 
         @Test
         @DisplayName("when client returns HTTP 200 then expect a flow of arrivals")
-        fun testArrivals() {
+        fun testArrivals() = runTest {
             val mockResponse = MockResponse()
                 .setResponseCode(HttpStatus.OK.value())
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .setBody(readString("arrival_list.json"))
             webServer.enqueue(mockResponse)
 
-            val list = runBlocking { client.getArrivals(UIC_CODE).toList(mutableListOf()) }
+            val list = client.getArrivals(UIC_CODE).toList(mutableListOf())
 
             assertThat(list).hasSize(2)
 
-            with(list[0]) {
-                assertThat(origin).isEqualTo("Utrecht Centraal")
-                assertThat(plannedDateTime).isEqualInUtc("2019-10-25T20:51:00+0200")
-                assertThat(actualDateTime).isEqualInUtc("2019-10-25T20:51:00+0200")
-                assertThat(plannedTrack).isEqualTo("8")
-                assertThat(actualTrack).isEqualTo("8")
-                assertThat(cancelled).isFalse()
-                assertThat(messages).isNull()
-                with(product) {
-                    assertThat(number).isEqualTo("2870")
-                    assertThat(categoryCode).isEqualTo("IC")
-                    assertThat(shortCategoryName).isEqualTo("IC")
-                    assertThat(operatorName).isEqualTo("NS")
-                    assertThat(operatorCode).isEqualTo("NS")
-                    assertThat(type).isEqualTo(ProductTypeWrapper.TRAIN)
+            assertThat(list[0]).all {
+                prop(ArrivalWrapper::origin).isEqualTo("Utrecht Centraal")
+                prop(ArrivalWrapper::plannedDateTime).isEqualTo("2019-10-25T20:51:00+0200")
+                prop(ArrivalWrapper::actualDateTime).isEqualTo("2019-10-25T20:51:00+0200")
+                prop(ArrivalWrapper::plannedTrack).isEqualTo("8")
+                prop(ArrivalWrapper::actualTrack).isEqualTo("8")
+                prop(ArrivalWrapper::cancelled).isFalse()
+                prop(ArrivalWrapper::messages).isNull()
+                prop(ArrivalWrapper::product).all {
+                    prop(ProductWrapper::number).isEqualTo("2870")
+                    prop(ProductWrapper::categoryCode).isEqualTo("IC")
+                    prop(ProductWrapper::shortCategoryName).isEqualTo("IC")
+                    prop(ProductWrapper::operatorName).isEqualTo("NS")
+                    prop(ProductWrapper::operatorCode).isEqualTo("NS")
+                    prop(ProductWrapper::type).isEqualTo(ProductTypeWrapper.TRAIN)
                 }
             }
 
-            with(list[1]) {
-                assertThat(origin).isEqualTo("Alphen a/d Rijn")
-                assertThat(plannedDateTime).isEqualInUtc("2019-10-25T21:02:00+0200")
-                assertThat(actualDateTime).isEqualInUtc("2019-10-25T21:02:00+0200")
-                assertThat(plannedTrack).isEqualTo("11")
-                assertThat(actualTrack).isEqualTo("11")
-                assertThat(cancelled).isFalse()
-                assertThat(messages).isNull()
-                with(product) {
-                    assertThat(number).isEqualTo("8667")
-                    assertThat(categoryCode).isEqualTo("SPR")
-                    assertThat(shortCategoryName).isEqualTo("SPR")
-                    assertThat(operatorName).isEqualTo("R-net")
-                    assertThat(operatorCode).isEqualTo("R-net")
-                    assertThat(type).isEqualTo(ProductTypeWrapper.TRAIN)
+            assertThat(list[1]).all {
+                prop(ArrivalWrapper::origin).isEqualTo("Alphen a/d Rijn")
+                prop(ArrivalWrapper::plannedDateTime).isEqualTo("2019-10-25T21:02:00+0200")
+                prop(ArrivalWrapper::actualDateTime).isEqualTo("2019-10-25T21:02:00+0200")
+                prop(ArrivalWrapper::plannedTrack).isEqualTo("11")
+                prop(ArrivalWrapper::actualTrack).isEqualTo("11")
+                prop(ArrivalWrapper::cancelled).isFalse()
+                prop(ArrivalWrapper::messages).isNull()
+                prop(ArrivalWrapper::product).all {
+                    prop(ProductWrapper::number).isEqualTo("8667")
+                    prop(ProductWrapper::categoryCode).isEqualTo("SPR")
+                    prop(ProductWrapper::shortCategoryName).isEqualTo("SPR")
+                    prop(ProductWrapper::operatorName).isEqualTo("R-net")
+                    prop(ProductWrapper::operatorCode).isEqualTo("R-net")
+                    prop(ProductWrapper::type).isEqualTo(ProductTypeWrapper.TRAIN)
                 }
             }
         }
 
         @Test
         @DisplayName("when client returns an error then expect an exception")
-        fun testError() {
+        fun testError() = runTest {
             val mockResponse = MockResponse()
                 .setResponseCode(HttpStatus.BAD_REQUEST.value())
                 .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .setBody(readString("station_not_found.json"))
             webServer.enqueue(mockResponse)
 
-            assertThatThrownBy { runBlocking { client.getArrivals(UIC_CODE).toList(mutableListOf()) } }
-                .isInstanceOf(ApiException::class.java)
-                .hasFieldOrPropertyWithValue("error", ApiError(
-                    type = ApiErrorType.UNKNOWN_STATION,
-                    message = "Dit station is niet gevonden"
-                ))
+            assertThat { client.getArrivals(UIC_CODE).toList(mutableListOf()) }
+                .isFailure()
+                .isInstanceOf(ApiException::class)
+                .prop(ApiException::error).isDataClassEqualTo(
+                    ApiError(
+                        type = ApiErrorType.UNKNOWN_STATION,
+                        message = "Dit station is niet gevonden"
+                    )
+                )
         }
     }
 }
