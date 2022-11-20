@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.util.UriBuilder;
 import reactor.core.publisher.Flux;
@@ -20,6 +21,12 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @WebFluxTest(controllers = StationsEndpoint.class)
+@TestPropertySource(
+        properties = {
+                "spring.cloud.config.enabled=false",
+                "spring.config.location=classpath:test-application.yml"
+        }
+)
 class StationsEndpointTest {
 
     @MockBean
@@ -77,13 +84,13 @@ class StationsEndpointTest {
         var names = new NameHolder("Amsterdam C.", "Amsterdam C.", "Amsterdam Centraal");
         var coordinates = new Coordinates(4.6, 3.4);
         return new Station(
-            "AMS",
-            names,
-            StationType.MAJOR_STATION,
-            List.of(),
-            "NL",
-            List.of("1", "2", "3"),
-            coordinates
+                "AMS",
+                names,
+                StationType.MAJOR_STATION,
+                List.of(),
+                "NL",
+                List.of("1", "2", "3"),
+                coordinates
         );
     }
 }

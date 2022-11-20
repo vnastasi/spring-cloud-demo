@@ -1,5 +1,8 @@
 package md.vnastasi.cloud.endpoint
 
+import assertk.all
+import assertk.assertThat
+import assertk.assertions.*
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.reset
@@ -14,7 +17,6 @@ import md.vnastasi.cloud.service.TimetableService
 import md.vnastasi.cloud.util.UIC_CODE
 import md.vnastasi.cloud.util.createArrival
 import md.vnastasi.cloud.util.createDeparture
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -25,14 +27,19 @@ import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.context.annotation.Import
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.MediaType
+import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.reactive.server.WebTestClient
-import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 private val MAP_TYPE_REFERENCE = object : ParameterizedTypeReference<Map<String, String>>() {}
 
 @WebFluxTest
 @Import(value = [TimetableRouters::class, ApiErrorAttributes::class])
+@TestPropertySource(
+    properties = [
+        "spring.cloud.config.enabled=false",
+        "spring.config.location=classpath:test-application.yml"
+    ]
+)
 class TimetableRoutersTest {
 
     @MockBean
@@ -67,11 +74,10 @@ class TimetableRoutersTest {
                 .returnResult()
                 .responseBody
 
-            assertThat(list)
-                .hasSize(1)
-                .usingRecursiveFieldByFieldElementComparator()
-                .usingComparatorForElementFieldsWithType(compareBy { it.withOffsetSameInstant(ZoneOffset.UTC) }, OffsetDateTime::class.java)
-                .contains(departure)
+            assertThat(list).isNotNull().all {
+                hasSize(1)
+                index(0).isNotNull().isDataClassEqualTo(departure)
+            }
         }
 
         @Test
@@ -91,11 +97,10 @@ class TimetableRoutersTest {
                 .returnResult()
                 .responseBody
 
-            assertThat(map)
-                .isNotNull
-                .isNotEmpty
-                .containsEntry(KEY_REASON, apiError.type.name)
-                .containsEntry(KEY_MESSAGE, apiError.message)
+            assertThat(map).isNotNull().all {
+                contains(KEY_REASON, apiError.type.name)
+                contains(KEY_MESSAGE, apiError.message)
+            }
         }
     }
 
@@ -120,11 +125,10 @@ class TimetableRoutersTest {
                 .returnResult()
                 .responseBody
 
-            assertThat(list)
-                .hasSize(1)
-                .usingRecursiveFieldByFieldElementComparator()
-                .usingComparatorForElementFieldsWithType(compareBy { it.withOffsetSameInstant(ZoneOffset.UTC) }, OffsetDateTime::class.java)
-                .contains(arrival)
+            assertThat(list).isNotNull().all {
+                hasSize(1)
+                index(0).isEqualTo(arrival)
+            }
         }
 
         @Test
@@ -144,11 +148,10 @@ class TimetableRoutersTest {
                 .returnResult()
                 .responseBody
 
-            assertThat(map)
-                .isNotNull
-                .isNotEmpty
-                .containsEntry(KEY_REASON, apiError.type.name)
-                .containsEntry(KEY_MESSAGE, apiError.message)
+            assertThat(map).isNotNull().all {
+                contains(KEY_REASON, apiError.type.name)
+                contains(KEY_MESSAGE, apiError.message)
+            }
         }
     }
 }
