@@ -3,49 +3,52 @@
 version = "1.0.2"
 
 plugins {
-    id("org.jetbrains.kotlin.jvm")
-    id("org.jetbrains.kotlin.kapt")
-    id("org.jetbrains.kotlin.plugin.spring")
-    id("org.jetbrains.dokka")
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.dokka)
+    alias(libs.plugins.gitProperties)
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.cloud:spring-cloud-starter-config")
-    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation(platform(libs.spring.cloud.bom))
+    implementation(platform(libs.spring.boot.bom))
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.coroutines.core)
+    implementation(libs.kotlin.coroutines.reactive)
+    implementation(libs.kotlin.coroutines.reactor)
+    implementation(libs.spring.boot.webflux)
+    implementation(libs.spring.boot.actuator)
+    implementation(libs.spring.cloud.config.client)
+    implementation(libs.spring.cloud.eureka.client)
+    implementation(libs.jackson.module.kotlin)
 
-    kapt("org.springframework.boot:spring-boot-configuration-processor")
+    kapt(libs.spring.boot.configProcessor)
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    testImplementation("org.mockito:mockito-junit-jupiter")
-    testImplementation("com.squareup.okhttp3:mockwebserver")
-    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin")
-    testImplementation("com.willowtreeapps.assertk:assertk")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
+    testImplementation(libs.spring.boot.test)
+    testImplementation(libs.reactor.test)
+    testImplementation(libs.junit5.core)
+    testImplementation(libs.mockito.junit5)
+    testImplementation(libs.okhttp.mockwebserver)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.assertk)
+    testImplementation(libs.kotlin.coroutines.test)
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testRuntimeOnly(libs.junit5.engine)
 }
 
 tasks.compileKotlin {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "16"
+        jvmTarget = "17"
     }
 }
 
 tasks.compileTestKotlin {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict", "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi")
-        jvmTarget = "16"
+        jvmTarget = "17"
     }
 }
 

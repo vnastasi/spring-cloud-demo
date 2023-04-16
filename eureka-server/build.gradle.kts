@@ -4,6 +4,8 @@ version = "1.0.0"
 
 plugins {
     id("java")
+    id("jacoco")
+    alias(libs.plugins.spring.boot)
 }
 
 java {
@@ -12,6 +14,8 @@ java {
 }
 
 dependencies {
-	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation(platform(libs.spring.cloud.bom))
+    implementation(platform(libs.spring.boot.bom))
+	implementation(libs.spring.cloud.eureka.server)
+    implementation(libs.spring.boot.actuator)
 }

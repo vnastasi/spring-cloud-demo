@@ -4,6 +4,8 @@ version = "1.1.0"
 
 plugins {
     id("java")
+    id("jacoco")
+    alias(libs.plugins.spring.boot)
 }
 
 java {
@@ -12,12 +14,14 @@ java {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.cloud:spring-cloud-starter-config")
-    implementation("org.springframework.cloud:spring-cloud-starter-gateway")
-    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation(platform(libs.spring.cloud.bom))
+    implementation(platform(libs.spring.boot.bom))
+    implementation(libs.spring.boot.webflux)
+    implementation(libs.spring.cloud.config.client)
+    implementation(libs.spring.cloud.gateway)
+    implementation(libs.spring.cloud.eureka.client)
+    implementation(libs.spring.boot.actuator)
+    implementation(libs.spring.boot.security)
 }
 
 tasks.withType<JavaCompile> {

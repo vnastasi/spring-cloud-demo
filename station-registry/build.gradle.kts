@@ -4,6 +4,9 @@ version = "1.2.1"
 
 plugins {
     id("java")
+    id("jacoco")
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.gitProperties)
 }
 
 java {
@@ -18,22 +21,23 @@ configurations {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.cloud:spring-cloud-starter-config")
-    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    implementation(platform(libs.spring.cloud.bom))
+    implementation(platform(libs.spring.boot.bom))
+    implementation(libs.spring.boot.webflux)
+    implementation(libs.spring.boot.actuator)
+    implementation(libs.spring.cloud.config.client)
+    implementation(libs.spring.cloud.eureka.client)
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testImplementation("org.junit.jupiter:junit-jupiter-params")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.mockito:mockito-junit-jupiter")
-    testImplementation("com.squareup.okhttp3:mockwebserver")
-    testImplementation("com.squareup.okhttp3:okhttp")
-    testImplementation("com.squareup.okio:okio")
-    testImplementation("org.jetbrains.kotlin:kotlin-stdlib")
-    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+    testImplementation(libs.spring.boot.test)
+    testImplementation(libs.reactor.test)
+    testImplementation(libs.junit5.api)
+    testImplementation(libs.junit5.params)
+    testImplementation(libs.junit5.engine)
+    testImplementation(libs.mockito.junit5)
+    testImplementation(libs.okhttp.mockwebserver)
+    testImplementation(libs.okhttp.core)
+    testImplementation(libs.okio)
+    testImplementation(libs.kotlin.stdlib)
 }
 
 tasks.processResources {
