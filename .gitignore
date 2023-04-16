@@ -1,10 +1,5 @@
 .idea
-
 .gradle
-gradle
-gradlew
-gradlew.bat
-
 build/
 
 HELP.md
